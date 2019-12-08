@@ -1,5 +1,6 @@
 package com.redecommunity.common.shared.permissions.user.dao;
 
+import com.google.common.collect.Sets;
 import com.redecommunity.common.shared.databases.mysql.dao.Table;
 import com.redecommunity.common.shared.permissions.user.data.User;
 
@@ -72,12 +73,28 @@ public class UserDao extends Table {
     }
 
     @Override
-    public <K, V> void update(K key, V value) throws SQLException {
-        super.update(key, value);
+    public <K, K1, V, V1> void update(K key1, V value1, K1 key2, V1 value2) throws SQLException {
+        this.execute(
+                String.format(
+                        "UPDATE %s SET `%s`=%s WHERE `%s`=%s",
+                        this.getTableName(),
+                        key1,
+                        value1,
+                        key2,
+                        value2
+                )
+        );
     }
 
     public <K, V> void delete(K key, V value) throws SQLException {
-        // TODO not implemented yet
+        this.execute(
+                String.format(
+                        "DELETE FROM %s WHERE `%s`=%s",
+                        this.getTableName(),
+                        key,
+                        value
+                )
+        );
     }
 
     public <K, V, T> T findOne(K key, V value) throws SQLException {
@@ -112,6 +129,36 @@ public class UserDao extends Table {
     }
 
     public <T> Set<T> findAll() throws SQLException {
-        return null;
+        PreparedStatement preparedStatement = this.prepareStatement(
+                String.format(
+                        "SELECT * FROM %s",
+                        this.getTableName()
+                )
+        );
+
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        Set<T> users = Sets.newConcurrentHashSet();
+
+        while (resultSet.next()) {
+            User user = new User(
+                    resultSet.getInt("id"),
+                    resultSet.getString("name"),
+                    resultSet.getString("display_name"),
+                    UUID.fromString(resultSet.getString("unique_id")),
+                    resultSet.getString("email"),
+                    resultSet.getLong("discord_id"),
+                    resultSet.getLong("created_at"),
+                    resultSet.getLong("first_login"),
+                    resultSet.getLong("last_login"),
+                    resultSet.getString("last_address"),
+                    resultSet.getInt("last_lobby_id"),
+                    resultSet.getInt("lang_id")
+            );
+
+            users.add((T) user);
+        }
+
+        return users;
     }
 }
