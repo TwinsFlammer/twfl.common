@@ -2,8 +2,6 @@ package com.redecommunity.common.shared.databases.mysql.dao;
 
 import com.redecommunity.common.Common;
 import com.redecommunity.common.shared.databases.mysql.data.MySQL;
-import com.redecommunity.common.shared.databases.mysql.manager.MySQLManager;
-import com.redecommunity.common.shared.permissions.user.data.User;
 import lombok.RequiredArgsConstructor;
 
 import java.sql.PreparedStatement;
@@ -18,19 +16,21 @@ public abstract class Table implements TableImpl {
     private final String tableName;
     private final String databaseName;
 
-    private MySQL mySQL = Common.getInstance().getDatabaseManager().getMySQLManager().getDatabase(databaseName);
-
     @Override
     public void createTable() throws SQLException {
-        // TODO not implemented yet
+        // TODO auto-generated method stub
+    }
+
+    private MySQL getMySQL() {
+        return Common.getInstance().getDatabaseManager().getMySQLManager().getDatabase(this.databaseName);
     }
 
     public boolean execute(String query) throws SQLException {
-        return this.mySQL.execute(query);
+        return this.getMySQL().execute(query);
     }
 
     public PreparedStatement prepareStatement(String query) throws SQLException {
-        return this.mySQL.prepareStatement(query);
+        return this.getMySQL().prepareStatement(query);
     }
 
     @Override
@@ -39,15 +39,15 @@ public abstract class Table implements TableImpl {
     }
 
     public <T> void insert(T object) throws SQLException {
-
+        // TODO auto-generated method stub
     }
 
-    public <K, K1, V, V1> void update(K key1, V value1, K1 key2, V1 value2) throws SQLException {
-
+    public <K, V, K1, V1> void update(K key1, V value1, K1 key2, V1 value2) throws SQLException {
+        // TODO auto-generated method stub
     }
 
     public <K, V> void delete(K key, V value) throws SQLException {
-
+        // TODO auto-generated method stub
     }
 
     public <K, V, T> T findOne(K key, V value) throws SQLException {
