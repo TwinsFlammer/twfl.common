@@ -42,7 +42,7 @@ public abstract class Table implements TableImpl {
 
     }
 
-    public <K, V> void update(K key, V value) throws SQLException {
+    public <K, K1, V, V1> void update(K key1, V value1, K1 key2, V1 value2) throws SQLException {
 
     }
 
