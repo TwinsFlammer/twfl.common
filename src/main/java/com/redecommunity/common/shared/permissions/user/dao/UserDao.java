@@ -72,8 +72,7 @@ public class UserDao extends Table {
         preparedStatement.executeQuery();
     }
 
-    @Override
-    public <K, K1, V, V1> void update(K key1, V value1, K1 key2, V1 value2) throws SQLException {
+    public <K, V, K1, V1> void update(K key1, V value1, K1 key2, V1 value2) throws SQLException {
         this.execute(
                 String.format(
                         "UPDATE %s SET `%s`=%s WHERE `%s`=%s",
