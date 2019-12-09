@@ -27,8 +27,9 @@ public class DatabaseManager {
     }
 
     private void startScheduler() {
-        Common.getInstance().getScheduler().schedule(
+        Common.getInstance().getScheduler().scheduleAtFixedRate(
                 new DatabaseRefreshRunnable(),
+                0,
                 5,
                 TimeUnit.SECONDS
         );
