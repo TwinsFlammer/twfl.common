@@ -1,12 +1,13 @@
 package com.redecommunity.common.shared.databases.mysql.dao;
 
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.Set;
 
 /**
  * Created by @SrGutyerrez
  */
-interface TableImpl {
+public interface TableImpl {
 
     void createTable() throws SQLException;
 
@@ -14,7 +15,7 @@ interface TableImpl {
 
     <T> void insert(T object) throws SQLException;
 
-    <K, V, K1, V1> void update(K key1, V value1, K1 key2, V1 value2) throws SQLException;
+    <K, V, U, I> void update(HashMap<K, V> keys, U key, I value) throws SQLException;
 
     <K, V> void delete(K key, V value) throws SQLException;
 

@@ -6,13 +6,14 @@ import lombok.RequiredArgsConstructor;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.Set;
 
 /**
  * Created by @SrGutyerrez
  */
 @RequiredArgsConstructor
-public abstract class Table implements TableImpl {
+public class Table implements TableImpl {
     private final String tableName;
     private final String databaseName;
 
@@ -38,11 +39,12 @@ public abstract class Table implements TableImpl {
         return this.tableName;
     }
 
+    @Override
     public <T> void insert(T object) throws SQLException {
         // TODO auto-generated method stub
     }
 
-    public <K, V, K1, V1> void update(K key1, V value1, K1 key2, V1 value2) throws SQLException {
+    public <K, V, U, I> void update(HashMap<K, V> keys, U key, I value) throws SQLException {
         // TODO auto-generated method stub
     }
 
