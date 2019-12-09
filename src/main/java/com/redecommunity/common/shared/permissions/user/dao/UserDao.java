@@ -7,6 +7,8 @@ import com.redecommunity.common.shared.permissions.user.data.User;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 
@@ -72,19 +74,26 @@ public class UserDao extends Table {
         preparedStatement.executeQuery();
     }
 
-    public <K, V, K1, V1> void update(K key1, V value1, K1 key2, V1 value2) throws SQLException {
-        this.execute(
-                String.format(
-                        "UPDATE %s SET `%s`=%s WHERE `%s`=%s",
-                        this.getTableName(),
-                        key1,
-                        value1,
-                        key2,
-                        value2
-                )
-        );
+    @Override
+    public <K, V, U, I> void update(HashMap<K, V> keys, U key, I value) throws SQLException {
+        for (Map.Entry<K, V> entry : keys.entrySet()) {
+            K key1 = entry.getKey();
+            V value1 = entry.getValue();
+
+            this.execute(
+                    String.format(
+                            "UPDATE %s SET `%s`=%s WHERE `%s`=%s",
+                            this.getTableName(),
+                            key1,
+                            value1,
+                            key,
+                            value
+                    )
+            );
+        }
     }
 
+    @Override
     public <K, V> void delete(K key, V value) throws SQLException {
         this.execute(
                 String.format(
@@ -96,6 +105,7 @@ public class UserDao extends Table {
         );
     }
 
+    @Override
     public <K, V, T> T findOne(K key, V value) throws SQLException {
         PreparedStatement preparedStatement = this.prepareStatement(
                 String.format(
@@ -105,6 +115,7 @@ public class UserDao extends Table {
                         value
                 )
         );
+
         ResultSet resultSet = preparedStatement.executeQuery();
 
         if (!resultSet.next()) return null;
@@ -127,6 +138,7 @@ public class UserDao extends Table {
         return (T) user;
     }
 
+    @Override
     public <T> Set<T> findAll() throws SQLException {
         PreparedStatement preparedStatement = this.prepareStatement(
                 String.format(
