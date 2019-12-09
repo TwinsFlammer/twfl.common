@@ -100,7 +100,7 @@ public class UserDao extends Table {
                     .append(" ");
         }
 
-        this.execute(
+        PreparedStatement preparedStatement = this.prepareStatement(
                 String.format(
                         "UPDATE %s SET %s WHERE `%s`=%s",
                         this.getTableName(),
@@ -109,6 +109,8 @@ public class UserDao extends Table {
                         value
                 )
         );
+
+        preparedStatement.executeUpdate();
     }
 
     @Override
