@@ -1,6 +1,7 @@
 package com.redecommunity.common;
 
 import com.redecommunity.common.shared.databases.manager.DatabaseManager;
+import com.redecommunity.common.shared.manager.GlobalManager;
 import com.redecommunity.common.shared.scheduler.SchedulerManager;
 
 import java.util.concurrent.ScheduledExecutorService;
@@ -22,6 +23,8 @@ public class Common {
 
         this.schedulerManager = new SchedulerManager();
         this.databaseManager = new DatabaseManager();
+
+        new GlobalManager();
     }
 
     public static void main(String[] args) {
