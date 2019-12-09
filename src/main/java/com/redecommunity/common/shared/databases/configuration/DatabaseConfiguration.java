@@ -3,10 +3,7 @@ package com.redecommunity.common.shared.databases.configuration;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 
 /**
  * Created by @SrGutyerrez
@@ -30,7 +27,24 @@ public class DatabaseConfiguration {
     }
 
     private void createFile() throws IOException {
-        if (!this.file.exists()) this.file.createNewFile();
+        if (!this.file.exists()) {
+            this.file.createNewFile();
+
+            File resourceFile = new File("src/main/resources/_databases.json");
+
+            FileReader fileReader = new FileReader(resourceFile);
+
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+            FileWriter fileWriter = new FileWriter(this.file);
+
+            String line = null;
+
+            while ((line = bufferedReader.readLine()) != null)
+                fileWriter.append(line).append("\n");
+
+            fileWriter.close();
+        }
     }
 
     private void create() throws IOException {
