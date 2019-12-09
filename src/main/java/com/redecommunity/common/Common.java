@@ -20,8 +20,12 @@ public class Common {
     public Common() {
         Common.instance = this;
 
-        this.databaseManager = new DatabaseManager();
         this.schedulerManager = new SchedulerManager();
+        this.databaseManager = new DatabaseManager();
+    }
+
+    public static void main(String[] args) {
+        new Common();
     }
 
     public static Common getInstance() {
