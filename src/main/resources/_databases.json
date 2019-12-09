@@ -1,0 +1,19 @@
+{
+  "databases": {
+    "mysql": {
+      "host": "localhost",
+      "user": "root",
+      "password": "1234"
+    },
+    "mongodb": {
+      "host": "localhost",
+      "user": "root",
+      "password": "1234"
+    },
+    "redis": {
+      "host": "localhost",
+      "user": "root",
+      "password": "1234"
+    }
+  }
+}
