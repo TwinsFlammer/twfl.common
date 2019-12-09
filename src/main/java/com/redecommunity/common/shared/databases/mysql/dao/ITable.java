@@ -7,7 +7,7 @@ import java.util.Set;
 /**
  * Created by @SrGutyerrez
  */
-public interface TableImpl {
+public interface ITable {
 
     void createTable() throws SQLException;
 
@@ -22,5 +22,4 @@ public interface TableImpl {
     <K, V, T> T findOne(K key, V value) throws SQLException;
 
     <T> Set<T> findAll() throws SQLException;
-
 }

@@ -13,7 +13,7 @@ import java.util.Set;
  * Created by @SrGutyerrez
  */
 @RequiredArgsConstructor
-public class Table implements TableImpl {
+public class Table implements ITable {
     private final String tableName;
     private final String databaseName;
 
