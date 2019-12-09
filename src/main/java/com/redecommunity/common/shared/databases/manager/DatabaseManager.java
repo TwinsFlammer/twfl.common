@@ -21,6 +21,8 @@ public class DatabaseManager {
 
         this.mySQLManager = new MySQLManager(this.databaseConfiguration);
 
+        this.refresh();
+
         this.startScheduler();
     }
 
