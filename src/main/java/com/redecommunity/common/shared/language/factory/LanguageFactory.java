@@ -1,7 +1,7 @@
 package com.redecommunity.common.shared.language.factory;
 
 import com.google.common.collect.Maps;
-import com.redecommunity.common.Common;
+import com.redecommunity.common.shared.Common;
 import com.redecommunity.common.shared.language.enums.Language;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
