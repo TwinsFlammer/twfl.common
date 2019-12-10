@@ -1,4 +1,4 @@
-package com.redecommunity.common;
+package com.redecommunity.common.shared;
 
 import com.redecommunity.common.shared.databases.manager.DatabaseManager;
 import com.redecommunity.common.shared.language.factory.LanguageFactory;
