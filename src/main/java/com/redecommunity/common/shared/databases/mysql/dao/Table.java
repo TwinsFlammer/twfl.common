@@ -1,6 +1,6 @@
 package com.redecommunity.common.shared.databases.mysql.dao;
 
-import com.redecommunity.common.Common;
+import com.redecommunity.common.shared.Common;
 import com.redecommunity.common.shared.databases.mysql.data.MySQL;
 import lombok.RequiredArgsConstructor;
 
