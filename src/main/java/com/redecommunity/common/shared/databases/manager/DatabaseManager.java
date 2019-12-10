@@ -1,6 +1,6 @@
 package com.redecommunity.common.shared.databases.manager;
 
-import com.redecommunity.common.Common;
+import com.redecommunity.common.shared.Common;
 import com.redecommunity.common.shared.databases.configuration.DatabaseConfiguration;
 import com.redecommunity.common.shared.databases.mysql.manager.MySQLManager;
 import com.redecommunity.common.shared.databases.runnable.DatabaseRefreshRunnable;
