@@ -1,6 +1,6 @@
 package com.redecommunity.common.shared.databases.runnable;
 
-import com.redecommunity.common.Common;
+import com.redecommunity.common.shared.Common;
 
 /**
  * Created by @SrGutyerrez
