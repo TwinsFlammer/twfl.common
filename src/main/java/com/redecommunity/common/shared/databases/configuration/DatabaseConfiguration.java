@@ -1,5 +1,6 @@
 package com.redecommunity.common.shared.databases.configuration;
 
+import com.redecommunity.common.Common;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 
@@ -12,7 +13,7 @@ public class DatabaseConfiguration {
     private File folder, file;
 
     public DatabaseConfiguration() {
-        this.folder = new File("/home/redecommunity/configuration");
+        this.folder = new File(Common.SERVER_HOME + "/configuration");
         this.file = new File(folder + File.separator + "_databases.json");
 
         try {
@@ -53,7 +54,9 @@ public class DatabaseConfiguration {
     }
 
     public JSONObject getConfiguration() throws FileNotFoundException {
-        return (JSONObject) JSONValue.parse(new FileReader(this.file));
+        FileReader fileReader = new FileReader(this.file);
+
+        return (JSONObject) JSONValue.parse(fileReader);
     }
 
     private JSONObject getDatabases() {
