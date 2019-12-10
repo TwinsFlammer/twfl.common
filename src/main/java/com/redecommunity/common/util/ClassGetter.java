@@ -15,16 +15,18 @@ public class ClassGetter {
 
     /**
      * @param clazz
-     * @param pkgname
      * @return ArrayList<Class<?>>
      */
-    public static ArrayList<Class<?>> getClassesForPackage(Class clazz, String pkgname) {
+    public static ArrayList<Class<?>> getClassesForPackage(Class clazz) {
         ArrayList<Class<?>> classes = new ArrayList<>();
         CodeSource src = clazz.getProtectionDomain().getCodeSource();
+
+        String packageName = clazz.getPackage().getName();
+
         if (src != null) {
             URL resource = src.getLocation();
             resource.getPath();
-            processJarfile(resource, pkgname, classes);
+            processJarfile(resource, packageName, classes);
         }
         ArrayList<String> names = new ArrayList<>();
         ArrayList<Class<?>> clazz1 = new ArrayList<>();
