@@ -1,6 +1,6 @@
 package com.redecommunity.common.shared.databases.configuration;
 
-import com.redecommunity.common.Common;
+import com.redecommunity.common.shared.Common;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 
