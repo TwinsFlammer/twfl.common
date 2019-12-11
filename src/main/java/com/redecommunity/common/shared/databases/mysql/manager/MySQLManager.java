@@ -38,6 +38,10 @@ public class MySQLManager {
         });
     }
 
+    public HashMap<String, MySQL> getDatabases() {
+        return this.databases;
+    }
+
     public MySQL getDatabase(String name) {
         return this.databases.get(name);
     }
