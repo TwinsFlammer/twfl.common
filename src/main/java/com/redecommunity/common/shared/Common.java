@@ -6,6 +6,8 @@ import com.redecommunity.common.shared.manager.GlobalManager;
 import com.redecommunity.common.shared.scheduler.SchedulerManager;
 
 import java.util.concurrent.ScheduledExecutorService;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Created by @SrGutyerrez
@@ -56,5 +58,11 @@ public class Common {
 
     public LanguageFactory getLanguageFactory() {
         return this.languageFactory;
+    }
+
+    public void log(Level level, String message) {
+        Logger logger = Logger.getGlobal();
+
+        logger.log(level, message);
     }
 }
