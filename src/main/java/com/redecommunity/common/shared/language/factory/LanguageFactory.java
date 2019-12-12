@@ -3,6 +3,8 @@ package com.redecommunity.common.shared.language.factory;
 import com.google.common.collect.Maps;
 import com.redecommunity.common.shared.Common;
 import com.redecommunity.common.shared.language.enums.Language;
+import com.redecommunity.common.shared.util.Helper;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 
@@ -70,9 +72,35 @@ public class LanguageFactory<L extends Language> {
 
     public String getMessage(L language, String key) {
         if (key.contains(".")) {
-            String[] keys = key.split(".");
+            String[] keys = key.split("\\.");
 
-            return (String) this.languages.get(language).get(keys[keys.length-1]);
+            Object object = null;
+
+            for (int i = 0; i < keys.length; i++) {
+                String key1 = keys[i];
+
+                if (i == 0) object = language.get(key1);
+
+                if (Helper.isJSONArray(object)) {
+                    assert object instanceof JSONArray;
+                    JSONArray array = (JSONArray) object;
+
+                    for (Object o : array) {
+                        String string = (String) o;
+
+                        if (key1.equalsIgnoreCase(string)) object = o;
+                    }
+                } else if (Helper.isJSONObject(object)) {
+                    assert object instanceof JSONObject;
+                    JSONObject jsonObject = (JSONObject) object;
+
+                    String nextKey = keys[i+1];
+
+                    object = jsonObject.get(nextKey);
+                }
+            }
+
+            return (String) object;
         }
 
         return (String) this.languages.get(language).get(key);
