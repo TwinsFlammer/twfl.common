@@ -40,33 +40,37 @@ public class GroupDao extends Table {
     }
 
     @Override
-    public <T> Set<T> findAll() throws SQLException {
-        PreparedStatement preparedStatement = this.prepareStatement(
-                String.format(
-                        "SELECT * FROM %s",
-                        this.getTableName()
-                )
+    public <T> Set<T> findAll() {
+        String query = String.format(
+                "SELECT * FROM %s",
+                this.getTableName()
         );
 
         Set<T> groups = Sets.newConcurrentHashSet();
 
-        ResultSet resultSet = preparedStatement.executeQuery();
+        try (PreparedStatement preparedStatement = this.prepareStatement(query)) {
+            ResultSet resultSet = preparedStatement.executeQuery();
 
-        while (resultSet.next()) {
-            Group group = new Group(
-                    resultSet.getInt("id"),
-                    resultSet.getString("name"),
-                    resultSet.getString("prefix"),
-                    resultSet.getString("suffix"),
-                    Color.getColor(resultSet.getString("color")),
-                    resultSet.getInt("priority"),
-                    resultSet.getInt("tab_list_order"),
-                    resultSet.getLong("discord_group_id"),
-                    resultSet.getInt("server_id"),
-                    Sets.newConcurrentHashSet()
-            );
+            while (resultSet.next()) {
+                Group group = new Group(
+                        resultSet.getInt("id"),
+                        resultSet.getString("name"),
+                        resultSet.getString("prefix"),
+                        resultSet.getString("suffix"),
+                        Color.getColor(resultSet.getString("color")),
+                        resultSet.getInt("priority"),
+                        resultSet.getInt("tab_list_order"),
+                        resultSet.getLong("discord_group_id"),
+                        resultSet.getInt("server_id"),
+                        Sets.newConcurrentHashSet()
+                );
 
-            groups.add((T) group);
+                groups.add((T) group);
+            }
+
+            resultSet.close();
+        } catch (SQLException exception) {
+            exception.printStackTrace();
         }
 
         return groups;
