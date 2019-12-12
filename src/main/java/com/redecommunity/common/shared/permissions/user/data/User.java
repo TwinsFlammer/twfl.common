@@ -1,10 +1,13 @@
 package com.redecommunity.common.shared.permissions.user.data;
 
+import com.redecommunity.common.shared.permissions.group.data.Group;
+import com.redecommunity.common.shared.permissions.group.manager.GroupManager;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import org.json.simple.JSONObject;
 
+import java.util.Collection;
 import java.util.UUID;
 
 /**
@@ -23,6 +26,30 @@ public class User {
     protected Long firstLogin, lastLogin;
     protected String lastAddress;
     protected Integer lastLobbyId, langId;
+    protected Collection<Group> groups;
+
+    public Group getHighestGroup() {
+        return this.groups
+                .stream()
+                .min((group1, group2) -> group2.getPriority().compareTo(group1.getPriority()))
+                .orElse(null);
+    }
+
+    public boolean hasGroup(Group group) {
+        return this.groups.contains(group);
+    }
+
+    public boolean hasGroup(Integer id) {
+        Group group = GroupManager.getGroup(id);
+
+        return this.hasGroup(group);
+    }
+
+    public boolean hasGroup(String name) {
+        Group group = GroupManager.getGroup(name);
+
+        return this.hasGroup(group);
+    }
 
     public String toString() {
         JSONObject object = new JSONObject();
