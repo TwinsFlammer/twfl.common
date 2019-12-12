@@ -45,37 +45,39 @@ public class UserDao extends Table {
     }
 
     public <T extends User> void insert(T user) throws SQLException {
-        PreparedStatement preparedStatement = this.prepareStatement(
-                String.format(
-                        "INSERT INTO %s (" +
-                                "`name`," +
-                                "`display_name`," +
-                                "`unique_id`," +
-                                "`created_at`," +
-                                "`lang_id`" +
-                                ")" +
-                                " VALUES " +
-                                "(" +
-                                "'%s'," +
-                                "'%s'," +
-                                "'%s'," +
-                                "%d," +
-                                "%d" +
-                                ");",
-                        this.getTableName(),
-                        user.getName().toLowerCase(),
-                        user.getDisplayName(),
-                        user.getUniqueId(),
-                        user.getCreatedAt(),
-                        user.getLangId()
-                )
+        String query = String.format(
+                "INSERT INTO %s (" +
+                        "`name`," +
+                        "`display_name`," +
+                        "`unique_id`," +
+                        "`created_at`," +
+                        "`lang_id`" +
+                        ")" +
+                        " VALUES " +
+                        "(" +
+                        "'%s'," +
+                        "'%s'," +
+                        "'%s'," +
+                        "%d," +
+                        "%d" +
+                        ");",
+                this.getTableName(),
+                user.getName().toLowerCase(),
+                user.getDisplayName(),
+                user.getUniqueId(),
+                user.getCreatedAt(),
+                user.getLangId()
         );
 
-        preparedStatement.executeQuery();
+        try (PreparedStatement preparedStatement = this.prepareStatement(query)) {
+            preparedStatement.executeQuery();
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
     }
 
     @Override
-    public <K, V, U, I> void update(HashMap<K, V> keys, U key, I value) throws SQLException {
+    public <K, V, U, I> void update(HashMap<K, V> keys, U key, I value) {
         StringBuilder stringBuilder = new StringBuilder();
 
         Set<Map.Entry<K, V>> entry = keys.entrySet();
@@ -100,78 +102,52 @@ public class UserDao extends Table {
                     .append(" ");
         }
 
-        PreparedStatement preparedStatement = this.prepareStatement(
-                String.format(
-                        "UPDATE %s SET %s WHERE `%s`=%s",
-                        this.getTableName(),
-                        stringBuilder.toString(),
-                        key,
-                        value
-                )
+        String query = String.format(
+                "UPDATE %s SET %s WHERE `%s`=%s",
+                this.getTableName(),
+                stringBuilder.toString(),
+                key,
+                value
         );
 
-        preparedStatement.executeUpdate();
+        try (PreparedStatement preparedStatement = this.prepareStatement(query)) {
+            preparedStatement.executeUpdate();
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
     }
 
     @Override
-    public <K, V> void delete(K key, V value) throws SQLException {
-        this.execute(
-                String.format(
-                        "DELETE FROM %s WHERE `%s`=%s",
-                        this.getTableName(),
-                        key,
-                        value
-                )
+    public <K, V> void delete(K key, V value) {
+        String query = String.format(
+                "DELETE FROM %s WHERE `%s`=%s",
+                this.getTableName(),
+                key,
+                value
         );
+
+        try {
+            this.execute(query);
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
     }
 
     @Override
-    public <K, V, T> T findOne(K key, V value) throws SQLException {
-        PreparedStatement preparedStatement = this.prepareStatement(
-                String.format(
-                        "SELECT * FROM %s WHERE `%s`='%s'",
-                        this.getTableName(),
-                        key,
-                        value
-                )
+    public <K, V, T> T findOne(K key, V value) {
+        String query = String.format(
+                "SELECT * FROM %s WHERE `%s`='%s'",
+                this.getTableName(),
+                key,
+                value
         );
 
-        ResultSet resultSet = preparedStatement.executeQuery();
+        try (PreparedStatement preparedStatement = this.prepareStatement(query)) {
 
-        if (!resultSet.next()) return null;
+            ResultSet resultSet = preparedStatement.executeQuery();
 
-        User user = new User(
-                resultSet.getInt("id"),
-                resultSet.getString("name"),
-                resultSet.getString("display_name"),
-                UUID.fromString(resultSet.getString("unique_id")),
-                resultSet.getString("email"),
-                resultSet.getLong("discord_id"),
-                resultSet.getLong("created_at"),
-                resultSet.getLong("first_login"),
-                resultSet.getLong("last_login"),
-                resultSet.getString("last_address"),
-                resultSet.getInt("last_lobby_id"),
-                resultSet.getInt("lang_id")
-        );
+            if (!resultSet.next()) return null;
 
-        return (T) user;
-    }
-
-    @Override
-    public <T> Set<T> findAll() throws SQLException {
-        PreparedStatement preparedStatement = this.prepareStatement(
-                String.format(
-                        "SELECT * FROM %s",
-                        this.getTableName()
-                )
-        );
-
-        ResultSet resultSet = preparedStatement.executeQuery();
-
-        Set<T> users = Sets.newConcurrentHashSet();
-
-        while (resultSet.next()) {
             User user = new User(
                     resultSet.getInt("id"),
                     resultSet.getString("name"),
@@ -187,7 +163,50 @@ public class UserDao extends Table {
                     resultSet.getInt("lang_id")
             );
 
-            users.add((T) user);
+            resultSet.close();
+
+            return (T) user;
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+
+        return null;
+    }
+
+    @Override
+    public <T> Set<T> findAll() {
+        String query = String.format(
+                "SELECT * FROM %s",
+                this.getTableName()
+        );
+
+        Set<T> users = Sets.newConcurrentHashSet();
+
+        try (PreparedStatement preparedStatement = this.prepareStatement(query)) {
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                User user = new User(
+                        resultSet.getInt("id"),
+                        resultSet.getString("name"),
+                        resultSet.getString("display_name"),
+                        UUID.fromString(resultSet.getString("unique_id")),
+                        resultSet.getString("email"),
+                        resultSet.getLong("discord_id"),
+                        resultSet.getLong("created_at"),
+                        resultSet.getLong("first_login"),
+                        resultSet.getLong("last_login"),
+                        resultSet.getString("last_address"),
+                        resultSet.getInt("last_lobby_id"),
+                        resultSet.getInt("lang_id")
+                );
+
+                users.add((T) user);
+            }
+
+            resultSet.close();
+        } catch (SQLException exception) {
+            exception.printStackTrace();
         }
 
         return users;
