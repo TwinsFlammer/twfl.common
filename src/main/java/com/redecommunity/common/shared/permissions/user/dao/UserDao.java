@@ -38,7 +38,7 @@ public class UserDao extends Table {
                                 "`last_login` LONG," +
                                 "`last_address` VARCHAR(255)," +
                                 "`last_lobby_id` INTEGER," +
-                                "`lang_id` INTEGER" +
+                                "`language_id` INTEGER" +
                                 ");",
                         this.getTableName()
                 )
@@ -52,7 +52,7 @@ public class UserDao extends Table {
                         "`display_name`," +
                         "`unique_id`," +
                         "`created_at`," +
-                        "`lang_id`" +
+                        "`language_id`" +
                         ")" +
                         " VALUES " +
                         "(" +
@@ -67,7 +67,7 @@ public class UserDao extends Table {
                 user.getDisplayName(),
                 user.getUniqueId(),
                 user.getCreatedAt(),
-                user.getLangId()
+                user.getLanguageId()
         );
 
         try (PreparedStatement preparedStatement = this.prepareStatement(query)) {
