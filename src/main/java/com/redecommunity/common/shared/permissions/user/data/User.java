@@ -1,5 +1,7 @@
 package com.redecommunity.common.shared.permissions.user.data;
 
+import com.redecommunity.common.shared.language.enums.Language;
+import com.redecommunity.common.shared.language.factory.LanguageFactory;
 import com.redecommunity.common.shared.permissions.group.data.Group;
 import com.redecommunity.common.shared.permissions.group.manager.GroupManager;
 import lombok.AllArgsConstructor;
@@ -25,7 +27,7 @@ public class User {
     protected final Long createdAt;
     protected Long firstLogin, lastLogin;
     protected String lastAddress;
-    protected Integer lastLobbyId, langId;
+    protected Integer lastLobbyId, languageId;
     protected Collection<Group> groups;
 
     public Group getHighestGroup() {
@@ -51,6 +53,16 @@ public class User {
         return this.hasGroup(group);
     }
 
+    public Language getLanguage() {
+        LanguageFactory languageFactory = new LanguageFactory();
+
+        return languageFactory.getLanguage(this.languageId);
+    }
+
+    public void sendMessage(String message) {
+        // TODO not implemented yet
+    }
+
     public String toString() {
         JSONObject object = new JSONObject();
 
@@ -65,7 +77,7 @@ public class User {
         object.put("last_login", this.lastLogin);
         object.put("last_address", this.lastAddress);
         object.put("last_lobby_id", this.lastLobbyId);
-        object.put("lang_id", this.langId);
+        object.put("language_id", this.languageId);
 
         return object.toString();
     }
