@@ -35,28 +35,28 @@ public class Table implements ITable {
     }
 
     @Override
-    public String getTableName() throws SQLException {
+    public String getTableName() {
         return this.tableName;
     }
 
     @Override
-    public <T> void insert(T object) throws SQLException {
+    public <T> void insert(T object) {
         // TODO auto-generated method stub
     }
 
-    public <K, V, U, I> void update(HashMap<K, V> keys, U key, I value) throws SQLException {
+    public <K, V, U, I> void update(HashMap<K, V> keys, U key, I value) {
         // TODO auto-generated method stub
     }
 
-    public <K, V> void delete(K key, V value) throws SQLException {
+    public <K, V> void delete(K key, V value) {
         // TODO auto-generated method stub
     }
 
-    public <K, V, T> T findOne(K key, V value) throws SQLException {
+    public <K, V, T> T findOne(K key, V value) {
         return null;
     }
 
-    public <T> Set<T> findAll() throws SQLException {
+    public <T> Set<T> findAll() {
         return null;
     }
 }
