@@ -35,27 +35,31 @@ public class PermissionDao extends Table {
     }
 
     @Override
-    public <T> Set<T> findAll() throws SQLException {
-        PreparedStatement preparedStatement = this.prepareStatement(
-                String.format(
-                        "SELECT * FROM %s",
-                        this.getTableName()
-                )
+    public <T> Set<T> findAll() {
+        String query = String.format(
+                "SELECT * FROM %s",
+                this.getTableName()
         );
 
         Set<T> permissions = Sets.newConcurrentHashSet();
 
-        ResultSet resultSet = preparedStatement.executeQuery();
+        try (PreparedStatement preparedStatement = this.prepareStatement(query)) {
+            ResultSet resultSet = preparedStatement.executeQuery();
 
-        while (resultSet.next()) {
-            Permission permission = new Permission(
-                    resultSet.getString("name"),
-                    resultSet.getInt("group_id"),
-                    resultSet.getBoolean("grant_to_higher"),
-                    resultSet.getInt("server_id")
-            );
+            while (resultSet.next()) {
+                Permission permission = new Permission(
+                        resultSet.getString("name"),
+                        resultSet.getInt("group_id"),
+                        resultSet.getBoolean("grant_to_higher"),
+                        resultSet.getInt("server_id")
+                );
 
-            permissions.add((T) permission);
+                permissions.add((T) permission);
+            }
+
+            resultSet.close();
+        } catch (SQLException exception) {
+            exception.printStackTrace();
         }
 
         return permissions;
