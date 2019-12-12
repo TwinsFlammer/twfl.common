@@ -69,6 +69,12 @@ public class LanguageFactory<L extends Language> {
     }
 
     public String getMessage(L language, String key) {
+        if (key.contains(".")) {
+            String[] keys = key.split(".");
+
+            return (String) this.languages.get(language).get(keys[keys.length-1]);
+        }
+
         return (String) this.languages.get(language).get(key);
     }
 
