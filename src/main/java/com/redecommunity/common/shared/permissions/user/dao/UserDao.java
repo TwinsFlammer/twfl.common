@@ -3,6 +3,7 @@ package com.redecommunity.common.shared.permissions.user.dao;
 import com.google.common.collect.Sets;
 import com.redecommunity.common.shared.databases.mysql.dao.Table;
 import com.redecommunity.common.shared.permissions.user.data.User;
+import com.redecommunity.common.shared.permissions.user.manager.UserManager;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -148,20 +149,7 @@ public class UserDao extends Table {
 
             if (!resultSet.next()) return null;
 
-            User user = new User(
-                    resultSet.getInt("id"),
-                    resultSet.getString("name"),
-                    resultSet.getString("display_name"),
-                    UUID.fromString(resultSet.getString("unique_id")),
-                    resultSet.getString("email"),
-                    resultSet.getLong("discord_id"),
-                    resultSet.getLong("created_at"),
-                    resultSet.getLong("first_login"),
-                    resultSet.getLong("last_login"),
-                    resultSet.getString("last_address"),
-                    resultSet.getInt("last_lobby_id"),
-                    resultSet.getInt("lang_id")
-            );
+            User user = UserManager.toUser(resultSet);
 
             resultSet.close();
 
@@ -186,20 +174,7 @@ public class UserDao extends Table {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
-                User user = new User(
-                        resultSet.getInt("id"),
-                        resultSet.getString("name"),
-                        resultSet.getString("display_name"),
-                        UUID.fromString(resultSet.getString("unique_id")),
-                        resultSet.getString("email"),
-                        resultSet.getLong("discord_id"),
-                        resultSet.getLong("created_at"),
-                        resultSet.getLong("first_login"),
-                        resultSet.getLong("last_login"),
-                        resultSet.getString("last_address"),
-                        resultSet.getInt("last_lobby_id"),
-                        resultSet.getInt("lang_id")
-                );
+                User user = UserManager.toUser(resultSet);
 
                 users.add((T) user);
             }
