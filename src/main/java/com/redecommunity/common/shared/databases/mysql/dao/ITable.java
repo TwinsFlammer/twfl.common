@@ -11,15 +11,15 @@ public interface ITable {
 
     void createTable() throws SQLException;
 
-    String getTableName() throws SQLException;
+    String getTableName();
 
-    <T> void insert(T object) throws SQLException;
+    <T> void insert(T object);
 
-    <K, V, U, I> void update(HashMap<K, V> keys, U key, I value) throws SQLException;
+    <K, V, U, I> void update(HashMap<K, V> keys, U key, I value);
 
-    <K, V> void delete(K key, V value) throws SQLException;
+    <K, V> void delete(K key, V value);
 
-    <K, V, T> T findOne(K key, V value) throws SQLException;
+    <K, V, T> T findOne(K key, V value);
 
-    <T> Set<T> findAll() throws SQLException;
+    <T> Set<T> findAll();
 }
