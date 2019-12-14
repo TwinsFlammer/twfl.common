@@ -1,7 +1,7 @@
 package com.redecommunity.common.shared.server.data;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 import java.awt.*;
@@ -9,11 +9,11 @@ import java.awt.*;
 /**
  * Created by @SrGutyerrez
  */
-@RequiredArgsConstructor
+@AllArgsConstructor
 @Getter
 public class Server {
-    private final Integer id, slots, port, status;
-    private final String name, displayName, description, address;
+    private Integer id, slots, port, status;
+    private String name, displayName, description, address;
 
     @Setter
     private Integer playerCount;
@@ -21,7 +21,7 @@ public class Server {
     @Setter
     private Boolean online;
 
-    private Integer[] normalStatus = new Integer[] { 0, 1, 2 };
+    private Integer[] normalStatus;
 
     /**
      * All status number legend
@@ -54,5 +54,15 @@ public class Server {
                 && this.address.equals(server.getAddress())
                 && this.description.equals(server.getDescription())
                 && this.displayName.equals(server.getDisplayName());
+    }
+
+    public void updateData(Server server) {
+        this.port = server.getPort();
+        this.name = server.getName();
+        this.slots = server.getSlots();
+        this.status = server.getStatus();
+        this.address = server.getAddress();
+        this.description = server.getDescription();
+        this.displayName = server.getDisplayName();
     }
 }
