@@ -43,8 +43,11 @@ public class PermissionDao extends Table {
 
         Set<T> permissions = Sets.newConcurrentHashSet();
 
-        try (PreparedStatement preparedStatement = this.prepareStatement(query)) {
-            ResultSet resultSet = preparedStatement.executeQuery();
+        try (
+                PreparedStatement preparedStatement = this.prepareStatement(query);
+                ResultSet resultSet = preparedStatement.executeQuery();
+        ) {
+
 
             while (resultSet.next()) {
                 Permission permission = new Permission(
@@ -56,8 +59,6 @@ public class PermissionDao extends Table {
 
                 permissions.add((T) permission);
             }
-
-            resultSet.close();
         } catch (SQLException exception) {
             exception.printStackTrace();
         }
