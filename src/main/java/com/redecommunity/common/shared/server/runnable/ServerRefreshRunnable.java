@@ -20,6 +20,7 @@ public class ServerRefreshRunnable implements Runnable {
             Server server1 = ServerManager.getServer(server.getId());
 
             if (server1 != null && !server1.isSimilar(server)) server1.updateData(server);
+            else if (server1 == null) ServerManager.addServer(server);
         });
     }
 }
