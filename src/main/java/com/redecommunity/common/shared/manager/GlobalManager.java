@@ -2,6 +2,9 @@ package com.redecommunity.common.shared.manager;
 
 import com.redecommunity.common.shared.Common;
 import com.redecommunity.common.shared.databases.mysql.dao.Table;
+import com.redecommunity.common.shared.permissions.group.manager.GroupManager;
+import com.redecommunity.common.shared.permissions.user.manager.UserManager;
+import com.redecommunity.common.shared.server.manager.ServerManager;
 import com.redecommunity.common.shared.util.ClassGetter;
 
 import java.util.Collection;
@@ -16,7 +19,18 @@ public class GlobalManager {
     }
 
     private void start() {
+        // CREATE ALL TABLES
         new TableManager();
+        // CONSTRUCT ALL DATA MANAGER
+        new DataManager();
+    }
+}
+
+class DataManager {
+    DataManager() {
+        new GroupManager();
+        new UserManager();
+        new ServerManager();
     }
 }
 
