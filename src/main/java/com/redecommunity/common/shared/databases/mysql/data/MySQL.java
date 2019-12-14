@@ -1,6 +1,7 @@
 package com.redecommunity.common.shared.databases.mysql.data;
 
-import lombok.Getter;
+import com.zaxxer.hikari.HikariConfig;
+import com.zaxxer.hikari.HikariDataSource;
 import lombok.RequiredArgsConstructor;
 
 import java.sql.*;
@@ -11,36 +12,46 @@ import java.sql.*;
 @RequiredArgsConstructor
 public class MySQL {
     protected final String host, user, password, database;
-    @Getter
-    protected Connection connection;
-    private Statement statement;
+
+    private HikariDataSource hikariDataSource;
 
     public void start() throws SQLException {
-        this.connection = DriverManager.getConnection(
+        HikariConfig hikariConfig = new HikariConfig();
+
+        hikariConfig.setJdbcUrl(
                 String.format(
                         "jdbc:mysql://%s/%s",
                         this.host,
                         this.database
-                ),
-                this.user,
-                this.password
+                )
         );
-        this.statement = this.connection.createStatement();
+        hikariConfig.setUsername(this.user);
+        hikariConfig.setPassword(this.password);
+        hikariConfig.addDataSourceProperty(
+                "cachePrepStmts",
+                "true"
+        );
+        hikariConfig.addDataSourceProperty(
+                "prepStmtCacheSize",
+                "250"
+        );
+        hikariConfig.addDataSourceProperty(
+                "prepStmtCacheSqlLimit",
+                "2048"
+        );
+
+        this.hikariDataSource = new HikariDataSource(hikariConfig);
     }
 
     public void refresh() throws SQLException {
         if (this.isClosed()) this.start();
     }
 
-    public PreparedStatement prepareStatement(String query) throws SQLException {
-        return this.connection.prepareStatement(query);
+    public Connection getConnection() throws SQLException {
+        return this.hikariDataSource.getConnection();
     }
 
-    public boolean execute(String query) throws SQLException {
-        return this.statement.execute(query);
-    }
-
-    private boolean isClosed() throws SQLException {
-        return this.connection == null || this.connection.isClosed();
+    private boolean isClosed() {
+        return this.hikariDataSource == null || this.hikariDataSource.isClosed();
     }
 }
