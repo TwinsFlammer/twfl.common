@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 import java.awt.*;
-import java.util.Set;
+import java.util.List;
 
 /**
  * Created by @SrGutyerrez
@@ -19,5 +19,5 @@ public class Group {
     private final Integer priority, tabListListOrder;
     private final Long discordGroupId;
     private final Integer serverId;
-    private final Set<Permission> permissions;
+    private final List<Permission> permissions;
 }
