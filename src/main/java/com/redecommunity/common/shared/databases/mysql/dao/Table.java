@@ -13,18 +13,11 @@ import java.util.Set;
 /**
  * Created by @SrGutyerrez
  */
-@RequiredArgsConstructor
 public class Table implements ITable {
-    private final String tableName;
-    private final String databaseName;
 
     @Override
     public void createTable() {
         // TODO auto-generated method stub
-    }
-
-    private MySQL getMySQL() {
-        return Common.getInstance().getDatabaseManager().getMySQLManager().getDatabase(this.databaseName);
     }
 
     public boolean execute(String query) {
@@ -43,9 +36,18 @@ public class Table implements ITable {
         return this.getMySQL().getConnection();
     }
 
+    private MySQL getMySQL() {
+        return Common.getInstance().getDatabaseManager().getMySQLManager().getDatabase(this.getDatabaseName());
+    }
+
+    @Override
+    public String getDatabaseName() {
+        return null;
+    }
+
     @Override
     public String getTableName() {
-        return this.tableName;
+        return null;
     }
 
     @Override
