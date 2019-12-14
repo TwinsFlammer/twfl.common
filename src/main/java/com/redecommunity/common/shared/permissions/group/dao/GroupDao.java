@@ -3,6 +3,7 @@ package com.redecommunity.common.shared.permissions.group.dao;
 import com.google.common.collect.Sets;
 import com.redecommunity.common.shared.databases.mysql.dao.Table;
 import com.redecommunity.common.shared.permissions.group.data.Group;
+import com.redecommunity.common.shared.permissions.group.manager.GroupManager;
 
 import java.awt.*;
 import java.sql.PreparedStatement;
@@ -48,27 +49,16 @@ public class GroupDao extends Table {
 
         Set<T> groups = Sets.newConcurrentHashSet();
 
-        try (PreparedStatement preparedStatement = this.prepareStatement(query)) {
-            ResultSet resultSet = preparedStatement.executeQuery();
+        try (
+                PreparedStatement preparedStatement = this.prepareStatement(query);
+                ResultSet resultSet = preparedStatement.executeQuery();
+        ) {
 
             while (resultSet.next()) {
-                Group group = new Group(
-                        resultSet.getInt("id"),
-                        resultSet.getString("name"),
-                        resultSet.getString("prefix"),
-                        resultSet.getString("suffix"),
-                        Color.getColor(resultSet.getString("color")),
-                        resultSet.getInt("priority"),
-                        resultSet.getInt("tab_list_order"),
-                        resultSet.getLong("discord_group_id"),
-                        resultSet.getInt("server_id"),
-                        Sets.newConcurrentHashSet()
-                );
+                Group group = GroupManager.toGroup(resultSet);
 
                 groups.add((T) group);
             }
-
-            resultSet.close();
         } catch (SQLException exception) {
             exception.printStackTrace();
         }
