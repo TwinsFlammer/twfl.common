@@ -3,8 +3,6 @@ package com.redecommunity.common.shared.manager;
 import com.redecommunity.common.shared.databases.mysql.dao.Table;
 import com.redecommunity.common.shared.permissions.user.dao.UserDao;
 
-import java.sql.SQLException;
-
 /**
  * Created by @SrGutyerrez
  */
@@ -22,10 +20,6 @@ class TableManager {
     TableManager() {
         Table userDao = new UserDao();
 
-        try {
-            userDao.createTable();
-        } catch (SQLException exception) {
-            exception.printStackTrace();
-        }
+        userDao.createTable();
     }
 }
