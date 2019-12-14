@@ -22,7 +22,7 @@ public class UserDao extends Table {
 
     @Override
     public String getDatabaseName() {
-        return "general_" + Common.getBranch().getName();
+        return "general";
     }
 
     @Override
