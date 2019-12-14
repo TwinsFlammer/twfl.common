@@ -14,8 +14,15 @@ import java.util.Set;
  * Created by @SrGutyerrez
  */
 public class PermissionDao extends Table {
-    public PermissionDao() {
-        super("server_permissions", "general");
+
+    @Override
+    public String getDatabaseName() {
+        return "general";
+    }
+
+    @Override
+    public String getTableName() {
+        return "server_permissions";
     }
 
     @Override
