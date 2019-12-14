@@ -26,4 +26,6 @@ public interface ITable {
     <K, V, T> T findOne(K key, V value);
 
     <T> Set<T> findAll();
+
+    <K, V, U, I, T> Set<T> findAll(HashMap<K, V> keys);
 }
