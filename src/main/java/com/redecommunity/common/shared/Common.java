@@ -1,10 +1,16 @@
 package com.redecommunity.common.shared;
 
+import com.redecommunity.common.shared.branches.Branch;
 import com.redecommunity.common.shared.databases.manager.DatabaseManager;
 import com.redecommunity.common.shared.language.factory.LanguageFactory;
 import com.redecommunity.common.shared.manager.GlobalManager;
 import com.redecommunity.common.shared.scheduler.SchedulerManager;
+import org.json.simple.JSONObject;
+import org.json.simple.JSONValue;
 
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -58,6 +64,25 @@ public class Common {
 
     public LanguageFactory getLanguageFactory() {
         return this.languageFactory;
+    }
+
+    public static Branch getBranch() {
+        try {
+            File file = new File(Common.SERVER_HOME + "/configuration/configuration.json");
+
+            if (!file.exists()) file.createNewFile();
+
+            FileReader fileReader = new FileReader(file);
+
+            JSONObject jsonObject = (JSONObject) JSONValue.parse(fileReader);
+
+            Boolean develop = (Boolean) jsonObject.get("develop");
+
+            return develop ? Branch.DEVELOP : Branch.MASTER;
+        } catch (IOException exception) {
+            exception.printStackTrace();
+        }
+        return null;
     }
 
     public void log(Level level, String message) {
