@@ -67,4 +67,9 @@ public abstract class Table implements ITable {
     public <T> Set<T> findAll() {
         return null;
     }
+
+    @Override
+    public <K, V, U, I, T> Set<T> findAll(HashMap<K, V> keys) {
+        return null;
+    }
 }
