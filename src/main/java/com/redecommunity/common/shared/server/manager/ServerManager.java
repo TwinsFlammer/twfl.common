@@ -13,6 +13,14 @@ import java.util.List;
 public class ServerManager {
     private static List<Server> servers = Lists.newArrayList();
 
+    public static Server getServer(Integer id) {
+        return ServerManager.servers
+                .stream()
+                .filter(server -> server.getId().equals(id))
+                .findFirst()
+                .orElse(null);
+    }
+
     public static Server toServer(ResultSet resultSet) throws SQLException {
         return new Server(
                 resultSet.getInt("id"),
@@ -22,7 +30,10 @@ public class ServerManager {
                 resultSet.getString("name"),
                 resultSet.getString("display_name"),
                 resultSet.getString("description"),
-                resultSet.getString("address")
+                resultSet.getString("address"),
+                0,
+                false,
+                new Integer[] { 0, 1, 2 }
         );
     }
 }
