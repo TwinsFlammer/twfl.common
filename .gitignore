@@ -26,8 +26,9 @@ hs_err_pid*
 
 .settings/
 .idea/
-target/
 *.iml
+
+target/
 
 # intellij profile
 rc.super.iml
