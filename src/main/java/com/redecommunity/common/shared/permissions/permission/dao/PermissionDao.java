@@ -57,8 +57,6 @@ public class PermissionDao extends Table {
                 PreparedStatement preparedStatement = connection.prepareStatement(query);
                 ResultSet resultSet = preparedStatement.executeQuery();
         ) {
-
-
             while (resultSet.next()) {
                 Permission permission = new Permission(
                         resultSet.getString("name"),
