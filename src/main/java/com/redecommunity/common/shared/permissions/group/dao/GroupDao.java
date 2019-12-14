@@ -4,12 +4,16 @@ import com.google.common.collect.Sets;
 import com.redecommunity.common.shared.databases.mysql.dao.Table;
 import com.redecommunity.common.shared.permissions.group.data.Group;
 import com.redecommunity.common.shared.permissions.group.manager.GroupManager;
+import com.redecommunity.common.shared.permissions.permission.dao.PermissionDao;
+import com.redecommunity.common.shared.permissions.permission.data.Permission;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * Created by @SrGutyerrez
@@ -61,7 +65,6 @@ public class GroupDao extends Table {
                 PreparedStatement preparedStatement = connection.prepareStatement(query);
                 ResultSet resultSet = preparedStatement.executeQuery();
         ) {
-
             while (resultSet.next()) {
                 Group group = GroupManager.toGroup(resultSet);
 
