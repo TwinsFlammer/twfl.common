@@ -20,7 +20,7 @@ public class GroupDao extends Table {
     }
 
     @Override
-    public void createTable() throws SQLException {
+    public void createTable() {
         this.execute(
                 String.format(
                         "CREATE TABLE IF NOT EXISTS %s " +
