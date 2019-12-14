@@ -11,6 +11,9 @@ import org.json.simple.JSONValue;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -35,7 +38,11 @@ public class Common {
 
     private LanguageFactory languageFactory;
 
+    private ClassLoader classLoader;
+
     public Common() {
+        this.classLoader = this.getClass().getClassLoader();
+
         Common.instance = this;
 
         this.schedulerManager = new SchedulerManager();
@@ -89,5 +96,25 @@ public class Common {
         Logger logger = Logger.getGlobal();
 
         logger.log(level, message);
+    }
+
+    public InputStream getResource(String filename) {
+        if (filename == null) {
+            throw new IllegalArgumentException("Filename cannot be null");
+        } else {
+            try {
+                URL url = this.classLoader.getResource(filename);
+                if (url == null) {
+                    return null;
+                } else {
+                    URLConnection connection = url.openConnection();
+                    connection.setUseCaches(false);
+                    return connection.getInputStream();
+                }
+            } catch (IOException exception) {
+                exception.printStackTrace();
+                return null;
+            }
+        }
     }
 }
