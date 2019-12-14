@@ -2,7 +2,6 @@ package com.redecommunity.common.shared.databases.mysql.dao;
 
 import com.redecommunity.common.shared.Common;
 import com.redecommunity.common.shared.databases.mysql.data.MySQL;
-import lombok.RequiredArgsConstructor;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -13,12 +12,10 @@ import java.util.Set;
 /**
  * Created by @SrGutyerrez
  */
-public class Table implements ITable {
+public abstract class Table implements ITable {
 
     @Override
-    public void createTable() {
-        // TODO auto-generated method stub
-    }
+    public abstract void createTable();
 
     public boolean execute(String query) {
         try (
@@ -41,32 +38,32 @@ public class Table implements ITable {
     }
 
     @Override
-    public String getDatabaseName() {
-        return null;
-    }
+    public abstract String getDatabaseName();
 
     @Override
-    public String getTableName() {
-        return null;
-    }
+    public abstract String getTableName();
 
     @Override
     public <T> void insert(T object) {
         // TODO auto-generated method stub
     }
 
+    @Override
     public <K, V, U, I> void update(HashMap<K, V> keys, U key, I value) {
         // TODO auto-generated method stub
     }
 
+    @Override
     public <K, V> void delete(K key, V value) {
         // TODO auto-generated method stub
     }
 
+    @Override
     public <K, V, T> T findOne(K key, V value) {
         return null;
     }
 
+    @Override
     public <T> Set<T> findAll() {
         return null;
     }
