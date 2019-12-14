@@ -10,9 +10,12 @@ import lombok.RequiredArgsConstructor;
 public class Permission {
     @Getter
     private final String name;
+
     @Getter
     private final Integer groupId;
+
     private final Boolean grantToHigher;
+
     @Getter
     private final Integer serverId;
 
