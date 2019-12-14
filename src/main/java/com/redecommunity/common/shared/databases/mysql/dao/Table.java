@@ -4,8 +4,9 @@ import com.redecommunity.common.shared.Common;
 import com.redecommunity.common.shared.databases.mysql.data.MySQL;
 import lombok.RequiredArgsConstructor;
 
-import java.sql.PreparedStatement;
+import java.sql.Connection;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.HashMap;
 import java.util.Set;
 
@@ -26,12 +27,20 @@ public class Table implements ITable {
         return Common.getInstance().getDatabaseManager().getMySQLManager().getDatabase(this.databaseName);
     }
 
-    public boolean execute(String query) throws SQLException {
-        return this.getMySQL().execute(query);
+    public boolean execute(String query) {
+        try (
+                Connection connection = this.getMySQL().getConnection();
+                Statement statement = connection.createStatement();
+        ) {
+            return statement.execute(query);
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+            return false;
+        }
     }
 
-    public PreparedStatement prepareStatement(String query) throws SQLException {
-        return this.getMySQL().prepareStatement(query);
+    public Connection getConnection() throws SQLException {
+        return this.getMySQL().getConnection();
     }
 
     @Override
