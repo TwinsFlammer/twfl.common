@@ -13,6 +13,10 @@ import java.util.List;
 public class ServerManager {
     private static List<Server> servers = Lists.newArrayList();
 
+    public static Boolean addServer(Server server) {
+        return ServerManager.servers.add(server);
+    }
+
     public static Server getServer(Integer id) {
         return ServerManager.servers
                 .stream()
