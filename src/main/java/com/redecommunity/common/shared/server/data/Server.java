@@ -45,4 +45,14 @@ public class Server {
         }
         return this.online ? Color.getColor("FFFF55") : Color.getColor("FF5555");
     }
+
+    public Boolean isSimilar(Server server) {
+        return this.port.equals(server.getPort())
+                && this.name.equals(server.getName())
+                && this.slots.equals(server.getSlots())
+                && this.status.equals(server.getStatus())
+                && this.address.equals(server.getAddress())
+                && this.description.equals(server.getDescription())
+                && this.displayName.equals(server.getDisplayName());
+    }
 }
