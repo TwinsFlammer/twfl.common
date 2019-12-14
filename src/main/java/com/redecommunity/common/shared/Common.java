@@ -4,7 +4,6 @@ import com.google.common.base.Charsets;
 import com.google.common.io.ByteSource;
 import com.google.common.io.Files;
 import com.redecommunity.common.shared.branches.Branch;
-import com.redecommunity.common.shared.commands.GroupCommand;
 import com.redecommunity.common.shared.databases.manager.DatabaseManager;
 import com.redecommunity.common.shared.language.factory.LanguageFactory;
 import com.redecommunity.common.shared.manager.GlobalManager;
@@ -57,8 +56,6 @@ public class Common {
         this.languageFactory = new LanguageFactory();
 
         new GlobalManager();
-
-        new GroupCommand();
     }
 
     public static void main(String[] args) {
