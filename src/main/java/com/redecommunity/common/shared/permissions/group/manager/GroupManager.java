@@ -22,7 +22,7 @@ public class GroupManager {
         GroupDao groupDao = new GroupDao();
         PermissionDao permissionDao = new PermissionDao();
 
-        GroupManager.groups.addAll(groupDao.findAll());
+        GroupManager.setGroups(groupDao.findAll());
 
         Set<Permission> permissions = permissionDao.findAll();
 
@@ -39,6 +39,14 @@ public class GroupManager {
                         .filter(group1 -> group1.getPriority() > group.getPriority())
                         .forEach(group1 -> group1.getPermissions().add(permission));
         });
+    }
+
+    public static Collection<Group> getGroups() {
+        return GroupManager.groups;
+    }
+
+    public static void setGroups(Collection<Group> groups) {
+        GroupManager.groups = groups;
     }
 
     public static Group getGroup(Integer id) {
