@@ -1,19 +1,45 @@
 package com.redecommunity.common.shared.permissions.group.manager;
 
 import com.google.common.collect.Lists;
-import com.google.common.collect.Sets;
+import com.redecommunity.common.shared.permissions.group.dao.GroupDao;
 import com.redecommunity.common.shared.permissions.group.data.Group;
+import com.redecommunity.common.shared.permissions.permission.dao.PermissionDao;
+import com.redecommunity.common.shared.permissions.permission.data.Permission;
 
 import java.awt.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Collection;
+import java.util.Set;
 
 /**
  * Created by @SrGutyerrez
  */
 public class GroupManager {
     private static Collection<Group> groups = Lists.newArrayList();
+
+    public GroupManager() {
+        GroupDao groupDao = new GroupDao();
+        PermissionDao permissionDao = new PermissionDao();
+
+        GroupManager.groups.addAll(groupDao.findAll());
+
+        Set<Permission> permissions = permissionDao.findAll();
+
+        permissions.forEach(permission -> {
+            Integer groupId = permission.getGroupId();
+
+            Group group = GroupManager.getGroup(groupId);
+
+            group.getPermissions().add(permission);
+
+            if (permission.grantToHigher())
+                GroupManager.groups
+                        .stream()
+                        .filter(group1 -> group1.getPriority() > group.getPriority())
+                        .forEach(group1 -> group1.getPermissions().add(permission));
+        });
+    }
 
     public static Group getGroup(Integer id) {
         return GroupManager.groups
@@ -42,7 +68,7 @@ public class GroupManager {
                 resultSet.getInt("tab_list_order"),
                 resultSet.getLong("discord_group_id"),
                 resultSet.getInt("server_id"),
-                Sets.newConcurrentHashSet()
+                Lists.newArrayList()
         );
     }
 }
