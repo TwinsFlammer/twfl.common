@@ -19,7 +19,7 @@ public class Table implements ITable {
     private final String databaseName;
 
     @Override
-    public void createTable() throws SQLException {
+    public void createTable() {
         // TODO auto-generated method stub
     }
 
