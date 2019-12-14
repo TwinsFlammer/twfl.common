@@ -5,6 +5,7 @@ import com.redecommunity.common.shared.databases.mysql.dao.Table;
 import com.redecommunity.common.shared.permissions.user.data.User;
 import com.redecommunity.common.shared.permissions.user.manager.UserManager;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -69,7 +70,10 @@ public class UserDao extends Table {
                 user.getLanguageId()
         );
 
-        try (PreparedStatement preparedStatement = this.prepareStatement(query)) {
+        try (
+                Connection connection = this.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(query);
+        ) {
             preparedStatement.executeQuery();
         } catch (SQLException exception) {
             exception.printStackTrace();
@@ -110,7 +114,10 @@ public class UserDao extends Table {
                 value
         );
 
-        try (PreparedStatement preparedStatement = this.prepareStatement(query)) {
+        try (
+                Connection connection = this.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(query);
+        ) {
             preparedStatement.executeUpdate();
         } catch (SQLException exception) {
             exception.printStackTrace();
@@ -126,11 +133,7 @@ public class UserDao extends Table {
                 value
         );
 
-        try {
-            this.execute(query);
-        } catch (SQLException exception) {
-            exception.printStackTrace();
-        }
+        this.execute(query);
     }
 
     @Override
@@ -143,7 +146,8 @@ public class UserDao extends Table {
         );
 
         try (
-                PreparedStatement preparedStatement = this.prepareStatement(query);
+                Connection connection = this.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(query);
                 ResultSet resultSet = preparedStatement.executeQuery();
         ) {
             if (!resultSet.next()) return null;
@@ -168,7 +172,8 @@ public class UserDao extends Table {
         Set<T> users = Sets.newConcurrentHashSet();
 
         try (
-                PreparedStatement preparedStatement = this.prepareStatement(query);
+                Connection connection = this.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(query);
                 ResultSet resultSet = preparedStatement.executeQuery();
         ) {
             while (resultSet.next()) {
