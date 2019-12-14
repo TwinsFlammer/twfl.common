@@ -1,6 +1,7 @@
 package com.redecommunity.common.shared.server.dao;
 
 import com.google.common.collect.Sets;
+import com.redecommunity.common.shared.Common;
 import com.redecommunity.common.shared.databases.mysql.dao.Table;
 import com.redecommunity.common.shared.server.data.Server;
 import com.redecommunity.common.shared.server.manager.ServerManager;
@@ -18,7 +19,7 @@ public class ServerDao extends Table {
 
     @Override
     public String getDatabaseName() {
-        return "general";
+        return "general_" + Common.getBranch().getName();
     }
 
     @Override
