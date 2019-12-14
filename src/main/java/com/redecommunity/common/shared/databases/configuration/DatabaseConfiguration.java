@@ -1,6 +1,9 @@
 package com.redecommunity.common.shared.databases.configuration;
 
+import com.google.common.io.ByteSource;
+import com.google.common.io.Files;
 import com.redecommunity.common.shared.Common;
+import org.apache.commons.io.Charsets;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 
@@ -31,20 +34,16 @@ public class DatabaseConfiguration {
         if (!this.file.exists()) {
             this.file.createNewFile();
 
-            File resourceFile = new File("src/main/resources/_databases.json");
+            ByteSource byteSource = new ByteSource() {
+                @Override
+                public InputStream openStream() throws IOException {
+                    return null;
+                }
+            };
 
-            FileReader fileReader = new FileReader(resourceFile);
+            String fileValues = byteSource.asCharSource(Charsets.UTF_8).read();
 
-            BufferedReader bufferedReader = new BufferedReader(fileReader);
-
-            FileWriter fileWriter = new FileWriter(this.file);
-
-            String line = null;
-
-            while ((line = bufferedReader.readLine()) != null)
-                fileWriter.append(line).append("\n");
-
-            fileWriter.close();
+            Files.write(fileValues, this.file, Charsets.UTF_8);
         }
     }
 
