@@ -1,5 +1,7 @@
 package com.redecommunity.common.shared.databases.mysql.dao;
 
+import com.redecommunity.common.shared.databases.mysql.data.MySQL;
+
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Set;
@@ -10,6 +12,8 @@ import java.util.Set;
 public interface ITable {
 
     void createTable() throws SQLException;
+
+    String getDatabaseName();
 
     String getTableName();
 
