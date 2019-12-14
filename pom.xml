@@ -88,6 +88,10 @@
                                     <shadedPattern>com.mongodb</shadedPattern>
                                 </relocation>
                                 <relocation>
+                                    <pattern>org.mongodb.bson</pattern>
+                                    <shadedPattern>com.mongodb.bson</shadedPattern>
+                                </relocation>
+                                <relocation>
                                     <pattern>com.google.common.io</pattern>
                                     <shadedPattern>com.google.common.io</shadedPattern>
                                 </relocation>
