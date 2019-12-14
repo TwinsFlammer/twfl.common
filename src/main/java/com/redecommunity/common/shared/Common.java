@@ -48,6 +48,8 @@ public class Common {
 
         Common.instance = this;
 
+        this.log(Level.INFO, "Starting using " + Common.getBranch().getName() + " branch.");
+
         this.schedulerManager = new SchedulerManager();
         this.databaseManager = new DatabaseManager();
 
