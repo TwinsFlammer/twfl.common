@@ -2,6 +2,7 @@ package com.redecommunity.common.shared.permissions.user.dao;
 
 import com.google.common.collect.Sets;
 import com.redecommunity.common.shared.databases.mysql.dao.Table;
+import com.redecommunity.common.shared.databases.mysql.data.MySQL;
 import com.redecommunity.common.shared.permissions.user.data.User;
 import com.redecommunity.common.shared.permissions.user.manager.UserManager;
 
@@ -17,8 +18,15 @@ import java.util.Set;
  * Created by @SrGutyerrez
  */
 public class UserDao extends Table {
-    public UserDao() {
-        super("server_users", "general");
+
+    @Override
+    public String getDatabaseName() {
+        return "general";
+    }
+
+    @Override
+    public String getTableName() {
+        return "server_users";
     }
 
     @Override
