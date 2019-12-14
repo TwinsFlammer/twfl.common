@@ -11,7 +11,6 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
-import java.util.UUID;
 
 /**
  * Created by @SrGutyerrez
@@ -143,15 +142,13 @@ public class UserDao extends Table {
                 value
         );
 
-        try (PreparedStatement preparedStatement = this.prepareStatement(query)) {
-
-            ResultSet resultSet = preparedStatement.executeQuery();
-
+        try (
+                PreparedStatement preparedStatement = this.prepareStatement(query);
+                ResultSet resultSet = preparedStatement.executeQuery();
+        ) {
             if (!resultSet.next()) return null;
 
             User user = UserManager.toUser(resultSet);
-
-            resultSet.close();
 
             return (T) user;
         } catch (SQLException exception) {
@@ -170,16 +167,15 @@ public class UserDao extends Table {
 
         Set<T> users = Sets.newConcurrentHashSet();
 
-        try (PreparedStatement preparedStatement = this.prepareStatement(query)) {
-            ResultSet resultSet = preparedStatement.executeQuery();
-
+        try (
+                PreparedStatement preparedStatement = this.prepareStatement(query);
+                ResultSet resultSet = preparedStatement.executeQuery();
+        ) {
             while (resultSet.next()) {
                 User user = UserManager.toUser(resultSet);
 
                 users.add((T) user);
             }
-
-            resultSet.close();
         } catch (SQLException exception) {
             exception.printStackTrace();
         }
