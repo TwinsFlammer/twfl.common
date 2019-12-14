@@ -53,7 +53,7 @@ public class UserDao extends Table {
         );
     }
 
-    public <T extends User> void insert(T user) throws SQLException {
+    public <T extends User> void insert(T user) {
         String query = String.format(
                 "INSERT INTO %s (" +
                         "`name`," +
