@@ -1,7 +1,6 @@
 package com.redecommunity.common.shared;
 
 import com.redecommunity.common.shared.databases.manager.DatabaseManager;
-import com.redecommunity.common.shared.language.enums.Language;
 import com.redecommunity.common.shared.language.factory.LanguageFactory;
 import com.redecommunity.common.shared.manager.GlobalManager;
 import com.redecommunity.common.shared.scheduler.SchedulerManager;
