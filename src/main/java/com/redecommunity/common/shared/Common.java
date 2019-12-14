@@ -1,5 +1,8 @@
 package com.redecommunity.common.shared;
 
+import com.google.common.base.Charsets;
+import com.google.common.io.ByteSource;
+import com.google.common.io.Files;
 import com.redecommunity.common.shared.branches.Branch;
 import com.redecommunity.common.shared.databases.manager.DatabaseManager;
 import com.redecommunity.common.shared.language.factory.LanguageFactory;
@@ -77,7 +80,20 @@ public class Common {
         try {
             File file = new File(Common.SERVER_HOME + "/configuration/configuration.json");
 
-            if (!file.exists()) file.createNewFile();
+            if (!file.exists()) {
+                file.createNewFile();
+
+                ByteSource byteSource = new ByteSource() {
+                    @Override
+                    public InputStream openStream() {
+                        return Common.getInstance().getResource("configuration.json");
+                    }
+                };
+
+                String fileValues = byteSource.asCharSource(Charsets.UTF_8).read();
+
+                Files.write(fileValues, file, Charsets.UTF_8);
+            }
 
             FileReader fileReader = new FileReader(file);
 
