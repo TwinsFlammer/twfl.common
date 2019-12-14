@@ -1,6 +1,8 @@
 package com.redecommunity.common.shared.manager;
 
 import com.redecommunity.common.shared.databases.mysql.dao.Table;
+import com.redecommunity.common.shared.permissions.group.dao.GroupDao;
+import com.redecommunity.common.shared.permissions.permission.dao.PermissionDao;
 import com.redecommunity.common.shared.permissions.user.dao.UserDao;
 
 /**
@@ -19,7 +21,11 @@ public class GlobalManager {
 class TableManager {
     TableManager() {
         Table userDao = new UserDao();
+        Table groupDao = new GroupDao();
+        Table permissionDao = new PermissionDao();
 
         userDao.createTable();
+        groupDao.createTable();
+        permissionDao.createTable();
     }
 }
