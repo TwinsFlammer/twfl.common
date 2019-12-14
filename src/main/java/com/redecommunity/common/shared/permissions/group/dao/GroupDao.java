@@ -15,8 +15,15 @@ import java.util.Set;
  * Created by @SrGutyerrez
  */
 public class GroupDao extends Table {
-    public GroupDao() {
-        super("server_groups", "general");
+
+    @Override
+    public String getDatabaseName() {
+        return "general";
+    }
+
+    @Override
+    public String getTableName() {
+        return "server_groups";
     }
 
     @Override
