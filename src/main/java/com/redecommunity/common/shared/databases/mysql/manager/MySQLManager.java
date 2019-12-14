@@ -1,6 +1,7 @@
 package com.redecommunity.common.shared.databases.mysql.manager;
 
 import com.google.common.collect.Maps;
+import com.redecommunity.common.shared.Common;
 import com.redecommunity.common.shared.databases.configuration.DatabaseConfiguration;
 import com.redecommunity.common.shared.databases.mysql.data.MySQL;
 import org.json.simple.JSONObject;
@@ -21,7 +22,7 @@ public class MySQLManager {
         String user = (String) mysql.get("user");
         String password = (String) mysql.get("password");
 
-        this.createConnection("general", host, user, password, "general");
+        this.createConnection("general", host, user, password, "general_" + Common.getBranch().getName());
     }
 
     public MySQL createConnection(String name, String host, String user, String password, String database) {
