@@ -5,7 +5,7 @@ import com.redecommunity.common.shared.databases.mysql.dao.Table;
 import com.redecommunity.common.shared.permissions.group.data.Group;
 import com.redecommunity.common.shared.permissions.group.manager.GroupManager;
 
-import java.awt.*;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -50,7 +50,8 @@ public class GroupDao extends Table {
         Set<T> groups = Sets.newConcurrentHashSet();
 
         try (
-                PreparedStatement preparedStatement = this.prepareStatement(query);
+                Connection connection = this.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(query);
                 ResultSet resultSet = preparedStatement.executeQuery();
         ) {
 
