@@ -1,6 +1,7 @@
 package com.redecommunity.common.shared.permissions.permission.dao;
 
 import com.google.common.collect.Sets;
+import com.redecommunity.common.shared.Common;
 import com.redecommunity.common.shared.databases.mysql.dao.Table;
 import com.redecommunity.common.shared.permissions.permission.data.Permission;
 
@@ -17,7 +18,7 @@ public class PermissionDao extends Table {
 
     @Override
     public String getDatabaseName() {
-        return "general";
+        return "general_" + Common.getBranch().getName();
     }
 
     @Override
