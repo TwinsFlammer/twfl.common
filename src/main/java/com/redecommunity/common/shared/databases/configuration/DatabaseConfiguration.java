@@ -15,9 +15,11 @@ import java.io.*;
 public class DatabaseConfiguration {
     private File folder, file;
 
+    private final String FILE_NAME = "_databases.json";
+
     public DatabaseConfiguration() {
         this.folder = new File(Common.SERVER_HOME + "/configuration");
-        this.file = new File(folder + File.separator + "_databases.json");
+        this.file = new File(folder + File.separator + this.FILE_NAME);
 
         try {
             this.create();
@@ -36,8 +38,8 @@ public class DatabaseConfiguration {
 
             ByteSource byteSource = new ByteSource() {
                 @Override
-                public InputStream openStream() throws IOException {
-                    return null;
+                public InputStream openStream() {
+                    return Common.getInstance().getResource(DatabaseConfiguration.this.FILE_NAME);
                 }
             };
 
