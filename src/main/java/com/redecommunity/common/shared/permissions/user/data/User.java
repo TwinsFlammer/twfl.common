@@ -34,20 +34,40 @@ public class User {
         return this.groups
                 .stream()
                 .min((group1, group2) -> group2.getPriority().compareTo(group1.getPriority()))
-                .orElse(null);
+                .orElse(
+                        GroupManager.getGroup("default")
+                );
     }
 
-    public boolean hasGroup(Group group) {
+    public Boolean hasGroupExact(Group group) {
         return this.groups.contains(group);
     }
 
-    public boolean hasGroup(Integer id) {
+    public Boolean hasGroupExact(String name) {
+        Group group = GroupManager.getGroup(name);
+
+        return this.hasGroupExact(group);
+    }
+
+    public Boolean hasGroupExact(Integer id) {
+        Group group = GroupManager.getGroup(id);
+
+        return this.hasGroupExact(group);
+    }
+
+    public Boolean hasGroup(Group group) {
+        return this.groups
+                .stream()
+                .anyMatch(group1 -> group1.equals(group) || group1.getPriority() >= group.getPriority());
+    }
+
+    public Boolean hasGroup(Integer id) {
         Group group = GroupManager.getGroup(id);
 
         return this.hasGroup(group);
     }
 
-    public boolean hasGroup(String name) {
+    public Boolean hasGroup(String name) {
         Group group = GroupManager.getGroup(name);
 
         return this.hasGroup(group);
