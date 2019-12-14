@@ -4,6 +4,7 @@ import com.google.common.collect.Sets;
 import com.redecommunity.common.shared.databases.mysql.dao.Table;
 import com.redecommunity.common.shared.permissions.permission.data.Permission;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -44,7 +45,8 @@ public class PermissionDao extends Table {
         Set<T> permissions = Sets.newConcurrentHashSet();
 
         try (
-                PreparedStatement preparedStatement = this.prepareStatement(query);
+                Connection connection = this.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(query);
                 ResultSet resultSet = preparedStatement.executeQuery();
         ) {
 
