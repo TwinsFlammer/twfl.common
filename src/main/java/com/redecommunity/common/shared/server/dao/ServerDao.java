@@ -19,7 +19,7 @@ public class ServerDao extends Table {
 
     @Override
     public String getDatabaseName() {
-        return "general_" + Common.getBranch().getName();
+        return "general";
     }
 
     @Override
@@ -35,7 +35,7 @@ public class ServerDao extends Table {
                                 "(" +
                                 "`id` INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT," +
                                 "`name` VARCHAR(100) NOT NULL," +
-                                "`display_name` VHARCHAR(100) NOT NULL," +
+                                "`display_name` VARCHAR(100) NOT NULL," +
                                 "`description` TEXT," +
                                 "`slots` INTEGER NOT NULL," +
                                 "`address` VARCHAR(255) NOT NULL," +
