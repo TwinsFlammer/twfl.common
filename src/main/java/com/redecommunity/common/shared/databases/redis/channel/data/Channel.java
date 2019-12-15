@@ -6,4 +6,8 @@ package com.redecommunity.common.shared.databases.redis.channel.data;
 public abstract class Channel implements IChannel {
     @Override
     public abstract String getName();
+
+    public void sendMessage(String message) {
+
+    }
 }
