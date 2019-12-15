@@ -1,10 +1,13 @@
 package com.redecommunity.common.shared.databases.redis.channel.manager;
 
 import com.google.common.collect.Lists;
+import com.redecommunity.common.shared.Common;
 import com.redecommunity.common.shared.databases.redis.channel.data.Channel;
 import com.redecommunity.common.shared.databases.redis.handler.JedisChannelMessageHandler;
 import com.redecommunity.common.shared.databases.redis.manager.RedisManager;
+import com.redecommunity.common.shared.util.ClassGetter;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -18,16 +21,7 @@ public class ChannelManager {
     public ChannelManager(RedisManager redisManager) {
         this.redisManager = redisManager;
 
-        // this.load();
-
-        Channel channel = new Channel() {
-            @Override
-            public String getName() {
-                return "teste_channel";
-            }
-        };
-
-        this.add(channel);
+        this.load();
 
         this.registerAll();
     }
@@ -37,7 +31,19 @@ public class ChannelManager {
     }
 
     private void load() {
-        // TODO not implemented yet
+        List<Class> blacklisted = Collections.singletonList(Channel.class);
+
+        ClassGetter.getClassesForPackage(Common.class).forEach(clazz -> {
+            if (Channel.class.isAssignableFrom(clazz) && !blacklisted.contains(clazz)) {
+                try {
+                    Channel channel = (Channel) clazz.newInstance();
+
+                    this.channels.add(channel);
+                } catch (InstantiationException | IllegalAccessException exception) {
+                    exception.printStackTrace();
+                }
+            }
+        });
     }
 
     private void registerAll() {
