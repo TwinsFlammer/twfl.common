@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -35,6 +36,34 @@ public abstract class Table implements ITable {
 
     private MySQL getMySQL() {
         return Common.getInstance().getDatabaseManager().getMySQLManager().getDatabase(this.getDatabaseName());
+    }
+
+    public <K, V> String generateWhere(HashMap<K, V> keys) {
+        StringBuilder stringBuilder = new StringBuilder();
+
+        Set<Map.Entry<K, V>> entry = keys.entrySet();
+
+        Object[] entries = entry.toArray();
+
+        for (int i = 0; i < entry.size(); i++) {
+            Object object = entries[i];
+
+            Map.Entry<K, V> entry1 = (Map.Entry<K, V>) object;
+
+            K key1 = entry1.getKey();
+            V value1 = entry1.getValue();
+
+            stringBuilder.append("`")
+                    .append(key1)
+                    .append("`")
+                    .append("=")
+                    .append((value1 instanceof String ? "'" + value1 + "'" : value1));
+
+            if ((i + 1) != entry.size()) stringBuilder.append(",")
+                    .append(" ");
+        }
+
+        return stringBuilder.toString();
     }
 
     @Override
