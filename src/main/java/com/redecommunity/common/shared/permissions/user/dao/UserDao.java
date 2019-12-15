@@ -91,34 +91,12 @@ public class UserDao extends Table {
 
     @Override
     public <K, V, U, I> void update(HashMap<K, V> keys, U key, I value) {
-        StringBuilder stringBuilder = new StringBuilder();
-
-        Set<Map.Entry<K, V>> entry = keys.entrySet();
-
-        Object[] entries = entry.toArray();
-
-        for (int i = 0; i < entry.size(); i++) {
-            Object object = entries[i];
-
-            Map.Entry<K, V> entry1 = (Map.Entry<K, V>) object;
-
-            K key1 = entry1.getKey();
-            V value1 = entry1.getValue();
-
-            stringBuilder.append("`")
-                    .append(key1)
-                    .append("`")
-                    .append("=")
-                    .append((value1 instanceof String ? "'" + value1 + "'" : value1));
-
-            if ((i + 1) != entry.size()) stringBuilder.append(",")
-                    .append(" ");
-        }
+        String where = this.generateWhere(keys);
 
         String query = String.format(
                 "UPDATE %s SET %s WHERE `%s`=%s",
                 this.getTableName(),
-                stringBuilder.toString(),
+                where,
                 key,
                 value
         );
