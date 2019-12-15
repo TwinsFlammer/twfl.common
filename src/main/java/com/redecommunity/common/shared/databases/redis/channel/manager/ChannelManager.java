@@ -20,7 +20,7 @@ public class ChannelManager {
 
         // this.load();
 
-        Channel channel = new Channel("") {
+        Channel channel = new Channel() {
             @Override
             public String getName() {
                 return "teste_channel";
