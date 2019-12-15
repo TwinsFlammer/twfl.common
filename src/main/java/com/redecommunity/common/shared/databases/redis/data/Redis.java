@@ -59,7 +59,7 @@ public class Redis {
         }
     }
 
-    private JedisPool getJedisPool() throws JedisConnectionException {
+    public JedisPool getJedisPool() throws JedisConnectionException {
         this.refresh();
 
         return this.jedisPool;
