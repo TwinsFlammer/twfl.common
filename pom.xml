@@ -5,6 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <modules>
         <module>rc.common-bungee</module>
+        <module>rc.common-spigot</module>
     </modules>
 
     <parent>
