@@ -22,7 +22,7 @@ public class CommonBungee extends Plugin {
 
     @Override
     public void onEnable() {
-
+        new Common();
     }
 
     @Override
