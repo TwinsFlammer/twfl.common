@@ -14,7 +14,7 @@ public abstract class Channel implements IChannel {
         // TODO auto-generated method
     }
 
-    public JedisPool getJedisPool() {
+    public final JedisPool getJedisPool() {
         return Common.getInstance().getDatabaseManager().getRedisManager().getDatabase("general").getJedisPool();
     }
 }
