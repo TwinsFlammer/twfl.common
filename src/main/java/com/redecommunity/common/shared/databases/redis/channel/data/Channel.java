@@ -11,7 +11,7 @@ public abstract class Channel implements IChannel {
     public abstract String getName();
 
     public void sendMessage(String message) {
-
+        // TODO auto-generated method
     }
 
     public JedisPool getJedisPool() {
