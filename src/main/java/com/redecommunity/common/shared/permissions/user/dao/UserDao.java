@@ -1,10 +1,11 @@
 package com.redecommunity.common.shared.permissions.user.dao;
 
+import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
-import com.redecommunity.common.shared.Common;
 import com.redecommunity.common.shared.databases.mysql.dao.Table;
-import com.redecommunity.common.shared.databases.mysql.data.MySQL;
+import com.redecommunity.common.shared.permissions.group.data.Group;
 import com.redecommunity.common.shared.permissions.user.data.User;
+import com.redecommunity.common.shared.permissions.user.group.dao.UserGroupDao;
 import com.redecommunity.common.shared.permissions.user.manager.UserManager;
 
 import java.sql.Connection;
@@ -12,7 +13,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.Set;
 
 /**
@@ -156,6 +156,8 @@ public class UserDao extends Table {
                 this.getTableName()
         );
 
+        UserGroupDao userGroupDao = new UserGroupDao();
+
         Set<T> users = Sets.newConcurrentHashSet();
 
         try (
@@ -165,6 +167,14 @@ public class UserDao extends Table {
         ) {
             while (resultSet.next()) {
                 User user = UserManager.toUser(resultSet);
+
+                HashMap<String, Object> keys = Maps.newHashMap();
+
+                keys.put("user_id", user.getId());
+
+                Set<Group> groups = userGroupDao.findAll(keys);
+
+                user.getGroups().addAll(groups);
 
                 users.add((T) user);
             }
