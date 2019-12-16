@@ -22,6 +22,7 @@ public class CommonSpigot extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        new Common();
     }
 
     @Override
