@@ -11,7 +11,7 @@ import java.util.logging.Level;
 public class JedisChannelMessageHandler extends JedisPubSub {
     @Override
     public void onMessage(String channel, String message) {
-        System.out.println(channel + " » " + message);
+
     }
 
     @Override
