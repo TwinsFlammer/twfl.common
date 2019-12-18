@@ -132,6 +132,8 @@ public class UserDao extends Table {
                 value
         );
 
+        UserGroupDao userGroupDao = new UserGroupDao();
+
         try (
                 Connection connection = this.getConnection();
                 PreparedStatement preparedStatement = connection.prepareStatement(query);
@@ -140,6 +142,14 @@ public class UserDao extends Table {
             if (!resultSet.next()) return null;
 
             User user = UserManager.toUser(resultSet);
+
+            HashMap<String, Object> keys = Maps.newHashMap();
+
+            keys.put("user_id", user.getId());
+
+            Set<Group> groups = userGroupDao.findAll(keys);
+
+            user.getGroups().addAll(groups);
 
             return (T) user;
         } catch (SQLException exception) {
