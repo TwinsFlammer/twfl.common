@@ -30,8 +30,8 @@ public abstract class Helper {
 
     public static String colorize(String message) {
         return message.replaceAll(
-                "§",
-                "&"
+                "&",
+                "§"
         );
     }
 }
