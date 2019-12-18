@@ -14,7 +14,6 @@ import java.util.UUID;
  */
 public class UserManager {
     private static final Collection<User> users = Lists.newArrayList();
-    private static final UserDao userDao = new UserDao();
 
     public static User getUser(Integer id) {
         return UserManager.users.
@@ -47,7 +46,9 @@ public class UserManager {
     }
 
     private static <K, V> User findOne(K key, V value) {
-        User user = UserManager.userDao.findOne(key, value);
+        UserDao userDao = new UserDao();
+
+        User user = userDao.findOne(key, value);
 
         UserManager.users.add(user);
 
