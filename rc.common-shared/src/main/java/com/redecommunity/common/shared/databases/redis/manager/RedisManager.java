@@ -2,7 +2,6 @@ package com.redecommunity.common.shared.databases.redis.manager;
 
 import com.google.common.collect.Maps;
 import com.redecommunity.common.shared.databases.configuration.DatabaseConfiguration;
-import com.redecommunity.common.shared.databases.redis.channel.manager.ChannelManager;
 import com.redecommunity.common.shared.databases.redis.data.Redis;
 import org.json.simple.JSONObject;
 import redis.clients.jedis.exceptions.JedisConnectionException;
@@ -22,8 +21,6 @@ public class RedisManager {
         String password = (String) redis.get("password");
 
         this.createConnection("general", host, password);
-
-        new ChannelManager(this);
     }
 
     public Redis createConnection(String name, String host, String password) {
