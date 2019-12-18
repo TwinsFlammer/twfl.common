@@ -26,20 +26,23 @@ public class JedisMessageManager {
     }
 
     public void callEvent(String channel, String message) {
-        JedisMessageEvent event = new JedisMessageEvent(channel, message);
+        JedisMessageEvent event = new JedisMessageEvent(
+                channel,
+                message
+        );
 
         this.listeners.forEach(jedisMessageListener -> {
             try {
                 Class clazz = jedisMessageListener.getClass();
 
-                List<Method> methods = Arrays.stream(clazz.getMethods())
+                List<Method> methods = Arrays.stream(clazz.getDeclaredMethods())
                         .filter(method -> method.getAnnotation(ChannelName.class) != null)
                         .collect(Collectors.toList());
 
                 for (Method method : methods) {
                     ChannelName channelName = method.getAnnotation(ChannelName.class);
                     if (channelName.name().equalsIgnoreCase(channel))
-                        method.invoke(event);
+                        method.invoke(jedisMessageListener, event);
                 }
             } catch (IllegalAccessException | InvocationTargetException exception) {
                 exception.printStackTrace();
