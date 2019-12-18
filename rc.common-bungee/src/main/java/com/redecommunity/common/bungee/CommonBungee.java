@@ -21,7 +21,7 @@ public class CommonBungee extends Plugin {
     }
 
     @Override
-    public void onEnable() {
+    public void onLoad() {
         new Common();
     }
 
