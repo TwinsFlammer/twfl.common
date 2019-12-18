@@ -27,4 +27,11 @@ public abstract class Helper {
     public static boolean isJSONObject(Object object) {
         return object instanceof JSONObject;
     }
+
+    public static String colorize(String message) {
+        return message.replaceAll(
+                "§",
+                "&"
+        );
+    }
 }
