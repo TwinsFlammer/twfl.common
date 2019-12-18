@@ -6,7 +6,6 @@ import com.redecommunity.common.shared.permissions.permission.dao.PermissionDao;
 import com.redecommunity.common.shared.permissions.permission.data.Permission;
 import com.redecommunity.common.shared.permissions.group.dao.GroupDao;
 
-import java.awt.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Collection;
@@ -71,7 +70,7 @@ public class GroupManager {
                 resultSet.getString("name"),
                 resultSet.getString("prefix"),
                 resultSet.getString("suffix"),
-                Color.getColor(resultSet.getString("color")),
+                resultSet.getString("color"),
                 resultSet.getInt("priority"),
                 resultSet.getInt("tab_list_order"),
                 resultSet.getLong("discord_group_id"),
