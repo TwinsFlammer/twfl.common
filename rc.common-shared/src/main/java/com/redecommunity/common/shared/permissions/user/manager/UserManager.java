@@ -32,7 +32,7 @@ public class UserManager {
                 .filter(user -> user.getName().equalsIgnoreCase(name))
                 .findFirst()
                 .orElse(
-                        UserManager.findOne("name", name)
+                        UserManager.findOne("name", name.toLowerCase())
                 );
     }
 
@@ -67,7 +67,7 @@ public class UserManager {
                 resultSet.getLong("last_login"),
                 resultSet.getString("last_address"),
                 resultSet.getInt("last_lobby_id"),
-                resultSet.getInt("lang_id"),
+                resultSet.getInt("language_id"),
                 Lists.newArrayList()
         );
     }
