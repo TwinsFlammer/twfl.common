@@ -7,6 +7,7 @@ import com.redecommunity.common.shared.language.enums.Language;
 import com.redecommunity.common.shared.language.factory.LanguageFactory;
 import com.redecommunity.common.shared.permissions.group.manager.GroupManager;
 import com.redecommunity.common.shared.util.Constants;
+import com.redecommunity.common.shared.util.Helper;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -89,7 +90,7 @@ public class User {
 
         jsonObject.put("platform", "bukkit-server");
         jsonObject.put("user_id", this.id);
-        jsonObject.put("received_message", message);
+        jsonObject.put("received_message", Helper.colorize(message));
 
         redis.sendMessage(
                 Constants.MESSAGE_CHANNEL,
