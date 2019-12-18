@@ -35,6 +35,8 @@ public abstract class Table implements ITable {
     }
 
     private MySQL getMySQL() {
+        System.out.println(this.getDatabaseName());
+
         return Common.getInstance().getDatabaseManager().getMySQLManager().getDatabase(this.getDatabaseName());
     }
 
