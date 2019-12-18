@@ -5,6 +5,7 @@ import com.google.common.io.ByteSource;
 import com.google.common.io.Files;
 import com.redecommunity.common.shared.branches.Branch;
 import com.redecommunity.common.shared.databases.manager.DatabaseManager;
+import com.redecommunity.common.shared.databases.redis.channel.manager.ChannelManager;
 import com.redecommunity.common.shared.databases.redis.handler.manager.JedisMessageManager;
 import com.redecommunity.common.shared.language.factory.LanguageFactory;
 import com.redecommunity.common.shared.manager.GlobalManager;
@@ -36,14 +37,11 @@ public class Common {
     private DatabaseManager databaseManager;
     private SchedulerManager schedulerManager;
 
-    /**
-     * All project static factory
-     */
-
     private LanguageFactory languageFactory;
 
     private ClassLoader classLoader;
 
+    private ChannelManager channelManager;
     private JedisMessageManager jedisMessageManager;
 
     public Common() {
@@ -59,6 +57,8 @@ public class Common {
         this.languageFactory = new LanguageFactory();
 
         new GlobalManager();
+
+        this.channelManager = new ChannelManager();
 
         this.jedisMessageManager = new JedisMessageManager();
     }
@@ -81,6 +81,10 @@ public class Common {
 
     public LanguageFactory getLanguageFactory() {
         return this.languageFactory;
+    }
+
+    public ChannelManager getChannelManager() {
+        return this.channelManager;
     }
 
     public JedisMessageManager getJedisMessageManager() {
