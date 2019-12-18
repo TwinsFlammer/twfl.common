@@ -24,6 +24,8 @@ public class Updater {
 
         File remoteFile = new File(this.branch.getPath() + "/" + this.file.getName());
 
+        System.out.println("Verificando se há atualizações do arquivo " + this.file.getName());
+
         if (remoteFile.lastModified() > this.file.lastModified()) {
             System.out.println("Atualização encontrada, baixando nova versão do arquivo " + this.file.getName());
 
