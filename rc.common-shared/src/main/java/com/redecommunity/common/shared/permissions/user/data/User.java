@@ -1,9 +1,12 @@
 package com.redecommunity.common.shared.permissions.user.data;
 
+import com.redecommunity.common.shared.Common;
+import com.redecommunity.common.shared.databases.redis.data.Redis;
 import com.redecommunity.common.shared.permissions.group.data.Group;
 import com.redecommunity.common.shared.language.enums.Language;
 import com.redecommunity.common.shared.language.factory.LanguageFactory;
 import com.redecommunity.common.shared.permissions.group.manager.GroupManager;
+import com.redecommunity.common.shared.util.Constants;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -80,7 +83,18 @@ public class User {
     }
 
     public void sendMessage(String message) {
-        // TODO not implemented yet
+        Redis redis = Common.getInstance().getDatabaseManager().getRedisManager().getDatabase("general");
+
+        JSONObject jsonObject = new JSONObject();
+
+        jsonObject.put("platform", "bukkit-server");
+        jsonObject.put("user_id", this.id);
+        jsonObject.put("received_message", message);
+
+        redis.sendMessage(
+                Constants.MESSAGE_CHANNEL,
+                jsonObject.toString()
+        );
     }
 
     public String toString() {
