@@ -1,3 +1,3 @@
-name: CommonBungee
+name: Common
 main: com.redecommunity.common.bungee.CommonBungee
 version: 1.0-SNAPSHOT
