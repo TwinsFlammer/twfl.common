@@ -15,8 +15,12 @@ import java.util.List;
 public class ChannelManager {
     private List<Channel> channels = Lists.newArrayList();
 
+    private JedisChannelMessageHandler jedisChannelMessageHandler;
+
     public ChannelManager() {
         this.load();
+
+        this.jedisChannelMessageHandler = new JedisChannelMessageHandler();
 
         this.registerAll();
     }
@@ -24,7 +28,17 @@ public class ChannelManager {
     public void register(Channel channel) {
         this.channels.add(channel);
 
-        this.registerAll();
+        new Thread(() -> {
+            Common.getInstance().getDatabaseManager().getRedisManager()
+                    .getDatabases()
+                    .values()
+                    .forEach(redis ->
+                            redis.register(
+                                    this.jedisChannelMessageHandler,
+                                    channel.getName()
+                            )
+                    );
+        }).start();
     }
 
     private void load() {
@@ -54,16 +68,13 @@ public class ChannelManager {
             channelsArray[i] = channel.getName();
         }
 
-        JedisChannelMessageHandler jedisChannelMessageHandler = new JedisChannelMessageHandler();
-
-
         new Thread(() -> {
             Common.getInstance().getDatabaseManager().getRedisManager()
                     .getDatabases()
                     .values()
                     .forEach(redis ->
                             redis.register(
-                                    jedisChannelMessageHandler,
+                                    this.jedisChannelMessageHandler,
                                     channelsArray
                             )
                     );
