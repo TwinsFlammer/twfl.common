@@ -5,7 +5,6 @@ import com.redecommunity.common.shared.Common;
 import com.redecommunity.common.shared.databases.redis.channel.data.Channel;
 import com.redecommunity.common.shared.databases.redis.handler.JedisChannelMessageHandler;
 import com.redecommunity.common.shared.util.ClassGetter;
-import com.redecommunity.common.shared.databases.redis.manager.RedisManager;
 
 import java.util.Collections;
 import java.util.List;
@@ -16,18 +15,16 @@ import java.util.List;
 public class ChannelManager {
     private List<Channel> channels = Lists.newArrayList();
 
-    private RedisManager redisManager;
-
-    public ChannelManager(RedisManager redisManager) {
-        this.redisManager = redisManager;
-
+    public ChannelManager() {
         this.load();
 
         this.registerAll();
     }
 
-    public boolean add(Channel channel) {
-        return this.channels.add(channel);
+    public void register(Channel channel) {
+        this.channels.add(channel);
+
+        this.registerAll();
     }
 
     private void load() {
@@ -61,7 +58,7 @@ public class ChannelManager {
 
 
         new Thread(() -> {
-            this.redisManager
+            Common.getInstance().getDatabaseManager().getRedisManager()
                     .getDatabases()
                     .values()
                     .forEach(redis ->
