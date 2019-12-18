@@ -47,6 +47,8 @@ public class ChannelManager {
     }
 
     private void registerAll() {
+        if (this.channels.size() == 0) return;
+
         String[] channelsArray = new String[this.channels.size()];
 
         for (int i = 0; i < this.channels.size(); i++) {
