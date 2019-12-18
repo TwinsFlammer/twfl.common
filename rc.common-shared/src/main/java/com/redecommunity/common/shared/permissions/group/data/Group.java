@@ -1,6 +1,7 @@
 package com.redecommunity.common.shared.permissions.group.data;
 
 import com.redecommunity.common.shared.permissions.permission.data.Permission;
+import com.redecommunity.common.shared.util.Helper;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
@@ -18,4 +19,8 @@ public class Group {
     private final Long discordGroupId;
     private final Integer serverId;
     private final List<Permission> permissions;
+
+    public String getColor() {
+        return Helper.colorize("&" + this.color);
+    }
 }
