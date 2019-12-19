@@ -1,18 +1,28 @@
 package com.redecommunity.common.shared.server.manager;
 
 import com.google.common.collect.Lists;
+import com.redecommunity.common.shared.server.dao.ServerDao;
 import com.redecommunity.common.shared.server.data.Server;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * Created by @SrGutyerrez
  */
 public class ServerManager {
     private static List<Server> servers = Lists.newArrayList();
+
+    public ServerManager() {
+        ServerDao serverDao = new ServerDao();
+
+        Set<Server> servers = serverDao.findAll();
+
+        ServerManager.servers.addAll(servers);
+    }
 
     public static Boolean addServer(Server server) {
         return ServerManager.servers.add(server);
