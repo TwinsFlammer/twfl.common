@@ -5,4 +5,5 @@ package com.redecommunity.common.shared.util;
  */
 public class Constants {
     public static final String MESSAGE_CHANNEL = "message_channel";
+    public static final String KICK_CHANNEL = "kick_channel";
 }
