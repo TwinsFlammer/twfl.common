@@ -6,6 +6,7 @@ import com.redecommunity.common.shared.server.data.Server;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by @SrGutyerrez
@@ -20,7 +21,17 @@ public class ServerManager {
     public static Server getServer(Integer id) {
         return ServerManager.servers
                 .stream()
-                .filter(server -> server.getId().equals(id))
+                .filter(Objects::nonNull)
+                .filter(server -> id.equals(server.getId()))
+                .findFirst()
+                .orElse(null);
+    }
+
+    public static Server getServer(String name) {
+        return ServerManager.servers
+                .stream()
+                .filter(Objects::nonNull)
+                .filter(server -> name.equals(server.getName()))
                 .findFirst()
                 .orElse(null);
     }
