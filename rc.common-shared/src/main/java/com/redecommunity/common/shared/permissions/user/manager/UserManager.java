@@ -59,6 +59,24 @@ public class UserManager {
         return user;
     }
 
+    public static User generateUser(String username, UUID uniqueId) {
+        return new User(
+                null,
+                username.toLowerCase(),
+                username,
+                uniqueId,
+                null,
+                null,
+                System.currentTimeMillis(),
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+        );
+    }
+
     public static User toUser(ResultSet resultSet) throws SQLException {
         return new User(
                 resultSet.getInt("id"),
