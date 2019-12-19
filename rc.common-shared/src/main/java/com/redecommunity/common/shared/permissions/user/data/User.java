@@ -6,12 +6,16 @@ import com.redecommunity.common.shared.permissions.group.data.Group;
 import com.redecommunity.common.shared.language.enums.Language;
 import com.redecommunity.common.shared.language.factory.LanguageFactory;
 import com.redecommunity.common.shared.permissions.group.manager.GroupManager;
+import com.redecommunity.common.shared.server.data.Server;
 import com.redecommunity.common.shared.util.Constants;
 import com.redecommunity.common.shared.util.Helper;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import org.json.simple.JSONObject;
+import org.json.simple.JSONValue;
+import redis.clients.jedis.Jedis;
+import redis.clients.jedis.exceptions.JedisDataException;
 
 import java.util.Collection;
 import java.util.UUID;
@@ -84,32 +88,61 @@ public class User {
     }
 
     public void sendMessage(String message) {
-        Redis redis = Common.getInstance().getDatabaseManager().getRedisManager().getDatabase("general");
-
         JSONObject jsonObject = new JSONObject();
 
         jsonObject.put("platform", "bukkit-server");
         jsonObject.put("user_id", this.id);
         jsonObject.put("received_message", Helper.colorize(message));
 
-        redis.sendMessage(
+        this.getRedis().sendMessage(
                 Constants.MESSAGE_CHANNEL,
                 jsonObject.toString()
         );
     }
 
     public void kick(String reason) {
-        Redis redis = Common.getInstance().getDatabaseManager().getRedisManager().getDatabase("general");
-
         JSONObject jsonObject = new JSONObject();
 
         jsonObject.put("user_id", this.id);
         jsonObject.put("reason", Helper.colorize(reason));
 
-        redis.sendMessage(
+        this.getRedis().sendMessage(
                 Constants.KICK_CHANNEL,
                 jsonObject.toString()
         );
+    }
+
+    public void setServer(Integer proxyId, String connectedAddress, Server server) {
+        JSONObject jsonObject = new JSONObject();
+
+        jsonObject.put("user_id", this.id);
+        jsonObject.put("server_id", server.getId());
+        jsonObject.put("proxy_id", proxyId);
+        jsonObject.put("connected_address", connectedAddress);
+
+        try (Jedis jedis = this.getRedis().getJedisPool().getResource()) {
+            jedis.hset("users", "id" + this.id, jsonObject.toString());
+        } catch (JedisDataException exception) {
+            exception.printStackTrace();
+        }
+    }
+
+    public <T> T getServer() {
+        try (Jedis jedis = this.getRedis().getJedisPool().getResource()) {
+            String connectedServer = jedis.hget("users", "id" + this.id);
+
+            JSONObject jsonObject = (JSONObject) JSONValue.parse(connectedServer);
+
+            return (T) jsonObject;
+        } catch (JedisDataException exception) {
+            exception.printStackTrace();
+        }
+
+        return null;
+    }
+
+    public Redis getRedis() {
+        return Common.getInstance().getDatabaseManager().getRedisManager().getDatabase("general");
     }
 
     public Boolean isConsole() {
