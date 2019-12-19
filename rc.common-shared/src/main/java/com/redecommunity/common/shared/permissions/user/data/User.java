@@ -98,6 +98,24 @@ public class User {
         );
     }
 
+    public void kick(String reason) {
+        Redis redis = Common.getInstance().getDatabaseManager().getRedisManager().getDatabase("general");
+
+        JSONObject jsonObject = new JSONObject();
+
+        jsonObject.put("user_id", this.id);
+        jsonObject.put("reason", Helper.colorize(reason));
+
+        redis.sendMessage(
+                Constants.KICK_CHANNEL,
+                jsonObject.toString()
+        );
+    }
+
+    public Boolean isConsole() {
+        return this.id == 1;
+    }
+
     public String toString() {
         JSONObject object = new JSONObject();
 
