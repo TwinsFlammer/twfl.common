@@ -7,6 +7,7 @@ import com.redecommunity.common.shared.permissions.user.data.User;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 
 /**
@@ -18,6 +19,7 @@ public class UserManager {
     public static User getUser(Integer id) {
         return UserManager.users.
                 stream()
+                .filter(Objects::nonNull)
                 .filter(user -> id.equals(user.getId()))
                 .findFirst()
                 .orElse(
@@ -28,6 +30,7 @@ public class UserManager {
     public static User getUser(String name) {
         return UserManager.users
                 .stream()
+                .filter(Objects::nonNull)
                 .filter(user -> name.equalsIgnoreCase(user.getName()))
                 .findFirst()
                 .orElse(
@@ -38,6 +41,7 @@ public class UserManager {
     public static User getUser(UUID uniqueId) {
         return UserManager.users
                 .stream()
+                .filter(Objects::nonNull)
                 .filter(user -> uniqueId.equals(user.getUniqueId()))
                 .findFirst()
                 .orElse(
