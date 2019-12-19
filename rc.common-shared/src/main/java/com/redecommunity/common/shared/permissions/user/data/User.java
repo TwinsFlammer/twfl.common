@@ -7,6 +7,7 @@ import com.redecommunity.common.shared.language.enums.Language;
 import com.redecommunity.common.shared.language.factory.LanguageFactory;
 import com.redecommunity.common.shared.permissions.group.manager.GroupManager;
 import com.redecommunity.common.shared.server.data.Server;
+import com.redecommunity.common.shared.server.manager.ServerManager;
 import com.redecommunity.common.shared.util.Constants;
 import com.redecommunity.common.shared.util.Helper;
 import lombok.AllArgsConstructor;
@@ -127,7 +128,7 @@ public class User {
         }
     }
 
-    public <T> T getServer() {
+    public <T> T getJSONConnection() {
         try (Jedis jedis = this.getRedis().getJedisPool().getResource()) {
             String connectedServer = jedis.hget("users", "id" + this.id);
 
@@ -139,6 +140,43 @@ public class User {
         }
 
         return null;
+    }
+
+    public Server getServer() {
+        JSONObject jsonObject = this.getJSONConnection();
+
+        if (jsonObject != null) {
+            Integer serverId = ((Long) jsonObject.get("server_id")).intValue();
+
+            return ServerManager.getServer(serverId);
+        }
+        return null;
+    }
+
+    public Integer getProxyId() {
+        JSONObject jsonObject = this.getJSONConnection();
+
+        if (jsonObject != null) return ((Long) jsonObject.get("proxy_id")).intValue();
+
+        return null;
+    }
+
+    public String getConnectedAddress() {
+        JSONObject jsonObject = this.getJSONConnection();
+
+        if (jsonObject != null) return (String) jsonObject.get("connected_address");
+
+        return null;
+    }
+
+    public Boolean isOnline() {
+        try (Jedis jedis = this.getRedis().getJedisPool().getResource()) {
+            return jedis.hexists("users", "id" + this.id);
+        } catch (JedisDataException exception) {
+            exception.printStackTrace();
+        }
+
+        return false;
     }
 
     public Redis getRedis() {
