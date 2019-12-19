@@ -6,14 +6,14 @@ import com.redecommunity.common.shared.permissions.user.data.User;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Collection;
+import java.util.List;
 import java.util.UUID;
 
 /**
  * Created by @SrGutyerrez
  */
 public class UserManager {
-    private static final Collection<User> users = Lists.newArrayList();
+    private static final List<User> users = Lists.newArrayList();
 
     public static User getUser(Integer id) {
         return UserManager.users.
