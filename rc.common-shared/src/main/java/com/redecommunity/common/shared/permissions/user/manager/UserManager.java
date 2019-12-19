@@ -18,7 +18,7 @@ public class UserManager {
     public static User getUser(Integer id) {
         return UserManager.users.
                 stream()
-                .filter(user -> user.getId().equals(id))
+                .filter(user -> id.equals(user.getId()))
                 .findFirst()
                 .orElse(
                         UserManager.findOne("id", id)
@@ -28,7 +28,7 @@ public class UserManager {
     public static User getUser(String name) {
         return UserManager.users
                 .stream()
-                .filter(user -> user.getName().equalsIgnoreCase(name))
+                .filter(user -> name.equalsIgnoreCase(user.getName()))
                 .findFirst()
                 .orElse(
                         UserManager.findOne("name", name.toLowerCase())
@@ -38,7 +38,7 @@ public class UserManager {
     public static User getUser(UUID uniqueId) {
         return UserManager.users
                 .stream()
-                .filter(user -> user.getUniqueId().equals(uniqueId))
+                .filter(user -> uniqueId.equals(user.getUniqueId()))
                 .findFirst()
                 .orElse(
                         UserManager.findOne("unique_id", uniqueId)
