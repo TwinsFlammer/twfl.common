@@ -8,20 +8,22 @@ import com.redecommunity.common.shared.permissions.group.dao.GroupDao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 
 /**
  * Created by @SrGutyerrez
  */
 public class GroupManager {
-    private static Collection<Group> groups = Lists.newArrayList();
+    private static List<Group> groups = Lists.newArrayList();
 
     public GroupManager() {
         GroupDao groupDao = new GroupDao();
         PermissionDao permissionDao = new PermissionDao();
 
-        GroupManager.setGroups(groupDao.findAll());
+        Set<Group> groups1 = groupDao.findAll();
+
+        GroupManager.groups.addAll(groups1);
 
         Set<Permission> permissions = permissionDao.findAll();
 
@@ -40,11 +42,11 @@ public class GroupManager {
         });
     }
 
-    public static Collection<Group> getGroups() {
+    public static List<Group> getGroups() {
         return GroupManager.groups;
     }
 
-    public static void setGroups(Collection<Group> groups) {
+    public static void setGroups(List<Group> groups) {
         GroupManager.groups = groups;
     }
 
