@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.awt.*;
+import java.net.InetSocketAddress;
 import java.util.Arrays;
 import java.util.Objects;
 
@@ -75,6 +76,10 @@ public class Server {
                 .filter(type -> type.isValid(this.name))
                 .findFirst()
                 .orElse(null);
+    }
+
+    public InetSocketAddress getInetSocketAddress() {
+        return new InetSocketAddress(this.address, this.port);
     }
 
     public Boolean isLobby() {
