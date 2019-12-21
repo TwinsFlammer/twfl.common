@@ -19,11 +19,13 @@ public class ServerRefreshRunnable implements Runnable {
         servers.forEach(server -> {
             Server server1 = ServerManager.getServer(server.getId());
 
-            if (server1 != null && !server1.isSimilar(server)) {
-                server1.updateData(server);
+            if (server1 != null) {
+                if (!server1.isSimilar(server)) server1.updateData(server);
+
                 server1.update();
-            } else if (server1 == null) {
+            } else {
                 server.update();
+
                 ServerManager.addServer(server);
             }
         });
