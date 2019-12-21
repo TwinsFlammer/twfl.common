@@ -1,10 +1,13 @@
 package com.redecommunity.common.shared.server.data;
 
+import com.redecommunity.common.shared.server.enums.ServerType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.awt.*;
+import java.util.Arrays;
+import java.util.Objects;
 
 /**
  * Created by @SrGutyerrez
@@ -64,5 +67,29 @@ public class Server {
         this.address = server.getAddress();
         this.description = server.getDescription();
         this.displayName = server.getDisplayName();
+    }
+
+    private ServerType getType() {
+        return Arrays.stream(ServerType.values())
+                .filter(Objects::nonNull)
+                .filter(type -> type.isValid(this.name))
+                .findFirst()
+                .orElse(null);
+    }
+
+    public Boolean isLobby() {
+        return this.getType() == ServerType.LOBBY;
+    }
+
+    public Boolean isFactions() {
+        return this.getType() == ServerType.FACTIONS;
+    }
+
+    public Boolean isLoginServer() {
+        return this.getType() == ServerType.LOGIN;
+    }
+
+    public Boolean isOnline() {
+        return this.online;
     }
 }
