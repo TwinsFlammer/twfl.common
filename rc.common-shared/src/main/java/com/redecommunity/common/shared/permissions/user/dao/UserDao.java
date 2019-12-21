@@ -6,6 +6,7 @@ import com.redecommunity.common.shared.permissions.group.data.Group;
 import com.redecommunity.common.shared.permissions.user.data.User;
 import com.redecommunity.common.shared.databases.mysql.dao.Table;
 import com.redecommunity.common.shared.permissions.user.group.dao.UserGroupDao;
+import com.redecommunity.common.shared.permissions.user.group.data.UserGroup;
 import com.redecommunity.common.shared.permissions.user.manager.UserManager;
 
 import java.sql.Connection;
@@ -147,7 +148,7 @@ public class UserDao extends Table {
 
             keys.put("user_id", user.getId());
 
-            Set<Group> groups = userGroupDao.findAll(keys);
+            Set<UserGroup> groups = userGroupDao.findAll(keys);
 
             user.getGroups().addAll(groups);
 
@@ -182,7 +183,7 @@ public class UserDao extends Table {
 
                 keys.put("user_id", user.getId());
 
-                Set<Group> groups = userGroupDao.findAll(keys);
+                Set<UserGroup> groups = userGroupDao.findAll(keys);
 
                 user.getGroups().addAll(groups);
 
