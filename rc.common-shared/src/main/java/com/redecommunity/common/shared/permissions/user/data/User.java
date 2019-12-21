@@ -128,6 +128,14 @@ public class User {
         }
     }
 
+    public void setOffline() {
+        try (Jedis jedis = this.getRedis().getJedisPool().getResource()) {
+            jedis.hdel("users", "id" + this.id);
+        } catch (JedisDataException exception) {
+            exception.printStackTrace();
+        }
+    }
+
     public <T> T getJSONConnection() {
         try (Jedis jedis = this.getRedis().getJedisPool().getResource()) {
             String connectedServer = jedis.hget("users", "id" + this.id);
