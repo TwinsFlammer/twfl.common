@@ -1,14 +1,17 @@
 package com.redecommunity.common.shared.server.manager;
 
 import com.google.common.collect.Lists;
+import com.redecommunity.common.shared.Common;
 import com.redecommunity.common.shared.server.dao.ServerDao;
 import com.redecommunity.common.shared.server.data.Server;
+import com.redecommunity.common.shared.server.runnable.ServerRefreshRunnable;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 /**
@@ -23,6 +26,13 @@ public class ServerManager {
         Set<Server> servers = serverDao.findAll();
 
         ServerManager.servers.addAll(servers);
+
+        Common.getInstance().getScheduler().scheduleAtFixedRate(
+                new ServerRefreshRunnable(),
+                0,
+                5,
+                TimeUnit.SECONDS
+        );
     }
 
     public static Boolean addServer(Server server) {
