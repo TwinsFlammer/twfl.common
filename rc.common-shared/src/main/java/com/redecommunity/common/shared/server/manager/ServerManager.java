@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * Created by @SrGutyerrez
@@ -44,6 +45,33 @@ public class ServerManager {
                 .filter(server -> name.equals(server.getName()))
                 .findFirst()
                 .orElse(null);
+    }
+
+    public static List<Server> getLobbies() {
+        return ServerManager.servers
+                .stream()
+                .filter(Objects::nonNull)
+                .filter(Server::isLobby)
+                .filter(Server::isOnline)
+                .collect(Collectors.toList());
+    }
+
+    public static List<Server> getFactions() {
+        return ServerManager.servers
+                .stream()
+                .filter(Objects::nonNull)
+                .filter(Server::isFactions)
+                .filter(Server::isOnline)
+                .collect(Collectors.toList());
+    }
+
+    public static List<Server> getLoginServers() {
+        return ServerManager.servers
+                .stream()
+                .filter(Objects::nonNull)
+                .filter(Server::isLoginServer)
+                .filter(Server::isOnline)
+                .collect(Collectors.toList());
     }
 
     public static Server toServer(ResultSet resultSet) throws SQLException {
