@@ -23,4 +23,8 @@ public class Group {
     public String getColor() {
         return Helper.colorize("&" + this.color);
     }
+
+    public Boolean isDefault() {
+        return this.priority == 0;
+    }
 }
