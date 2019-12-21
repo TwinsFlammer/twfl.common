@@ -113,6 +113,19 @@ public class User {
         );
     }
 
+    public void connect(Server server) {
+        JSONObject jsonObject = new JSONObject();
+
+        jsonObject.put("platform", "proxy-server");
+        jsonObject.put("user_id", this.id);
+        jsonObject.put("server_id", server.getId());
+
+        this.getRedis().sendMessage(
+                Constants.CONNECT_CHANNEL,
+                jsonObject.toString()
+        );
+    }
+
     public void setServer(Integer proxyId, String connectedAddress, Server server) {
         JSONObject jsonObject = new JSONObject();
 
@@ -177,6 +190,10 @@ public class User {
         return null;
     }
 
+    public Redis getRedis() {
+        return Common.getInstance().getDatabaseManager().getRedisManager().getDatabase("general");
+    }
+
     public Boolean isOnline() {
         try (Jedis jedis = this.getRedis().getJedisPool().getResource()) {
             return jedis.hexists("users", "id" + this.id);
@@ -185,10 +202,6 @@ public class User {
         }
 
         return false;
-    }
-
-    public Redis getRedis() {
-        return Common.getInstance().getDatabaseManager().getRedisManager().getDatabase("general");
     }
 
     public Boolean isConsole() {
