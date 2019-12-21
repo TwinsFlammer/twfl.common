@@ -1,5 +1,7 @@
 package com.redecommunity.common.shared.server.util;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
 import lombok.Cleanup;
 import lombok.Getter;
 import lombok.Setter;
