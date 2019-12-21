@@ -4,6 +4,7 @@ import com.google.common.collect.Sets;
 import com.redecommunity.common.shared.databases.mysql.dao.Table;
 import com.redecommunity.common.shared.permissions.group.data.Group;
 import com.redecommunity.common.shared.permissions.group.manager.GroupManager;
+import com.redecommunity.common.shared.permissions.user.group.data.UserGroup;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -61,9 +62,9 @@ public class UserGroupDao extends Table {
                 ResultSet resultSet = preparedStatement.executeQuery();
         ) {
             while (resultSet.next()) {
-                Group group = GroupManager.getGroup(resultSet.getInt("group_id"));
+                UserGroup userGroup = UserGroup.toUserGroup(resultSet);
 
-                groups.add((T) group);
+                groups.add((T) userGroup);
             }
         } catch (SQLException exception) {
             exception.printStackTrace();
