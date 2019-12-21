@@ -9,9 +9,9 @@ public class ServerStatus {
 
     protected StatusResponse response;
 
-    public ServerStatus(String address, Integer port){
+    public ServerStatus(InetSocketAddress inetSocketAddress){
         try {
-            MinecraftServerPinger pinger = new MinecraftServerPinger(new InetSocketAddress(address, port));
+            MinecraftServerPinger pinger = new MinecraftServerPinger(inetSocketAddress);
             response = pinger.fetchData();
         } catch (Exception e) {}
     }
@@ -20,7 +20,7 @@ public class ServerStatus {
         return response != null;
     }
 
-    public Integer getPlayers() {
+    public Integer getPlayerCount() {
         return (response == null ? 0 : response.getPlayerOnline());
     }
 }
