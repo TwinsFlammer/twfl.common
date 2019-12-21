@@ -72,7 +72,7 @@ public class UserManager {
                 null,
                 null,
                 null,
-                null,
+                1,
                 null
         );
     }
