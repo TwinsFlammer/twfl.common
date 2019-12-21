@@ -195,6 +195,10 @@ public class User {
         return this.id == 1;
     }
 
+    public Boolean isSimilar(User user) {
+        return this.id.equals(user.getId());
+    }
+
     public String toString() {
         JSONObject object = new JSONObject();
 
