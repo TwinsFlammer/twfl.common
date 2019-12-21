@@ -1,6 +1,7 @@
 package com.redecommunity.common.shared.server.data;
 
 import com.redecommunity.common.shared.server.enums.ServerType;
+import com.redecommunity.common.shared.server.util.ServerStatus;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -80,6 +81,15 @@ public class Server {
 
     public InetSocketAddress getInetSocketAddress() {
         return new InetSocketAddress(this.address, this.port);
+    }
+
+    public void update() {
+        ServerStatus serverStatus = new ServerStatus(
+                this.getInetSocketAddress()
+        );
+
+        this.setOnline(serverStatus.isOnline());
+        this.setPlayerCount(serverStatus.getPlayerCount());
     }
 
     public Boolean isLobby() {
