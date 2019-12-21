@@ -6,6 +6,7 @@ import com.redecommunity.common.shared.permissions.group.data.Group;
 import com.redecommunity.common.shared.language.enums.Language;
 import com.redecommunity.common.shared.language.factory.LanguageFactory;
 import com.redecommunity.common.shared.permissions.group.manager.GroupManager;
+import com.redecommunity.common.shared.permissions.user.group.data.UserGroup;
 import com.redecommunity.common.shared.server.data.Server;
 import com.redecommunity.common.shared.server.manager.ServerManager;
 import com.redecommunity.common.shared.util.Constants;
@@ -37,19 +38,22 @@ public class User {
     protected Long firstLogin, lastLogin;
     protected String lastAddress;
     protected Integer lastLobbyId, languageId;
-    protected Collection<Group> groups;
+    protected Collection<UserGroup> groups;
 
     public Group getHighestGroup() {
         return this.groups
                 .stream()
-                .min((group1, group2) -> group2.getPriority().compareTo(group1.getPriority()))
+                .min((userGroup1, userGroup2) -> userGroup2.getGroup().getPriority().compareTo(userGroup1.getGroup().getPriority()))
+                .map(UserGroup::getGroup)
                 .orElse(
                         GroupManager.getGroup("default")
                 );
     }
 
     public Boolean hasGroupExact(Group group) {
-        return this.groups.contains(group);
+        return this.groups
+                .stream()
+                .anyMatch(userGroup -> userGroup.getGroup().equals(group));
     }
 
     public Boolean hasGroupExact(String name) {
@@ -67,7 +71,7 @@ public class User {
     public Boolean hasGroup(Group group) {
         return group.isDefault() || this.groups
                 .stream()
-                .anyMatch(group1 -> group1.equals(group) || group1.getPriority() >= group.getPriority());
+                .anyMatch(userGroup -> userGroup.getGroup().equals(group) || userGroup.getGroup().getPriority() >= group.getPriority());
     }
 
     public Boolean hasGroup(Integer id) {
