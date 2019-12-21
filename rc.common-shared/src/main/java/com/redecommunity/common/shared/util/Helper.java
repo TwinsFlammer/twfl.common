@@ -1,7 +1,11 @@
 package com.redecommunity.common.shared.util;
 
+import com.google.common.collect.Lists;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+
+import java.util.Collections;
+import java.util.List;
 
 /**
  * Created by @SrGutyerrez
@@ -33,5 +37,25 @@ public abstract class Helper {
                 "&",
                 "§"
         );
+    }
+
+    public static List<String> fromArray(String... values) {
+        List<String> results = Lists.newArrayList();
+        Collections.addAll(results, values);
+        results.remove("");
+        return results;
+    }
+
+    public static String[] removeFirst(String[] args) {
+        List<String> out = Helper.fromArray(args);
+
+        if (!out.isEmpty()) {
+            out.remove(0);
+        }
+        return Helper.toArray(out);
+    }
+
+    public static String[] toArray(List<String> list) {
+        return list.toArray(new String[list.size()]);
     }
 }
