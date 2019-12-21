@@ -60,9 +60,11 @@ public class ServerDao extends Table {
                 PreparedStatement preparedStatement = connection.prepareStatement(query);
                 ResultSet resultSet = preparedStatement.executeQuery();
         ) {
-            Server server = ServerManager.toServer(resultSet);
+            while (resultSet.next()) {
+                Server server = ServerManager.toServer(resultSet);
 
-            servers.add((T) server);
+                servers.add((T) server);
+            }
         } catch (SQLException exception) {
             exception.printStackTrace();
         }
