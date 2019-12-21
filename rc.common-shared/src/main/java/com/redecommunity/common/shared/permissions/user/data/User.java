@@ -65,7 +65,7 @@ public class User {
     }
 
     public Boolean hasGroup(Group group) {
-        return this.groups
+        return group.isDefault() || this.groups
                 .stream()
                 .anyMatch(group1 -> group1.equals(group) || group1.getPriority() >= group.getPriority());
     }
