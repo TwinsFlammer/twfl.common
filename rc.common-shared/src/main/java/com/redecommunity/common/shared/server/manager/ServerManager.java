@@ -35,6 +35,10 @@ public class ServerManager {
         );
     }
 
+    public static List<Server> getServers() {
+        return ServerManager.servers;
+    }
+
     public static Boolean addServer(Server server) {
         return ServerManager.servers.add(server);
     }
