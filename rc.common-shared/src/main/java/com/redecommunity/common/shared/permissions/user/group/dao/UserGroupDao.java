@@ -62,7 +62,7 @@ public class UserGroupDao extends Table {
                 this.getTableName(),
                 user.getId(),
                 object.getGroup().getId(),
-                object.getServer().getId(),
+                object.getServer() == null ? 0 : object.getServer().getId(),
                 object.getDuration()
         );
 
@@ -82,7 +82,7 @@ public class UserGroupDao extends Table {
                 this.getTableName(),
                 user.getId(),
                 object.getGroup().getId(),
-                object.getServer().getId()
+                object.getServer() == null ? 0 : object.getServer().getId()
         );
 
         try (
