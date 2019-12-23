@@ -2,7 +2,6 @@ package com.redecommunity.common.shared.permissions.user.dao;
 
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
-import com.redecommunity.common.shared.permissions.group.data.Group;
 import com.redecommunity.common.shared.permissions.user.data.User;
 import com.redecommunity.common.shared.databases.mysql.dao.Table;
 import com.redecommunity.common.shared.permissions.user.group.dao.UserGroupDao;
@@ -124,8 +123,7 @@ public class UserDao extends Table {
         this.execute(query);
     }
 
-    @Override
-    public <K, V, T> T findOne(K key, V value) {
+    public <K, V, T> T findOne(K key, V value, Integer serverId) {
         String query = String.format(
                 "SELECT * FROM %s WHERE `%s`='%s'",
                 this.getTableName(),
@@ -144,11 +142,10 @@ public class UserDao extends Table {
 
             User user = UserManager.toUser(resultSet);
 
-            HashMap<String, Object> keys = Maps.newHashMap();
-
-            keys.put("user_id", user.getId());
-
-            Set<UserGroup> groups = userGroupDao.findAll(keys);
+            Set<UserGroup> groups = userGroupDao.findAll(
+                    user.getId(),
+                    serverId == -1 ? "" : " AND `server_id`=" + serverId + " || `server_id`=0"
+            );
 
             user.getGroups().addAll(groups);
 
