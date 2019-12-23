@@ -9,12 +9,20 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 /**
  * Created by @SrGutyerrez
  */
 public class UserManager {
     private static final List<User> users = Lists.newArrayList();
+
+    public static List<User> getOnlineUsers() {
+        return UserManager.users
+                .stream()
+                .filter(User::isOnline)
+                .collect(Collectors.toList());
+    }
 
     public static User getUser(Integer id) {
         return UserManager.users.
