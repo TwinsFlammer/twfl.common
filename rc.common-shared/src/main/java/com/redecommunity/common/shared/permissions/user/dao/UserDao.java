@@ -123,7 +123,7 @@ public class UserDao extends Table {
         this.execute(query);
     }
 
-    public <K, V, T> T findOne(K key, V value, Integer serverId) {
+    public <K, V, T> T findOne(K key, V value) {
         String query = String.format(
                 "SELECT * FROM %s WHERE `%s`='%s'",
                 this.getTableName(),
@@ -142,12 +142,14 @@ public class UserDao extends Table {
 
             User user = UserManager.toUser(resultSet);
 
-            Set<UserGroup> groups = userGroupDao.findAll(
-                    user.getId(),
-                    serverId == -1 ? "" : " AND `server_id`=" + serverId + " || `server_id`=0"
-            );
+            if (user.isConsole()) {
+                Set<UserGroup> groups = userGroupDao.findAll(
+                        user.getId(),
+                        ""
+                );
 
-            user.getGroups().addAll(groups);
+                user.getGroups().addAll(groups);
+            }
 
             return (T) user;
         } catch (SQLException exception) {
