@@ -2,15 +2,13 @@ package com.redecommunity.common.shared.permissions.user.group.dao;
 
 import com.google.common.collect.Sets;
 import com.redecommunity.common.shared.databases.mysql.dao.Table;
-import com.redecommunity.common.shared.permissions.group.data.Group;
-import com.redecommunity.common.shared.permissions.group.manager.GroupManager;
+import com.redecommunity.common.shared.permissions.user.data.User;
 import com.redecommunity.common.shared.permissions.user.group.data.UserGroup;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.HashMap;
 import java.util.Set;
 
 /**
@@ -45,13 +43,64 @@ public class UserGroupDao extends Table {
         );
     }
 
-    public <K, V, U, I, T> Set<T> findAll(HashMap<K, V> keys) {
-        String where = this.generateWhere(keys);
-
+    public <T extends UserGroup, U extends User> void insert(U user, T object) {
         String query = String.format(
-                "SELECT * FROM %s WHERE %s",
+                "INSERT INTO %s " +
+                        "(" +
+                        "`user_id`," +
+                        "`group_id`," +
+                        "`server_id`," +
+                        "`end_time`" +
+                        ")" +
+                        " VALUES " +
+                        "(" +
+                        "%d," +
+                        "%d," +
+                        "%d," +
+                        "%d" +
+                        ")",
                 this.getTableName(),
-                where
+                user.getId(),
+                object.getGroup().getId(),
+                object.getServer().getId(),
+                object.getDuration()
+        );
+
+        try (
+                Connection connection = this.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(query);
+        ) {
+            preparedStatement.execute();
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+    }
+
+    public <U extends User, T extends UserGroup> void delete(U user, T object) {
+        String query = String.format(
+                "DELETE FROM %s WHERE `user_id`=%d AND `group_id`=%d AND `server_id`=%d",
+                this.getTableName(),
+                user.getId(),
+                object.getGroup().getId(),
+                object.getServer().getId()
+        );
+
+        try (
+                Connection connection = this.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(query);
+        ) {
+            preparedStatement.execute();
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+    }
+
+    public <K extends Integer, V extends String, U, I, T> Set<T> findAll(K key, V value) {
+        String query = String.format(
+                "SELECT * FROM %s WHERE `user_id`=%d %s;",
+                this.getTableName(),
+                key,
+                value
         );
 
         Set<T> groups = Sets.newConcurrentHashSet();
