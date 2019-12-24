@@ -1,0 +1,67 @@
+{
+  "messages": {
+    "player": {
+      "invalid_player": "&cEste usuário não existe.",
+      "player_offline": "&cEste usuário não está online."
+    },
+    "default_commands": {
+      "invalid_group": "&cPara executar este comando é necessário o grupo %s&c.",
+      "invalid_usage": "&cUtilize /%s %s.",
+      "command_already_disabled": "&cEste comando já está desativado.",
+      "command_successfully_disabled": "&eEste comando foi desativado com sucesso.",
+      "command_successfully_enabled": "&eEste comando foi ativado com sucesso.",
+      "command_not_disabled": "&cEste comando não está desativado",
+      "command_disabled": "&cEste comando está desativado.",
+      "not_have_lobby_live": "&cNão há saguão disponível para se teletransportar.",
+      "groups": {
+        "help_message": "\n&a/group adicionar <usuário> <grupo> <servidor> <tempo>.\n&a/grupo remover <usuário> <grupo> <servidor> <tempo>.\n&r ",
+        "invalid_server": "&cO servidor informado não existe.",
+        "user_added_to_group": "&eO usuário %s recebeu o grupo %s por %s dias.",
+        "user_removed_from_group": "&eO usuário %s foi removido do grupo %s.",
+        "hasn't_that_group": "&cEste usuário não possui esse grupo.",
+        "unknown_group": "&cEste grupo não existe",
+        "insufficient_group": "&cVocê não pode executar uma função em grupo superior ao seu."
+      },
+      "server": {
+        "restarting_server": "&cEste servidor está reiniciando.",
+        "unknown_server": "&cEste servidor não existe.",
+        "offline_server": "&cEste servidor está offline",
+        "inaccessible_server": "&cEste servidor não está acessível no momento.",
+        "connecting_to": "&eConectado-se ao servidor %s.",
+        "already_connected": "&cVocê já está conectado a este servidor.",
+        "user_already_connected": "&c%s já está conectado a este servidor.",
+        "sending_player_to_server": "&aEnviando %s para o servidor %s."
+      }
+    },
+    "online_players": {
+      "to_console": "\n&c * &fAtualmente estamos com cerca de &c%d&f jogadores em toda rede.\n&r ",
+      "to_player": "\n&c * &fAtualmente estamos com cerca de &c%d&f jogadores em toda rede.\n&c * &fE temos um total de &c%d&f jogadores neste servidor.\n&r "
+    }
+  },
+  "tell": {
+    "formats": {
+      "from": "&3 « %s&b: %s",
+      "to": "&3 » %s&b: %s"
+    },
+    "messages": {
+      "no_direct_message_open": "&cVocê não está em um canal privado com alguém.",
+      "cant_send_to_yourself": "&cVocê não pode abrir um canal privado consigo mesmo."
+    }
+  },
+  "errors": {
+    "invalid_server": "&c&lREDE COMMUNITY\n\n&cVocê foi desconectado do servidor!\n&cNotamos que você estava tentando conectar a um servidor inválido e por segurança, desconectamos você.\n\n&cCaso ache que isto é um erro, entre em contato com nossa equipe &nhttps://rcmt.me/error",
+    "console_player": "&c&lREDE COMMUNITY\n\n&cVocê foi desconectado do servidor!\n&cNotamos que você estava tentando conectar com a conta do console e por segurança, desconectamos você."
+  },
+  "staff_chat": {
+    "format": "&d[S] &7(%s) &f%s&d: %s"
+  },
+  "kick": {
+    "format": "&c&lREDE COMMUNITY\n\n&cVocê foi chutado do servidor!\n\n&cChutado por: %s\nMotivo: %s\n",
+    "kicked": "&eVocê chutou %s do servidor com o motivo: %s."
+  },
+  "find": "&aO usuário %s está conectado ao servidor %s.",
+  "btp": {
+    "teletransporting": "&eTeletransportando você até %s.",
+    "can't_teleport_to_youself": "&cVocê não pode se teletransportar para si mesmo."
+  }
+}
