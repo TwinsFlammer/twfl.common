@@ -2,11 +2,11 @@ package com.redecommunity.common.shared.server.data;
 
 import com.redecommunity.common.shared.server.enums.ServerType;
 import com.redecommunity.common.shared.server.util.ServerStatus;
+import com.redecommunity.common.shared.util.Helper;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.awt.*;
 import java.net.InetSocketAddress;
 import java.util.Arrays;
 import java.util.Objects;
@@ -38,17 +38,17 @@ public class Server {
      * 3 = Maintenance
      * 4 = Restarting
      */
-    public Color getStatusColor() {
+    public String getStatusColor() {
         if (this.status != 0) {
             switch (this.status) {
-                case -1: return Color.getColor("AAAAAA");
-                case 1: return Color.getColor("55FF55");
-                case 2: return Color.getColor("FFFF55");
+                case -1: return Helper.colorize("&7") ;
+                case 1: return Helper.colorize("&a");
+                case 2: return Helper.colorize("&e");
                 case 3:
-                case 4: return Color.getColor("FF5555");
+                case 4: return Helper.colorize("&c");
             }
         }
-        return this.online ? Color.getColor("FFFF55") : Color.getColor("FF5555");
+        return this.online ? Helper.colorize("&a") : Helper.colorize("&c") ;
     }
 
     public Boolean isSimilar(Server server) {
