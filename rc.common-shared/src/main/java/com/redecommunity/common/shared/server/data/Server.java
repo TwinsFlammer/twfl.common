@@ -107,4 +107,16 @@ public class Server {
     public Boolean isOnline() {
         return this.online;
     }
+
+    public Boolean isAccessible() {
+        return this.status == 0 || this.status == 1 || this.status == 2;
+    }
+
+    public Boolean inMaintenance() {
+        return this.status == 3;
+    }
+
+    public Boolean isRestarting() {
+        return this.status == 4;
+    }
 }
