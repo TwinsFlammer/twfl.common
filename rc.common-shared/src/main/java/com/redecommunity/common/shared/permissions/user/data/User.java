@@ -41,7 +41,7 @@ public class User {
     protected Collection<UserGroup> groups;
 
     public String getPrefix() {
-        return Helper.colorize("&" +  this.getHighestGroup().getColor()) + this.getHighestGroup().getPrefix();
+        return "§" + this.getHighestGroup().getColor() + this.getHighestGroup().getPrefix();
     }
 
     public Group getHighestGroup() {
