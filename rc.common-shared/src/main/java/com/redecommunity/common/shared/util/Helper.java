@@ -58,4 +58,14 @@ public abstract class Helper {
     public static String[] toArray(List<String> list) {
         return list.toArray(new String[list.size()]);
     }
+
+    public static String toMessage(String[] args) {
+        StringBuilder message = new StringBuilder();
+
+        for (int i = 0; i < args.length; i++)
+            message.append(args[i])
+                    .append(" ");
+
+        return message.toString();
+    }
 }
