@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by @SrGutyerrez
@@ -81,5 +82,29 @@ public abstract class Helper {
                     .append(" ");
 
         return message.toString();
+    }
+
+    public static String generateString(Integer length) {
+        return Helper.generateString(false, length);
+    }
+
+    public static String generateString(Boolean uppercase, Integer length) {
+        String characters = (uppercase ? "ABCDEFGHIJKLMNOPQRSTUVXYWZ" : "") + "abcdefghijklmnopqrstuvxywz0123456789";
+
+        char[] array = characters.toCharArray();
+
+        StringBuilder stringBuilder = new StringBuilder();
+
+        Random random = new Random();
+
+        for (int i = 0; i < length; i++) {
+            Integer index = random.nextInt(array.length);
+
+            char character = array[index];
+
+            stringBuilder.append(character);
+        }
+
+        return stringBuilder.toString();
     }
 }
