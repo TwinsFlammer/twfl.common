@@ -4,8 +4,11 @@ import com.google.common.collect.Lists;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+import javax.xml.bind.DatatypeConverter;
 import java.io.IOException;
 import java.net.URL;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
@@ -106,5 +109,20 @@ public abstract class Helper {
         }
 
         return stringBuilder.toString();
+    }
+
+    public static String hash(String sampleText) {
+        try {
+            MessageDigest messageDigest = MessageDigest.getInstance("MD5");
+
+            messageDigest.update(sampleText.getBytes());
+
+            byte[] bytes = messageDigest.digest();
+
+            return DatatypeConverter.printHexBinary(bytes);
+        } catch (NoSuchAlgorithmException exception) {
+            exception.printStackTrace();
+        }
+        return null;
     }
 }
