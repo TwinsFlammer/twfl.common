@@ -4,6 +4,8 @@ import com.google.common.collect.Lists;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+import java.io.IOException;
+import java.net.URL;
 import java.util.Collections;
 import java.util.List;
 
@@ -11,7 +13,7 @@ import java.util.List;
  * Created by @SrGutyerrez
  */
 public abstract class Helper {
-    public static boolean isInteger(String string) {
+    public static Boolean isInteger(String string) {
         try {
             Integer.parseInt(string);
             return true;
@@ -20,16 +22,28 @@ public abstract class Helper {
         }
     }
 
-    public static boolean isString(Object object) {
+    public static Boolean isString(Object object) {
         return object instanceof String;
     }
 
-    public static boolean isJSONArray(Object object) {
+    public static Boolean isJSONArray(Object object) {
         return object instanceof JSONArray;
     }
 
-    public static boolean isJSONObject(Object object) {
+    public static Boolean isJSONObject(Object object) {
         return object instanceof JSONObject;
+    }
+
+    public static Boolean isURLValid(String urlString) {
+        try {
+            URL url = new URL(urlString);
+
+            url.openConnection();
+
+            return true;
+        } catch (IOException exception) {
+            return false;
+        }
     }
 
     public static String colorize(String message) {
