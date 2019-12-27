@@ -3,11 +3,14 @@ package com.redecommunity.common.shared.permissions.user.manager;
 import com.google.common.collect.Lists;
 import com.redecommunity.common.shared.permissions.user.dao.UserDao;
 import com.redecommunity.common.shared.permissions.user.data.User;
+import com.redecommunity.common.shared.preference.Preference;
+import com.redecommunity.common.shared.preference.dao.PreferenceDao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -62,6 +65,12 @@ public class UserManager {
 
         User user = userDao.findOne(key, value);
 
+        PreferenceDao preferenceDao = new PreferenceDao();
+
+        Set<Preference> preferences = preferenceDao.findAll("user_id", user.getId());
+
+        user.getPreferences().addAll(preferences);
+
         UserManager.users.add(user);
 
         return user;
@@ -81,6 +90,7 @@ public class UserManager {
                 null,
                 null,
                 1,
+                null,
                 null
         );
     }
@@ -99,6 +109,7 @@ public class UserManager {
                 resultSet.getString("last_address"),
                 resultSet.getInt("last_lobby_id"),
                 resultSet.getInt("language_id"),
+                Lists.newArrayList(),
                 Lists.newArrayList()
         );
     }
