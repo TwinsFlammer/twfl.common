@@ -42,6 +42,8 @@ public class User {
     protected Integer lastLobbyId, languageId;
     protected Collection<UserGroup> groups;
     private final List<Preference> preferences;
+    private final List<User> friends;
+    private final List<User> ignored;
 
     public String getPrefix() {
         return this.getHighestGroup().getColor() + this.getHighestGroup().getPrefix();
