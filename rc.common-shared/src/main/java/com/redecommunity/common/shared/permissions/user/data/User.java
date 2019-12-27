@@ -237,7 +237,7 @@ public class User {
         JSONObject jsonObject = new JSONObject();
 
         jsonObject.put("user_id", this.id);
-        jsonObject.put("preference", preference.name());
+        jsonObject.put("preference_name", preference.name());
         jsonObject.put("action", value);
 
         this.getRedis().sendMessage(
