@@ -231,6 +231,10 @@ public class User {
         return !this.isDisabled(preference);
     }
 
+    public Boolean togglePreference(Preference preference, Boolean value) {
+        return value ? this.preferences.add(preference) : this.preferences.remove(preference);
+    }
+
     public String toString() {
         JSONObject object = new JSONObject();
 
