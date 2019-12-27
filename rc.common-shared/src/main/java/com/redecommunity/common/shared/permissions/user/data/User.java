@@ -28,22 +28,36 @@ import java.util.UUID;
  * Created by @SrGutyerrez
  */
 @AllArgsConstructor
-@Getter
 @Setter
 public class User {
-    protected final Integer id;
-    protected final String name, displayName;
-    protected final UUID uniqueId;
-    protected String email, password;
-    protected Long discordId;
-    protected final Long createdAt;
-    protected Long firstLogin, lastLogin;
-    protected String lastAddress;
-    protected Integer lastLobbyId, languageId;
-    protected Collection<UserGroup> groups;
+    @Getter
+    private final Integer id;
+    @Getter
+    private final String name, displayName;
+    @Getter
+    private final UUID uniqueId;
+    @Getter
+    private String email, password;
+    @Getter
+    private Long discordId;
+    @Getter
+    private final Long createdAt;
+    @Getter
+    private Long firstLogin, lastLogin;
+    @Getter
+    private String lastAddress;
+    @Getter
+    private Integer lastLobbyId, languageId;
+    @Getter
+    private Collection<UserGroup> groups;
+    @Getter
     private final List<Preference> preferences;
+    @Getter
     private final List<User> friends;
+    @Getter
     private final List<User> ignored;
+    
+    private Boolean logged;
 
     public String getPrefix() {
         return this.getHighestGroup().getColor() + this.getHighestGroup().getPrefix();
@@ -235,6 +249,10 @@ public class User {
 
     public Boolean isEnabled(Preference preference) {
         return !this.isDisabled(preference);
+    }
+
+    public Boolean isLogged() {
+        return this.logged;
     }
 
     public void togglePreference(Preference preference, Boolean value) {
