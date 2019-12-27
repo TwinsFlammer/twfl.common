@@ -12,6 +12,8 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by @SrGutyerrez
@@ -48,6 +50,14 @@ public abstract class Helper {
         } catch (IOException exception) {
             return false;
         }
+    }
+
+    public static Boolean isValidMail(String mailAddress) {
+        Pattern pattern = Pattern.compile("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$");
+
+        Matcher matcher = pattern.matcher(mailAddress);
+
+        return matcher.matches();
     }
 
     public static String colorize(String message) {
