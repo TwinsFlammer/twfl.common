@@ -41,6 +41,7 @@ public class UserDao extends Table {
                                 "`display_name` VARCHAR(16) NOT NULL," +
                                 "`unique_id` VARCHAR(255) NOT NULL," +
                                 "`email` VARCHAR(255)," +
+                                "`password` VARCHAR(255)," +
                                 "`discord_id` LONG," +
                                 "`created_at` LONG NOT NULL," +
                                 "`first_login` LONG," +
