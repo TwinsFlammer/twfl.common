@@ -1,6 +1,8 @@
 package com.redecommunity.common.shared.permissions.user.manager;
 
 import com.google.common.collect.Lists;
+import com.redecommunity.common.shared.friend.database.FriendDatabase;
+import com.redecommunity.common.shared.ignored.database.IgnoredDatabase;
 import com.redecommunity.common.shared.permissions.user.dao.UserDao;
 import com.redecommunity.common.shared.permissions.user.data.User;
 import com.redecommunity.common.shared.preference.Preference;
@@ -71,6 +73,15 @@ public class UserManager {
 
         user.getPreferences().addAll(preferences);
 
+        FriendDatabase friendDatabase = new FriendDatabase();
+        IgnoredDatabase ignoredDatabase = new IgnoredDatabase();
+
+        Set<User> friends = friendDatabase.findAll("user_id", user.getId());
+        Set<User> ignored = ignoredDatabase.findAll("user_id", user.getId());
+
+        user.getFriends().addAll(friends);
+        user.getIgnored().addAll(ignored);
+
         UserManager.users.add(user);
 
         return user;
@@ -91,6 +102,8 @@ public class UserManager {
                 null,
                 1,
                 null,
+                null,
+                null,
                 null
         );
     }
@@ -109,6 +122,8 @@ public class UserManager {
                 resultSet.getString("last_address"),
                 resultSet.getInt("last_lobby_id"),
                 resultSet.getInt("language_id"),
+                Lists.newArrayList(),
+                Lists.newArrayList(),
                 Lists.newArrayList(),
                 Lists.newArrayList()
         );
