@@ -7,6 +7,7 @@ import com.redecommunity.common.shared.language.enums.Language;
 import com.redecommunity.common.shared.language.factory.LanguageFactory;
 import com.redecommunity.common.shared.permissions.group.manager.GroupManager;
 import com.redecommunity.common.shared.permissions.user.group.data.UserGroup;
+import com.redecommunity.common.shared.preference.Preference;
 import com.redecommunity.common.shared.server.data.Server;
 import com.redecommunity.common.shared.server.manager.ServerManager;
 import com.redecommunity.common.shared.util.Constants;
@@ -20,6 +21,7 @@ import redis.clients.jedis.Jedis;
 import redis.clients.jedis.exceptions.JedisDataException;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -39,6 +41,7 @@ public class User {
     protected String lastAddress;
     protected Integer lastLobbyId, languageId;
     protected Collection<UserGroup> groups;
+    private final List<Preference> preferences;
 
     public String getPrefix() {
         return this.getHighestGroup().getColor() + this.getHighestGroup().getPrefix();
@@ -218,6 +221,14 @@ public class User {
 
     public Boolean isSimilar(User user) {
         return this.id.equals(user.getId());
+    }
+
+    public Boolean isDisabled(Preference preference) {
+        return this.preferences.contains(preference);
+    }
+
+    public Boolean isEnabled(Preference preference) {
+        return !this.isDisabled(preference);
     }
 
     public String toString() {
