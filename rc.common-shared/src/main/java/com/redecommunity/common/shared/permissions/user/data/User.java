@@ -34,7 +34,7 @@ public class User {
     protected final Integer id;
     protected final String name, displayName;
     protected final UUID uniqueId;
-    protected String email;
+    protected String email, password;
     protected Long discordId;
     protected final Long createdAt;
     protected Long firstLogin, lastLogin;
@@ -47,6 +47,10 @@ public class User {
 
     public String getPrefix() {
         return this.getHighestGroup().getColor() + this.getHighestGroup().getPrefix();
+    }
+
+    public String setPassword(String password) {
+        return this.password = Helper.hash(password);
     }
 
     public Group getHighestGroup() {
