@@ -231,8 +231,19 @@ public class User {
         return !this.isDisabled(preference);
     }
 
-    public Boolean togglePreference(Preference preference, Boolean value) {
-        return value ? this.preferences.add(preference) : this.preferences.remove(preference);
+    public void togglePreference(Preference preference, Boolean value) {
+        if (value) this.preferences.add(preference); else this.preferences.remove(preference);
+
+        JSONObject jsonObject = new JSONObject();
+
+        jsonObject.put("user_id", this.id);
+        jsonObject.put("preference", preference.name());
+        jsonObject.put("action", value);
+
+        this.getRedis().sendMessage(
+                Constants.PREFERENCE_CHANNEL,
+                jsonObject.toString()
+        );
     }
 
     public String toString() {
