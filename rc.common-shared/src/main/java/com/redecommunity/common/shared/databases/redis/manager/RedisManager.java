@@ -1,6 +1,7 @@
 package com.redecommunity.common.shared.databases.redis.manager;
 
 import com.google.common.collect.Maps;
+import com.redecommunity.common.shared.Common;
 import com.redecommunity.common.shared.databases.configuration.DatabaseConfiguration;
 import com.redecommunity.common.shared.databases.redis.data.Redis;
 import org.json.simple.JSONObject;
@@ -43,5 +44,9 @@ public class RedisManager {
 
     public Redis getDatabase(String name) {
         return this.databases.get(name);
+    }
+
+    public static Redis getDefaultRedis() {
+        return Common.getInstance().getDatabaseManager().getRedisManager().getDatabase("general");
     }
 }
