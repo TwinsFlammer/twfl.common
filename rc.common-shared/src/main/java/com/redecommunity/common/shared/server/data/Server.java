@@ -1,5 +1,7 @@
 package com.redecommunity.common.shared.server.data;
 
+import com.google.common.collect.Maps;
+import com.redecommunity.common.shared.server.dao.ServerDao;
 import com.redecommunity.common.shared.server.enums.ServerType;
 import com.redecommunity.common.shared.server.util.ServerStatus;
 import com.redecommunity.common.shared.util.Helper;
@@ -9,6 +11,7 @@ import lombok.Setter;
 
 import java.net.InetSocketAddress;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Objects;
 
 /**
@@ -17,7 +20,8 @@ import java.util.Objects;
 @AllArgsConstructor
 @Getter
 public class Server {
-    private Integer id, slots, port, status;
+    private final Integer id;
+    private Integer slots, port, status;
     private String name, displayName, description, address;
 
     @Setter
@@ -37,6 +41,8 @@ public class Server {
      * 2 = Beta VIP
      * 3 = Maintenance
      * 4 = Restarting
+     *
+     * @return String
      */
     public String getStatusColor() {
         if (this.status != 0) {
@@ -69,6 +75,22 @@ public class Server {
         this.address = server.getAddress();
         this.description = server.getDescription();
         this.displayName = server.getDisplayName();
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+
+        ServerDao serverDao = new ServerDao();
+
+        HashMap<String, Integer> keys = Maps.newHashMap();
+
+        keys.put("status", this.status);
+
+        serverDao.update(
+                keys,
+                "id",
+                this.id
+        );
     }
 
     private ServerType getType() {
