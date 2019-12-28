@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.Set;
 
 /**
@@ -44,6 +45,27 @@ public class ServerDao extends Table {
                         this.getTableName()
                 )
         );
+    }
+
+    public <K, V, U, I extends Integer> void update(HashMap<K, V> keys, U key, I value) {
+        String where = this.generateWhere(keys);
+
+        String query = String.format(
+                "UPDATE %s SET %s WHERE `%s`=%d",
+                this.getTableName(),
+                where,
+                key,
+                value
+        );
+
+        try (
+                Connection connection = this.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(query);
+        ) {
+            preparedStatement.executeUpdate();
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
     }
 
     @Override
