@@ -3,7 +3,6 @@ package com.redecommunity.common.shared.ignored.database;
 import com.google.common.collect.Sets;
 import com.redecommunity.common.shared.databases.mysql.dao.Table;
 import com.redecommunity.common.shared.permissions.user.data.User;
-import com.redecommunity.common.shared.permissions.user.manager.UserManager;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
