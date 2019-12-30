@@ -40,7 +40,7 @@ public class IgnoredDatabase extends Table {
         );
     }
 
-    public <T extends User, F extends User> void insert(T object, F friend) {
+    public <T extends User, F extends Integer> void insert(T object, F friendId) {
         String query = String.format(
                 "INSERT INTO %s " +
                         "(" +
@@ -54,7 +54,7 @@ public class IgnoredDatabase extends Table {
                         ");",
                 this.getTableName(),
                 object.getId(),
-                friend.getId()
+                friendId
         );
 
         try (
