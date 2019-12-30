@@ -40,7 +40,7 @@ public class FriendDatabase extends Table {
         );
     }
 
-    public <T extends User, F extends User> void insert(T object, F friend) {
+    public <T extends User, F extends Integer> void insert(T object, F friendId) {
         String query = String.format(
                 "INSERT INTO %s " +
                         "(" +
@@ -54,7 +54,7 @@ public class FriendDatabase extends Table {
                         ");",
                 this.getTableName(),
                 object.getId(),
-                friend.getId()
+                friendId
         );
 
         try (
@@ -75,6 +75,25 @@ public class FriendDatabase extends Table {
                 value,
                 key1,
                 value1
+        );
+
+        try (
+                Connection connection = this.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(query);
+        ) {
+            preparedStatement.execute();
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+    }
+
+    @Override
+    public <K, V> void delete(K key, V value) {
+        String query = String.format(
+                "DELETE FROM %s WHERE `%s`=%d;",
+                this.getTableName(),
+                key,
+                value
         );
 
         try (
