@@ -3,6 +3,7 @@ package com.redecommunity.common.shared.permissions.user.data;
 import com.redecommunity.common.shared.Common;
 import com.redecommunity.common.shared.databases.redis.data.Redis;
 import com.redecommunity.common.shared.friend.database.FriendDatabase;
+import com.redecommunity.common.shared.ignored.database.IgnoredDatabase;
 import com.redecommunity.common.shared.permissions.group.data.Group;
 import com.redecommunity.common.shared.language.enums.Language;
 import com.redecommunity.common.shared.language.factory.LanguageFactory;
@@ -212,6 +213,21 @@ public class User {
 
     public void removeFriend(User user) {
         this.removeFriend(user.getId());
+    }
+
+    public void ignore(Integer userId) {
+        this.ignored.add(userId);
+
+        IgnoredDatabase ignoredDatabase = new IgnoredDatabase();
+
+        ignoredDatabase.insert(
+                this,
+                userId
+        );
+    }
+
+    public void ignore(User user) {
+        this.ignore(user.getId());
     }
 
     public <T> T getJSONConnection() {
