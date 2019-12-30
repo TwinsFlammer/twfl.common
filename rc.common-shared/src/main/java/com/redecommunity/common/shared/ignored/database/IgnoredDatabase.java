@@ -103,11 +103,9 @@ public class IgnoredDatabase extends Table {
                 ResultSet resultSet = preparedStatement.executeQuery();
         ) {
             while (resultSet.next()) {
-                Integer friendId = resultSet.getInt("friend_id");
+                Integer ignoredId = resultSet.getInt("ignored_id");
 
-                User user = UserManager.getUser(friendId);
-
-                friends.add((T) user);
+                friends.add((T) ignoredId);
             }
         } catch (SQLException exception) {
             exception.printStackTrace();
