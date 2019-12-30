@@ -73,6 +73,8 @@ public class UserManager {
 
             Set<Preference> preferences = preferenceDao.findAll("user_id", user.getId());
 
+            System.out.println(user.getPreferences() == null);
+
             user.getPreferences().addAll(preferences);
 
             FriendDatabase friendDatabase = new FriendDatabase();
