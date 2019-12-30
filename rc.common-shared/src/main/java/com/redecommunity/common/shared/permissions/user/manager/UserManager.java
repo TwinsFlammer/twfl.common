@@ -67,27 +67,22 @@ public class UserManager {
 
         User user = userDao.findOne(key, value);
 
-        if (user != null) {
+        PreferenceDao preferenceDao = new PreferenceDao();
 
-            PreferenceDao preferenceDao = new PreferenceDao();
+        Set<Preference> preferences = preferenceDao.findAll("user_id", user.getId());
 
-            Set<Preference> preferences = preferenceDao.findAll("user_id", user.getId());
+        if (preferences != null) user.getPreferences().addAll(preferences);
 
-            System.out.println(user.getPreferences() == null);
+        FriendDatabase friendDatabase = new FriendDatabase();
+        IgnoredDatabase ignoredDatabase = new IgnoredDatabase();
 
-            user.getPreferences().addAll(preferences);
+        Set<Integer> friends = friendDatabase.findAll("user_id", user.getId());
+        Set<Integer> ignored = ignoredDatabase.findAll("user_id", user.getId());
 
-            FriendDatabase friendDatabase = new FriendDatabase();
-            IgnoredDatabase ignoredDatabase = new IgnoredDatabase();
+        user.getFriends().addAll(friends);
+        user.getIgnored().addAll(ignored);
 
-            Set<Integer> friends = friendDatabase.findAll("user_id", user.getId());
-            Set<Integer> ignored = ignoredDatabase.findAll("user_id", user.getId());
-
-            user.getFriends().addAll(friends);
-            user.getIgnored().addAll(ignored);
-
-            UserManager.users.add(user);
-        }
+        UserManager.users.add(user);
 
         return user;
     }
