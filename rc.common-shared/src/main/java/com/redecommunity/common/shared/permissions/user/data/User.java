@@ -192,6 +192,17 @@ public class User {
                 this,
                 userId
         );
+
+        JSONObject jsonObject = new JSONObject();
+
+        jsonObject.put("user_id", this.id);
+        jsonObject.put("ignored_id", userId);
+        jsonObject.put("action", true);
+
+        this.getRedis().sendMessage(
+                Constants.FRIEND_CHANNEL,
+                jsonObject.toString()
+        );
     }
 
     public void addFriend(User user) {
@@ -209,6 +220,17 @@ public class User {
                 "friend_id",
                 userId
         );
+
+        JSONObject jsonObject = new JSONObject();
+
+        jsonObject.put("user_id", this.id);
+        jsonObject.put("ignored_id", userId);
+        jsonObject.put("action", false);
+
+        this.getRedis().sendMessage(
+                Constants.FRIEND_CHANNEL,
+                jsonObject.toString()
+        );
     }
 
     public void removeFriend(User user) {
@@ -224,10 +246,49 @@ public class User {
                 this,
                 userId
         );
+
+        JSONObject jsonObject = new JSONObject();
+
+        jsonObject.put("user_id", this.id);
+        jsonObject.put("ignored_id", userId);
+        jsonObject.put("action", true);
+
+        this.getRedis().sendMessage(
+                Constants.IGNORE_CHANNEL,
+                jsonObject.toString()
+        );
     }
 
     public void ignore(User user) {
         this.ignore(user.getId());
+    }
+
+    public void unIgnore(Integer userId) {
+        this.ignored.remove(userId);
+
+        IgnoredDatabase ignoredDatabase = new IgnoredDatabase();
+
+        ignoredDatabase.delete(
+                "user_id",
+                this.id,
+                "ignored_id",
+                userId
+        );
+
+        JSONObject jsonObject = new JSONObject();
+
+        jsonObject.put("user_id", this.id);
+        jsonObject.put("ignored_id", userId);
+        jsonObject.put("action", false);
+
+        this.getRedis().sendMessage(
+                Constants.IGNORE_CHANNEL,
+                jsonObject.toString()
+        );
+    }
+
+    public void unIgnore(User user) {
+        this.unIgnore(user.getId());
     }
 
     public <T> T getJSONConnection() {
