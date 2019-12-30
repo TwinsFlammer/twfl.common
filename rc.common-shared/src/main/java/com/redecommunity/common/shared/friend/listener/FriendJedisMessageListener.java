@@ -21,9 +21,11 @@ public class FriendJedisMessageListener implements JedisMessageListener {
 
         Integer userId = ((Long) jsonObject.get("user_id")).intValue();
         Integer friendId = ((Long) jsonObject.get("friend_id")).intValue();
+        Boolean action = (Boolean) jsonObject.get("action");
 
         User user = UserManager.getUser(userId);
 
-        user.addFriend(friendId);
+        if (action) user.addFriend(friendId);
+        else user.removeFriend(friendId);
     }
 }
