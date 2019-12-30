@@ -2,11 +2,13 @@ package com.redecommunity.common.shared.permissions.user.data;
 
 import com.redecommunity.common.shared.Common;
 import com.redecommunity.common.shared.databases.redis.data.Redis;
+import com.redecommunity.common.shared.friend.database.FriendDatabase;
 import com.redecommunity.common.shared.permissions.group.data.Group;
 import com.redecommunity.common.shared.language.enums.Language;
 import com.redecommunity.common.shared.language.factory.LanguageFactory;
 import com.redecommunity.common.shared.permissions.group.manager.GroupManager;
 import com.redecommunity.common.shared.permissions.user.group.data.UserGroup;
+import com.redecommunity.common.shared.permissions.user.manager.UserManager;
 import com.redecommunity.common.shared.preference.Preference;
 import com.redecommunity.common.shared.server.data.Server;
 import com.redecommunity.common.shared.server.manager.ServerManager;
@@ -178,6 +180,38 @@ public class User {
         } catch (JedisDataException exception) {
             exception.printStackTrace();
         }
+    }
+
+    public void addFriend(Integer userId) {
+        this.friends.add(userId);
+
+        FriendDatabase friendDatabase = new FriendDatabase();
+
+        friendDatabase.insert(
+                this,
+                userId
+        );
+    }
+
+    public void addFriend(User user) {
+        this.addFriend(user.getId());
+    }
+
+    public void removeFriend(Integer userId) {
+        this.friends.remove(userId);
+
+        FriendDatabase friendDatabase = new FriendDatabase();
+
+        friendDatabase.delete(
+                "user_id",
+                this.id,
+                "friend_id",
+                userId
+        );
+    }
+
+    public void removeFriend(User user) {
+        this.removeFriend(user.getId());
     }
 
     public <T> T getJSONConnection() {
