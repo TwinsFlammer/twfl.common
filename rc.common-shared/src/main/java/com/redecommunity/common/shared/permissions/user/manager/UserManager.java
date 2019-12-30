@@ -76,8 +76,8 @@ public class UserManager {
         FriendDatabase friendDatabase = new FriendDatabase();
         IgnoredDatabase ignoredDatabase = new IgnoredDatabase();
 
-        Set<User> friends = friendDatabase.findAll("user_id", user.getId());
-        Set<User> ignored = ignoredDatabase.findAll("user_id", user.getId());
+        Set<Integer> friends = friendDatabase.findAll("user_id", user.getId());
+        Set<Integer> ignored = ignoredDatabase.findAll("user_id", user.getId());
 
         user.getFriends().addAll(friends);
         user.getIgnored().addAll(ignored);
