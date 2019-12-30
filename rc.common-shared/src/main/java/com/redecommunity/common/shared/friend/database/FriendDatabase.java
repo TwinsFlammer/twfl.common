@@ -105,9 +105,7 @@ public class FriendDatabase extends Table {
             while (resultSet.next()) {
                 Integer friendId = resultSet.getInt("friend_id");
 
-                User user = UserManager.getUser(friendId);
-
-                friends.add((T) user);
+                friends.add((T) friendId);
             }
         } catch (SQLException exception) {
             exception.printStackTrace();
