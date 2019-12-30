@@ -53,9 +53,9 @@ public class User {
     @Getter
     private final List<Preference> preferences;
     @Getter
-    private final List<User> friends;
+    private final List<Integer> friends;
     @Getter
-    private final List<User> ignored;
+    private final List<Integer> ignored;
     
     private Boolean logged;
 
@@ -253,6 +253,22 @@ public class User {
 
     public Boolean isLogged() {
         return this.logged;
+    }
+
+    public Boolean isIgnoring(Integer userId) {
+        return this.ignored.contains(userId);
+    }
+
+    public Boolean isIgnoring(User user) {
+        return this.isIgnoring(user.getId());
+    }
+
+    public Boolean isFriend(Integer userId) {
+        return this.friends.contains(userId);
+    }
+
+    public Boolean isFriend(User user) {
+        return this.isFriend(user.getId());
     }
 
     public void togglePreference(Preference preference, Boolean value) {
