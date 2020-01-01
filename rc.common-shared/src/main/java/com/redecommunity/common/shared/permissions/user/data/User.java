@@ -382,6 +382,10 @@ public class User {
         return this.isFriend(user.getId());
     }
 
+    public Boolean isToggle(Preference preference) {
+        return !this.preferences.contains(preference);
+    }
+
     public void togglePreference(Preference preference, Boolean value) {
         if (value) this.preferences.add(preference); else this.preferences.remove(preference);
 
