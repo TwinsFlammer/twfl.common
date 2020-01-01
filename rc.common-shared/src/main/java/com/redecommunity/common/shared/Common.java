@@ -10,6 +10,7 @@ import com.redecommunity.common.shared.databases.redis.handler.manager.JedisMess
 import com.redecommunity.common.shared.language.factory.LanguageFactory;
 import com.redecommunity.common.shared.manager.GlobalManager;
 import com.redecommunity.common.shared.scheduler.SchedulerManager;
+import com.redecommunity.common.shared.util.Printer;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 
@@ -21,7 +22,6 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * Created by @SrGutyerrez
@@ -123,10 +123,13 @@ public class Common {
         return null;
     }
 
-    public void log(Level level, String message) {
-        Logger logger = Logger.getGlobal();
+    public void log(String message) {
+        Printer.INFO.coloredPrint(message);
+    }
 
-        logger.log(level, message);
+    @Deprecated
+    public void log(Level level, String message) {
+        this.log(message);
     }
 
     public InputStream getResource(String filename) {
