@@ -9,7 +9,6 @@ import com.redecommunity.common.shared.language.enums.Language;
 import com.redecommunity.common.shared.language.factory.LanguageFactory;
 import com.redecommunity.common.shared.permissions.group.manager.GroupManager;
 import com.redecommunity.common.shared.permissions.user.group.data.UserGroup;
-import com.redecommunity.common.shared.permissions.user.manager.UserManager;
 import com.redecommunity.common.shared.preference.Preference;
 import com.redecommunity.common.shared.server.data.Server;
 import com.redecommunity.common.shared.server.manager.ServerManager;
@@ -43,6 +42,11 @@ public class User {
     private String email, password;
     @Getter
     private Long discordId;
+
+    private Boolean twoFactorAuthenticationEnabled;
+
+    @Getter
+    private String twoFactorAuthenticationCode;
     @Getter
     private final Long createdAt;
     @Getter
@@ -382,8 +386,13 @@ public class User {
         return this.isFriend(user.getId());
     }
 
+    @Deprecated
     public Boolean isToggle(Preference preference) {
-        return !this.preferences.contains(preference);
+        return this.isEnabled(preference);
+    }
+
+    public Boolean isTwoFactorAuthenticationEnabled() {
+        return this.twoFactorAuthenticationEnabled;
     }
 
     public void togglePreference(Preference preference, Boolean value) {
