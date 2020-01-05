@@ -13,6 +13,7 @@ import twitter4j.conf.ConfigurationBuilder;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by @SrGutyerrez
@@ -40,6 +41,22 @@ public class TwitterManager {
         );
 
         twitter = twitterFactory.getInstance();
+    }
+
+    public static Twitter getDefaultTwitter() {
+        TwitterFactory twitterFactory = new TwitterFactory();
+
+        return twitterFactory.getInstance();
+    }
+
+    public static RequestToken getRequestToken(Integer userId) {
+        return TwitterManager.REQUEST_TOKEN_HASH_MAP
+                .entrySet()
+                .stream()
+                .filter(entrySet -> entrySet.getKey().equals(userId))
+                .map(Map.Entry::getValue)
+                .findFirst()
+                .orElse(null);
     }
 
     public static URL getAuthorizationURL(User user) throws TwitterException, MalformedURLException {
