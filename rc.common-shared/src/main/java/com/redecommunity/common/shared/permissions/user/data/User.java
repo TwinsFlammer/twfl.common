@@ -12,6 +12,7 @@ import com.redecommunity.common.shared.permissions.user.group.data.UserGroup;
 import com.redecommunity.common.shared.preference.Preference;
 import com.redecommunity.common.shared.server.data.Server;
 import com.redecommunity.common.shared.server.manager.ServerManager;
+import com.redecommunity.common.shared.twitter.manager.TwitterManager;
 import com.redecommunity.common.shared.util.Constants;
 import com.redecommunity.common.shared.util.Helper;
 import lombok.AllArgsConstructor;
@@ -21,6 +22,9 @@ import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.exceptions.JedisDataException;
+import twitter4j.Twitter;
+import twitter4j.TwitterFactory;
+import twitter4j.auth.AccessToken;
 
 import java.util.Collection;
 import java.util.List;
@@ -55,6 +59,8 @@ public class User {
     private String lastAddress;
     @Getter
     private Integer lastLobbyId, languageId;
+    @Getter
+    private String twitterAccessToken, twitterTokenSecret;
     @Getter
     private Collection<UserGroup> groups;
     @Getter
@@ -340,6 +346,26 @@ public class User {
         return Common.getInstance().getDatabaseManager().getRedisManager().getDatabase("general");
     }
 
+    public Twitter getTwitter() {
+        Twitter twitter = new TwitterFactory().getInstance();
+
+        twitter.setOAuthConsumer(
+                TwitterManager.oAuthConsumerKey,
+                TwitterManager.oAuthConsumerSecret
+        );
+
+        AccessToken accessToken = new AccessToken(
+                this.twitterAccessToken,
+                this.twitterTokenSecret
+        );
+
+        twitter.setOAuthAccessToken(
+                accessToken
+        );
+
+        return twitter;
+    }
+
     public Boolean isOnline() {
         try (Jedis jedis = this.getRedis().getJedisPool().getResource()) {
             return jedis.hexists("users", "id" + this.id);
@@ -393,6 +419,10 @@ public class User {
 
     public Boolean isTwoFactorAuthenticationEnabled() {
         return this.twoFactorAuthenticationEnabled;
+    }
+
+    public Boolean isTwitterAssociated() {
+        return this.twitterAccessToken != null && this.twitterTokenSecret != null;
     }
 
     public void togglePreference(Preference preference, Boolean value) {
