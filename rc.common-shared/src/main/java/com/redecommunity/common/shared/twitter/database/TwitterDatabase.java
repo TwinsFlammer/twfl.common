@@ -2,6 +2,7 @@ package com.redecommunity.common.shared.twitter.database;
 
 import com.redecommunity.common.shared.databases.mysql.dao.Table;
 import com.redecommunity.common.shared.permissions.user.data.User;
+import org.json.simple.JSONObject;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -31,7 +32,8 @@ public class TwitterDatabase extends Table {
                                 "`id` INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT," +
                                 "`user_id` INTEGER NOT NULL," +
                                 "`oauth_token` VARCHAR(255) NOT NULL," +
-                                "`generated_pin` VARCHAR(8)," +
+                                "`oauth_verifier` VARCHAR(255)," +
+                                "`generated_pin` VARCHAR(8)" +
                                 ");",
                         this.getTableName()
                 )
@@ -52,7 +54,15 @@ public class TwitterDatabase extends Table {
                 PreparedStatement preparedStatement = connection.prepareStatement(query);
                 ResultSet resultSet = preparedStatement.executeQuery();
         ) {
-            if (resultSet.next()) return (T) resultSet.getString("generated_pin");
+            if (resultSet.next()) {
+                JSONObject jsonObject = new JSONObject();
+
+                jsonObject.put("oauth_token", resultSet.getString("oauth_token"));
+                jsonObject.put("oauth_verifier", resultSet.getString("oauth_verifier"));
+                jsonObject.put("generated_pin", resultSet.getString("generated_pin"));
+
+                return (T) jsonObject;
+            }
         } catch (SQLException exception) {
             exception.printStackTrace();
         }
