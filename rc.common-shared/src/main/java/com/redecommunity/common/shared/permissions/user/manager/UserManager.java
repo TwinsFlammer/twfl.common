@@ -110,6 +110,8 @@ public class UserManager {
                 null,
                 null,
                 null,
+                null,
+                null,
                 false
         );
     }
@@ -131,6 +133,8 @@ public class UserManager {
                 resultSet.getString("last_address"),
                 resultSet.getInt("last_lobby_id"),
                 resultSet.getInt("language_id"),
+                resultSet.getString("twitter_access_token"),
+                resultSet.getString("twitter_token_secret"),
                 Lists.newArrayList(),
                 Lists.newArrayList(),
                 Lists.newArrayList(),
