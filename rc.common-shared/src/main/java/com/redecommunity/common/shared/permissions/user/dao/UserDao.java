@@ -45,6 +45,8 @@ public class UserDao extends Table {
                                 "`discord_id` LONG," +
                                 "`two_factor_authentication_enabled` BOOLEAN," +
                                 "`two_factor_authentication_code` VARCHAR(255)," +
+                                "`twitter_access_token` VARCHAR(255)," +
+                                "`twitter_token_secret` VARCHAR(255)," +
                                 "`created_at` LONG NOT NULL," +
                                 "`first_login` LONG," +
                                 "`last_login` LONG," +
