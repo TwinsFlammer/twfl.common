@@ -10,10 +10,7 @@ import com.redecommunity.common.shared.preference.dao.PreferenceDao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
-import java.util.Objects;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -21,6 +18,10 @@ import java.util.stream.Collectors;
  */
 public class UserManager {
     private static final List<User> users = Lists.newArrayList();
+
+    public static void removeUser(Integer userId) {
+        UserManager.users.removeIf(user -> userId.equals(user.getId()));
+    }
 
     public static List<User> getOnlineUsers() {
         return UserManager.users
