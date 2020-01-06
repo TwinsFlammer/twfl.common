@@ -12,7 +12,7 @@
       "command_successfully_enabled": "&eEste comando foi ativado com sucesso.",
       "command_not_disabled": "&cEste comando não está desativado",
       "command_disabled": "&cEste comando está desativado.",
-      "not_have_lobby_live": "&cNão há saguão disponível para se teletransportar.",
+      "not_have_lobby_live": "&c&lREDE COMMUNITY\n\n&cVocê foi chutado do servidor!\n\n&c&cNão há saguão disponível para se teletransportar.\n",
       "groups": {
         "help_message": "\n&a/group adicionar <usuário> <grupo> <servidor> <tempo>.\n&a/grupo remover <usuário> <grupo> <servidor> <tempo>.\n&r ",
         "invalid_server": "&cO servidor informado não existe.",
@@ -27,7 +27,7 @@
         "unknown_server": "&cEste servidor não existe.",
         "offline_server": "&cEste servidor está offline",
         "inaccessible_server": "&cEste servidor não está acessível no momento.",
-        "connecting_to": "&eConectado-se ao servidor %s.",
+        "connecting_to": "&eConectando-se ao servidor %s.",
         "already_connected": "&cVocê já está conectado a este servidor.",
         "user_already_connected": "&c%s já está conectado a este servidor.",
         "sending_player_to_server": "&aEnviando %s para o servidor %s."
@@ -63,5 +63,79 @@
   "btp": {
     "teletransporting": "&eTeletransportando você até %s.",
     "can't_teleport_to_youself": "&cVocê não pode se teletransportar para si mesmo."
+  },
+  "authentication": {
+    "already_registered": "&cEste usuário já está cadastrado.",
+    "invalid_mail": "&cO e-mail inserido não é válido.",
+    "invalid_requirements": "&cA senha não atingiu os requisitos mínimos",
+    "successfully_registered": "&aRegistrado com sucesso!",
+    "no_lobby_disponible": "&cNão há saguão disponível",
+    "not_registered": "&cEste usuário não está registrado",
+    "invalid_password": "&cSenha não compatível com a registrada. Você possui mais %d chances.",
+    "successfully_logged": "&aAutenticado com sucesso.",
+    "chat_not_allowed_unauthenticated": "&cÉ necessário estar autenticado para usar o chat.",
+    "max_password_attempts_reached": "&c&lREDE COMMUNITY\n\n&cVocê foi chutado do servidor!\n\n&cVocê atingiu o limite máximo de tentativas de autenticação.\n"
+  },
+  "shortener": {
+    "invalid_url": "&cO endereço virtual inserido não é válido.",
+    "too_many_arguments": "&cVocê inseriu argumentos de mais.",
+    "shorted": "&eVocê encurtou a url %s para &nhttps://rcmty.me/%s",
+    "unknown_shorted_url": "&cEsta url não existe.",
+    "already_shorted_with_this_name": "&cJá existe um endereço virtual encurtado com este nome"
+  },
+  "maintenance": {
+    "server_status_changed": "&eManutenção no servidor %s foi %s."
+  },
+  "announcement": {
+    "usage": "\n&a/anúncio desativar <id>\n&a/anúncio ativar <id>\n&a/anúncio listar\n\n",
+    "invalid_id": "&cO id inserido é inválido.",
+    "invalid_announcement": "&cEste anúncio não existe.",
+    "disabled": "&cO anúncio #%d foi desativado.",
+    "enabled": "&cO anúncio #%d foi reativado."
+  },
+  "friends": {
+    "usage": "\n&a/amigo aceitar <usuário>\n&a/amigo add <usuário>\n&a/amigo cancelar <usuário>\n&a/amigo limpar <período em dias>\n&a/amigo deletar todos\n&a/amigo deletar <usuário>\n&a/amigo listar\n&a/amigo rejeitar <usuário>\n",
+    "already_friend": "&cEste usuário já é um amigo.",
+    "already_have_invited_friend": "&cVocê já enviou um pedido de amizade para este usuário",
+    "not_invited_friend_to_you": "&cEste usuário não enviou um pedido de amizade para você",
+    "accepted": "&aAgora você e %s são amigos!",
+    "friend_request_send": "&aO pedido de amizade foi enviado para %s.",
+    "friend_request_received": "&a%s deseja tornar-se seu amigo.",
+    "request_cancelled": "&cO pedido de amizade para %s foi cancelado.",
+    "not_invited_friend_to_user": "&cVocê não enviou um pedido de amizade para %s.",
+    "cleared_list": "&eSua lista de amigos foi limpa em um período de %d dias.",
+    "empty_list": "&cSua lista de amigos está vazia",
+    "invalid_period": "&cO período informado está inválido.",
+    "deleted_list": "&cSua lista de amigos foi deletado com sucesso.",
+    "deleted": "&cVocê deletou %s da sua lista de amigos.",
+    "has_not_accepted_invited_at_now": "&cVocê não aceitou o pedido de amizade até agora.",
+    "isn't_friend": "&cEste usuário não é seu amigo.",
+    "invalid_page":  "&cA página inserida está inválida.",
+    "invite_rejected": "&cO pedido de amizade de %s foi rejeitado.",
+    "rejected": "&cO pedido de amizade para %s foi rejeitado.",
+    "not_invited_friend_to_you": "&cEste usuário não enviou um pedido de amizade para você."
+  },
+  "ignore": {
+    "usage": "\n&c/ignorar add <usuário>\n&c/ignorar remover <usuário>\n&c/ignorar listar\n",
+    "already_ignoring": "&cVocê já está ignorando este usuário.",
+    "user_ignored": "&eVocê começou a ignorar o usuário %s.",
+    "invalid_page": "&cA página inserida está inválida.",
+    "not_ignoring": "&cVocê não está ignorando este usuário.",
+    "un_ignored_user": "&eVocê não está mais ignorando o usuário %s."
+  },
+  "twitter": {
+    "usage": "\n&b/twitter associar\n&b/twitter desassociar\n&b/twitter info <usuário>\n&b/twitter seguir <usuário>\n&b/twitter seguirmasters\n&b/twitter tuitar\n",
+    "already_associated": "&cVocê já associou seu twitter.",
+    "an_internal_error_occurred": "&cOps, ocorreu um problema ao conectarmos a api do twitter, tente novamente mais tarde.",
+    "invalid_code": "&cO código inserido está inválido",
+    "association_expired": "&cO tempo para associar seu perfil expirou.",
+    "associated": "&aSeu twitter foi associado a sua conta com sucesso.",
+    "association_error_occurred": "&cOcorreu um problema ao associar seu perfil do twitter.",
+    "not_associated": "&cVocê não possui um perfil do twitter associado a sua conta.",
+    "disassociated": "&cVocê desassociou seu perfil do twitter.",
+    "user_not_associated_an_twitter_account": "&cEste usuário não associou um perfil de twitter a conta dele.",
+    "followed_user": "&aVocê seguiu o perfil no twitter do usuário %s.",
+    "followed_masters": "&aVocê seguiu o perfil dos masters no twitter.",
+    "not_implemented": "&cEste sistema ainda não foi implementado."
   }
 }
