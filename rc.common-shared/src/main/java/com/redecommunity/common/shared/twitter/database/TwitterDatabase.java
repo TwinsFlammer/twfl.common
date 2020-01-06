@@ -79,7 +79,7 @@ public class TwitterDatabase extends Table {
                         " VALUES " +
                         "(" +
                         "%d," +
-                        "%s" +
+                        "'%s'" +
                         ");",
                 this.getTableName(),
                 object.getId(),
