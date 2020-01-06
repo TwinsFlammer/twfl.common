@@ -263,6 +263,8 @@ public class User {
         jsonObject.put("ignored_id", userId);
         jsonObject.put("action", true);
 
+        System.out.println("PORRa");
+
         this.getRedis().sendMessage(
                 Constants.IGNORE_CHANNEL,
                 jsonObject.toString()
