@@ -63,6 +63,13 @@ public enum Preference {
             0,
             new String[]{}
     ),
+    CHAT_STAFF(
+            "chat_staff",
+            "",
+            0,
+            0,
+            new String[] {}
+    ),
     PERSONAL_MARKET(
             "personal_market",
             "",
