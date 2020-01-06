@@ -20,7 +20,7 @@ public class UserManager {
     private static final List<User> users = Lists.newArrayList();
 
     public static void removeUser(Integer userId) {
-        UserManager.users.removeIf(user -> userId.equals(user.getId()));
+        UserManager.users.removeIf(user -> user != null && userId.equals(user.getId()));
     }
 
     public static List<User> getOnlineUsers() {
