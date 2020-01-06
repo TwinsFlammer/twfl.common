@@ -25,8 +25,6 @@ public class IgnoreJedisMessageListener implements JedisMessageListener {
 
         User user = UserManager.getUser(userId);
 
-        System.out.println(jsonObject);
-
         if (action) user.ignore(ignoredId);
         else user.unIgnore(ignoredId);
     }
