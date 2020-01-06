@@ -2,7 +2,8 @@
   "messages": {
     "player": {
       "invalid_player": "&cEste usuário não existe.",
-      "player_offline": "&cEste usuário não está online."
+      "player_offline": "&cEste usuário não está online.",
+      "player_not_logged": "&cVocê não pode interagir com usuários não autenticados."
     },
     "default_commands": {
       "invalid_group": "&cPara executar este comando é necessário o grupo %s&c.",
@@ -66,6 +67,7 @@
   },
   "authentication": {
     "already_registered": "&cEste usuário já está cadastrado.",
+    "already_logged_in": "&cVocê já está autênticado.",
     "invalid_mail": "&cO e-mail inserido não é válido.",
     "invalid_requirements": "&cA senha não atingiu os requisitos mínimos",
     "successfully_registered": "&aRegistrado com sucesso!",
@@ -124,7 +126,7 @@
     "un_ignored_user": "&eVocê não está mais ignorando o usuário %s."
   },
   "twitter": {
-    "usage": "\n&b/twitter associar\n&b/twitter desassociar\n&b/twitter info <usuário>\n&b/twitter seguir <usuário>\n&b/twitter seguirmasters\n&b/twitter tuitar\n",
+    "usage": "\n&b/twitter associar\n&b/twitter desassociar\n&b/twitter info <usuário>\n&b/twitter seguir <usuário>\n&b/twitter seguir equipe\n&b/twitter tuitar\n",
     "already_associated": "&cVocê já associou seu twitter.",
     "an_internal_error_occurred": "&cOps, ocorreu um problema ao conectarmos a api do twitter, tente novamente mais tarde.",
     "invalid_code": "&cO código inserido está inválido",
@@ -136,6 +138,8 @@
     "user_not_associated_an_twitter_account": "&cEste usuário não associou um perfil de twitter a conta dele.",
     "followed_user": "&aVocê seguiu o perfil no twitter do usuário %s.",
     "followed_masters": "&aVocê seguiu o perfil dos masters no twitter.",
-    "not_implemented": "&cEste sistema ainda não foi implementado."
+    "not_implemented": "&cEste sistema ainda não foi implementado.",
+    "server_message_tweeted": "&aPostamos uma mensagem de divulgação em seu perfil.",
+    "can't_follow_user": "&cNão foi possível seguir o perfil do usuário %s."
   }
 }
