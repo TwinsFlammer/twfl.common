@@ -59,6 +59,10 @@ public class TwitterManager {
                 .orElse(null);
     }
 
+    public static RequestToken removeRequestToken(Integer userId) {
+        return TwitterManager.REQUEST_TOKEN_HASH_MAP.remove(userId);
+    }
+
     public static URL getAuthorizationURL(User user) throws TwitterException, MalformedURLException {
         Twitter twitter = new TwitterFactory().getInstance();
 
