@@ -24,6 +24,10 @@ public class Group {
         return Helper.colorize("&" + this.color);
     }
 
+    public String getFancyPrefix() {
+        return this.color + (this.prefix.matches("[\\[\\]]") ? this.prefix : this.prefix.split("\\[")[1].split("]")[0]);
+    }
+
     public Boolean isDefault() {
         return this.priority == 0;
     }
