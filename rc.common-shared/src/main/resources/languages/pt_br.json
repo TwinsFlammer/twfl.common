@@ -76,7 +76,8 @@
     "invalid_password": "&cSenha não compatível com a registrada. Você possui mais %d chances.",
     "successfully_logged": "&aAutenticado com sucesso.",
     "chat_not_allowed_unauthenticated": "&cÉ necessário estar autenticado para usar o chat.",
-    "max_password_attempts_reached": "&c&lREDE COMMUNITY\n\n&cVocê foi chutado do servidor!\n\n&cVocê atingiu o limite máximo de tentativas de autenticação.\n"
+    "max_password_attempts_reached": "&c&lREDE COMMUNITY\n\n&cVocê foi chutado do servidor!\n\n&cVocê atingiu o limite máximo de tentativas de autenticação.\n",
+    "email_already_in_use": "&cEste e-mail já está em uso."
   },
   "shortener": {
     "invalid_url": "&cO endereço virtual inserido não é válido.",
@@ -115,7 +116,8 @@
     "invalid_page":  "&cA página inserida está inválida.",
     "invite_rejected": "&cO pedido de amizade de %s foi rejeitado.",
     "rejected": "&cO pedido de amizade para %s foi rejeitado.",
-    "not_invited_friend_to_you": "&cEste usuário não enviou um pedido de amizade para você."
+    "not_invited_friend_to_you": "&cEste usuário não enviou um pedido de amizade para você.",
+    "can't_invite_friend_to_you": "&cVocê não pode adicionar a si mesmo como amigo."
   },
   "ignore": {
     "usage": "\n&c/ignorar add <usuário>\n&c/ignorar remover <usuário>\n&c/ignorar listar\n",
@@ -123,7 +125,8 @@
     "user_ignored": "&eVocê começou a ignorar o usuário %s.",
     "invalid_page": "&cA página inserida está inválida.",
     "not_ignoring": "&cVocê não está ignorando este usuário.",
-    "un_ignored_user": "&eVocê não está mais ignorando o usuário %s."
+    "un_ignored_user": "&eVocê não está mais ignorando o usuário %s.",
+    "can't_ignore_you": "&cVocê não pode ignorar a si mesmo"
   },
   "twitter": {
     "usage": "\n&b/twitter associar\n&b/twitter desassociar\n&b/twitter info <usuário>\n&b/twitter seguir <usuário>\n&b/twitter seguir equipe\n&b/twitter tuitar\n",
@@ -141,5 +144,17 @@
     "not_implemented": "&cEste sistema ainda não foi implementado.",
     "server_message_tweeted": "&aPostamos uma mensagem de divulgação em seu perfil.",
     "can't_follow_user": "&cNão foi possível seguir o perfil do usuário %s."
+  },
+  "punishment": {
+    "motive_does_not_exists": "&cEste motivo não existe.",
+    "invalid_proof_url": "&cA prova inserida está inválida.",
+    "user_already_punished_with_this_motive_in_moments_ago": "&cEste usuário tem uma punição com este motivo recentemente.",
+    "punishment_applied": "&ePunição aplicada ao jogador %s com sucesso.",
+    "kick_message": "&c&lREDE COMMUNITY\n\n&cVocê está %s do servidor.\n\n&cMotivo: %s%s\n&cAutor: %s\n\n&cUse o ID &b#%d&c para criar uma revisão em &nrcmty.me/appeal&r",
+    "invalid_punishment_id": "&cVocê inseriu um id inválido.",
+    "invalid_punishment": "&cEssa punição não existe",
+    "revoked_punishment": "&ePunição &b#%d &edo jogador %s revogada com sucesso.",
+    "already_revoked": "&cEsta punição não está mais ativa.",
+    "revoke_time_expired": "&cO tempo para revogar essa punição expirou."
   }
 }
