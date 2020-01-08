@@ -41,6 +41,7 @@ public class Server {
      * 2 = Beta VIP
      * 3 = Maintenance
      * 4 = Restarting
+     * 5 = Development
      *
      * @return String
      */
@@ -51,10 +52,24 @@ public class Server {
                 case 1: return Helper.colorize("&a");
                 case 2: return Helper.colorize("&e");
                 case 3:
-                case 4: return Helper.colorize("&c");
+                case 4:
+                case 5: return Helper.colorize("&c");
             }
         }
         return this.online ? Helper.colorize("&a") : Helper.colorize("&c") ;
+    }
+
+    public String getStatusString() {
+        switch (this.status) {
+            case -1: return "[RESTRITO]";
+            case 0: return null;
+            case 1: return "§eBeta aberta!";
+            case 2: return "§eBeta VIP";
+            case 3: return "§cEm manutenção";
+            case 4: return "§cReiniciando";
+            case 5: return "§cEm desenvolvimento";
+            default: return this.online ? "§eClique para entrar!" : "§cOffline";
+        }
     }
 
     public Boolean isSimilar(Server server) {
@@ -140,5 +155,9 @@ public class Server {
 
     public Boolean isRestarting() {
         return this.status == 4;
+    }
+
+    public Boolean inDevelopment() {
+        return this.status == 5;
     }
 }
