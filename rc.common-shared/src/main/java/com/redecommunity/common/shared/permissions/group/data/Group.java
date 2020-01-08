@@ -25,10 +25,20 @@ public class Group {
     }
 
     public String getFancyPrefix() {
-        return this.color + (this.prefix.matches("[\\[\\]]") ? this.prefix : this.prefix.split("\\[")[1].split("]")[0]);
+        return this.getColor() + (this.prefix.matches("[\\[\\]]") ? this.prefix : this.prefix.split("\\[")[1].split("]")[0]);
     }
 
     public Boolean isDefault() {
         return this.priority == 0;
+    }
+
+    public Boolean isHigherOrEqual(Group group) {
+        return this.priority >= group.getPriority();
+    }
+
+    public Boolean hasPermission(String permission) {
+        return this.permissions
+                .stream()
+                .anyMatch(permission1 -> permission1.getName().equals(permission));
     }
 }
