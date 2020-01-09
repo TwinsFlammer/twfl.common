@@ -3,6 +3,8 @@ package com.redecommunity.common.shared.permissions.user.manager;
 import com.google.common.collect.Lists;
 import com.redecommunity.common.shared.friend.database.FriendDatabase;
 import com.redecommunity.common.shared.ignored.database.IgnoredDatabase;
+import com.redecommunity.common.shared.permissions.group.data.Group;
+import com.redecommunity.common.shared.permissions.group.manager.GroupManager;
 import com.redecommunity.common.shared.permissions.user.dao.UserDao;
 import com.redecommunity.common.shared.permissions.user.data.User;
 import com.redecommunity.common.shared.preference.Preference;
@@ -116,6 +118,24 @@ public class UserManager {
                 null,
                 false
         );
+    }
+
+    public static List<User> getUsers(Group group) {
+        return UserManager.users
+                .stream()
+                .filter(Objects::nonNull)
+                .filter(user -> user.hasGroup(group))
+                .collect(Collectors.toList());
+    }
+
+    public static List<User> getUsers(String groupName) {
+        Group group = GroupManager.getGroup(groupName);
+
+        return UserManager.users
+                .stream()
+                .filter(Objects::nonNull)
+                .filter(user -> user.hasGroup(group))
+                .collect(Collectors.toList());
     }
 
     public static User toUser(ResultSet resultSet) throws SQLException {
