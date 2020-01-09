@@ -4,13 +4,17 @@ import com.redecommunity.common.shared.Common;
 import com.redecommunity.common.shared.databases.redis.data.Redis;
 import com.redecommunity.common.shared.friend.database.FriendDatabase;
 import com.redecommunity.common.shared.ignored.database.IgnoredDatabase;
+import com.redecommunity.common.shared.permissions.group.GroupNames;
 import com.redecommunity.common.shared.permissions.group.data.Group;
 import com.redecommunity.common.shared.language.enums.Language;
 import com.redecommunity.common.shared.language.factory.LanguageFactory;
 import com.redecommunity.common.shared.permissions.group.manager.GroupManager;
 import com.redecommunity.common.shared.permissions.user.group.data.UserGroup;
+import com.redecommunity.common.shared.permissions.user.manager.UserManager;
+import com.redecommunity.common.shared.permissions.user.report.dao.UserReportDao;
 import com.redecommunity.common.shared.preference.Preference;
 import com.redecommunity.common.shared.report.data.ReportReason;
+import com.redecommunity.common.shared.report.manager.ReportReasonManager;
 import com.redecommunity.common.shared.server.data.Server;
 import com.redecommunity.common.shared.server.manager.ServerManager;
 import com.redecommunity.common.shared.twitter.manager.TwitterManager;
@@ -306,6 +310,27 @@ public class User {
 
     public void addReport(ReportReason reportReason) {
         this.reports.add(reportReason);
+    }
+
+    public void report(User user, ReportReason reportReason) {
+        user.addReport(reportReason);
+
+        JSONObject jsonObject = new JSONObject();
+
+        jsonObject.put("user_id", user.getId());
+        jsonObject.put("report_reason_id", reportReason.getId());
+
+        this.getRedis().sendMessage(
+                ReportReasonManager.CHANNEL_NAME,
+                jsonObject.toString()
+        );
+
+        UserReportDao userReportDao = new UserReportDao();
+
+        userReportDao.insert(
+                user,
+                reportReason
+        );
     }
 
     public <T> T getJSONConnection() {
