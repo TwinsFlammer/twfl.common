@@ -2,7 +2,6 @@ package com.redecommunity.common.shared.report.dao;
 
 import com.google.common.collect.Sets;
 import com.redecommunity.common.shared.databases.mysql.dao.Table;
-import com.redecommunity.common.shared.permissions.user.data.User;
 import com.redecommunity.common.shared.report.data.ReportReason;
 import com.redecommunity.common.shared.report.manager.ReportReasonManager;
 
@@ -42,12 +41,10 @@ public class ReportReasonDao extends Table {
         );
     }
 
-    public <K, V, T> Set<T> findAll(K key, V value) {
+    public <T> Set<T> findAll() {
         String query = String.format(
-                "SELECT * FROM %s WHERE `%s`=%d",
-                this.getTableName(),
-                key,
-                value
+                "SELECT * FROM %s;",
+                this.getTableName()
         );
 
         Set<T> reports = Sets.newConcurrentHashSet();
