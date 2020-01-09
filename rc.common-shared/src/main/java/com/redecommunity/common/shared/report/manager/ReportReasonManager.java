@@ -22,6 +22,10 @@ public class ReportReasonManager {
         ReportReasonManager.reportReasons.addAll(reportReasonDao.findAll());
     }
 
+    public static List<ReportReason> getReportReasons() {
+        return ReportReasonManager.reportReasons;
+    }
+
     public static ReportReason getReportReason(Integer id) {
         return ReportReasonManager.reportReasons
                 .stream()
