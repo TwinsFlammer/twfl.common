@@ -2,6 +2,7 @@ package com.redecommunity.common.shared.manager;
 
 import com.redecommunity.common.shared.Common;
 import com.redecommunity.common.shared.databases.mysql.dao.Table;
+import com.redecommunity.common.shared.report.manager.ReportReasonManager;
 import com.redecommunity.common.shared.server.manager.ServerManager;
 import com.redecommunity.common.shared.twitter.manager.TwitterManager;
 import com.redecommunity.common.shared.util.ClassGetter;
@@ -33,6 +34,7 @@ class DataManager {
         new UserManager();
         new ServerManager();
         new TwitterManager();
+        new ReportReasonManager();
     }
 }
 
