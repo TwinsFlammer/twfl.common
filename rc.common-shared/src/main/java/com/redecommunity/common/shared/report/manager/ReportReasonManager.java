@@ -37,7 +37,7 @@ public class ReportReasonManager {
     public static ReportReason getReportReason(String name) {
         return ReportReasonManager.reportReasons
                 .stream()
-                .filter(reportReason -> reportReason.getName().equals(name))
+                .filter(reportReason -> reportReason.getName().equalsIgnoreCase(name))
                 .findFirst()
                 .orElse(null);
     }
