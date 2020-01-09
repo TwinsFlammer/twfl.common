@@ -2,8 +2,8 @@ package com.redecommunity.common.shared.report.dao;
 
 import com.google.common.collect.Sets;
 import com.redecommunity.common.shared.databases.mysql.dao.Table;
-import com.redecommunity.proxy.report.data.ReportReason;
-import com.redecommunity.proxy.report.manager.ReportReasonManager;
+import com.redecommunity.common.shared.report.data.ReportReason;
+import com.redecommunity.common.shared.report.manager.ReportReasonManager;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
