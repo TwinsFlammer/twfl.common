@@ -34,7 +34,7 @@ public class UserReportDao extends Table {
                                 "(" +
                                 "`id` INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT," +
                                 "`user_id` INTEGER NOT NULL," +
-                                "`report_reason_id` INTEGER NO NULL" +
+                                "`report_reason_id` INTEGER NOT NULL" +
                                 ");",
                         this.getTableName()
                 )
