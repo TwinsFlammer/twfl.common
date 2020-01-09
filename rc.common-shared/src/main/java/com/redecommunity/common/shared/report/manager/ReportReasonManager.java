@@ -30,6 +30,14 @@ public class ReportReasonManager {
                 .orElse(null);
     }
 
+    public static ReportReason getReportReason(String name) {
+        return ReportReasonManager.reportReasons
+                .stream()
+                .filter(reportReason -> reportReason.getName().equals(name))
+                .findFirst()
+                .orElse(null);
+    }
+
     public static ReportReason toReportReason(ResultSet resultSet) throws SQLException {
         return new ReportReason(
                 resultSet.getInt("id"),
