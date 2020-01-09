@@ -10,6 +10,7 @@ import com.redecommunity.common.shared.language.factory.LanguageFactory;
 import com.redecommunity.common.shared.permissions.group.manager.GroupManager;
 import com.redecommunity.common.shared.permissions.user.group.data.UserGroup;
 import com.redecommunity.common.shared.preference.Preference;
+import com.redecommunity.common.shared.report.data.ReportReason;
 import com.redecommunity.common.shared.server.data.Server;
 import com.redecommunity.common.shared.server.manager.ServerManager;
 import com.redecommunity.common.shared.twitter.manager.TwitterManager;
@@ -69,6 +70,8 @@ public class User {
     private final List<Integer> friends;
     @Getter
     private final List<Integer> ignored;
+    @Getter
+    private final List<ReportReason> reports;
     
     private Boolean logged;
 
@@ -299,6 +302,10 @@ public class User {
 
     public void unIgnore(User user) {
         this.unIgnore(user.getId());
+    }
+
+    public void addReport(ReportReason reportReason) {
+        this.reports.add(reportReason);
     }
 
     public <T> T getJSONConnection() {
