@@ -7,8 +7,10 @@ import com.redecommunity.common.shared.permissions.group.data.Group;
 import com.redecommunity.common.shared.permissions.group.manager.GroupManager;
 import com.redecommunity.common.shared.permissions.user.dao.UserDao;
 import com.redecommunity.common.shared.permissions.user.data.User;
+import com.redecommunity.common.shared.permissions.user.report.dao.UserReportDao;
 import com.redecommunity.common.shared.preference.Preference;
 import com.redecommunity.common.shared.preference.dao.PreferenceDao;
+import com.redecommunity.common.shared.report.data.ReportReason;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -85,6 +87,12 @@ public class UserManager {
 
             user.getFriends().addAll(friends);
             user.getIgnored().addAll(ignored);
+
+            UserReportDao userReportDao = new UserReportDao();
+
+            Set<ReportReason> reports = userReportDao.findAll("user_id", user.getId());
+
+            user.getReports().addAll(reports);
 
             UserManager.users.add(user);
         }
