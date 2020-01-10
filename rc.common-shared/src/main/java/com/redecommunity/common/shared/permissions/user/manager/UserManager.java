@@ -1,8 +1,8 @@
 package com.redecommunity.common.shared.permissions.user.manager;
 
 import com.google.common.collect.Lists;
-import com.redecommunity.common.shared.friend.database.FriendDatabase;
-import com.redecommunity.common.shared.ignored.database.IgnoredDatabase;
+import com.redecommunity.common.shared.friend.storage.FriendStorage;
+import com.redecommunity.common.shared.ignored.storage.IgnoredStorage;
 import com.redecommunity.common.shared.permissions.group.data.Group;
 import com.redecommunity.common.shared.permissions.group.manager.GroupManager;
 import com.redecommunity.common.shared.permissions.user.dao.UserDao;
@@ -79,11 +79,11 @@ public class UserManager {
 
             if (preferences != null) user.getPreferences().addAll(preferences);
 
-            FriendDatabase friendDatabase = new FriendDatabase();
-            IgnoredDatabase ignoredDatabase = new IgnoredDatabase();
+            FriendStorage friendStorage = new FriendStorage();
+            IgnoredStorage ignoredStorage = new IgnoredStorage();
 
-            Set<Integer> friends = friendDatabase.findAll("user_id", user.getId());
-            Set<Integer> ignored = ignoredDatabase.findAll("user_id", user.getId());
+            Set<Integer> friends = friendStorage.findAll("user_id", user.getId());
+            Set<Integer> ignored = ignoredStorage.findAll("user_id", user.getId());
 
             user.getFriends().addAll(friends);
             user.getIgnored().addAll(ignored);
