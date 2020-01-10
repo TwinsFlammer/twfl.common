@@ -1,4 +1,4 @@
-package com.redecommunity.common.shared.ignored.database;
+package com.redecommunity.common.shared.ignored.storage;
 
 import com.google.common.collect.Sets;
 import com.redecommunity.common.shared.databases.mysql.dao.Table;
@@ -13,7 +13,7 @@ import java.util.Set;
 /**
  * Created by @SrGutyerrez
  */
-public class IgnoredDatabase extends Table {
+public class IgnoredStorage extends Table {
     @Override
     public String getDatabaseName() {
         return "general";
