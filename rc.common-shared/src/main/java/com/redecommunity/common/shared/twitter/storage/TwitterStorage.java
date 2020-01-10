@@ -1,4 +1,4 @@
-package com.redecommunity.common.shared.twitter.database;
+package com.redecommunity.common.shared.twitter.storage;
 
 import com.redecommunity.common.shared.databases.mysql.dao.Table;
 import com.redecommunity.common.shared.permissions.user.data.User;
@@ -12,7 +12,7 @@ import java.sql.SQLException;
 /**
  * Created by @SrGutyerrez
  */
-public class TwitterDatabase extends Table {
+public class TwitterStorage extends Table {
     @Override
     public String getDatabaseName() {
         return "general";
