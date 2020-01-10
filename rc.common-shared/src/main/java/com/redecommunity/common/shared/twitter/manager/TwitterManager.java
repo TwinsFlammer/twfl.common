@@ -2,7 +2,7 @@ package com.redecommunity.common.shared.twitter.manager;
 
 import com.google.common.collect.Maps;
 import com.redecommunity.common.shared.permissions.user.data.User;
-import com.redecommunity.common.shared.twitter.database.TwitterDatabase;
+import com.redecommunity.common.shared.twitter.storage.TwitterStorage;
 import lombok.Getter;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
@@ -80,9 +80,9 @@ public class TwitterManager {
 
         String oAuthToken = requestToken.getAuthorizationURL().split("\\?")[1];
 
-        TwitterDatabase twitterDatabase = new TwitterDatabase();
+        TwitterStorage twitterStorage = new TwitterStorage();
 
-        twitterDatabase.insert(
+        twitterStorage.insert(
                 user,
                 oAuthToken
         );
