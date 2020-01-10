@@ -1,4 +1,4 @@
-package com.redecommunity.common.shared.friend.database;
+package com.redecommunity.common.shared.friend.storage;
 
 import com.google.common.collect.Sets;
 import com.redecommunity.common.shared.databases.mysql.dao.Table;
@@ -13,7 +13,7 @@ import java.util.Set;
 /**
  * Created by @SrGutyerrez
  */
-public class FriendDatabase extends Table {
+public class FriendStorage extends Table {
     @Override
     public String getDatabaseName() {
         return "general";
