@@ -23,6 +23,10 @@ import java.util.stream.Collectors;
 public class UserManager {
     private static final List<User> users = Lists.newArrayList();
 
+    public static List<User> getUsers() {
+        return UserManager.users;
+    }
+
     public static void removeUser(Integer userId) {
         UserManager.users.removeIf(user -> user != null && userId.equals(user.getId()));
     }
@@ -124,6 +128,7 @@ public class UserManager {
                 null,
                 null,
                 null,
+                null,
                 false
         );
     }
@@ -165,6 +170,7 @@ public class UserManager {
                 resultSet.getInt("language_id"),
                 resultSet.getString("twitter_access_token"),
                 resultSet.getString("twitter_token_secret"),
+                Lists.newArrayList(),
                 Lists.newArrayList(),
                 Lists.newArrayList(),
                 Lists.newArrayList(),
