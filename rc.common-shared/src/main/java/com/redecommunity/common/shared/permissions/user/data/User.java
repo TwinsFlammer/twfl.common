@@ -1,5 +1,6 @@
 package com.redecommunity.common.shared.permissions.user.data;
 
+import com.google.common.collect.Maps;
 import com.redecommunity.common.shared.Common;
 import com.redecommunity.common.shared.databases.redis.data.Redis;
 import com.redecommunity.common.shared.friend.storage.FriendStorage;
@@ -15,6 +16,8 @@ import com.redecommunity.common.shared.report.data.ReportReason;
 import com.redecommunity.common.shared.report.manager.ReportReasonManager;
 import com.redecommunity.common.shared.server.data.Server;
 import com.redecommunity.common.shared.server.manager.ServerManager;
+import com.redecommunity.common.shared.skin.dao.SkinDao;
+import com.redecommunity.common.shared.skin.data.Skin;
 import com.redecommunity.common.shared.twitter.manager.TwitterManager;
 import com.redecommunity.common.shared.util.Constants;
 import com.redecommunity.common.shared.util.Helper;
@@ -30,6 +33,7 @@ import twitter4j.TwitterFactory;
 import twitter4j.auth.AccessToken;
 
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
@@ -74,6 +78,8 @@ public class User {
     private final List<Integer> ignored;
     @Getter
     private final List<ReportReason> reports;
+    @Getter
+    private final List<Skin> skins;
     
     private Boolean logged;
 
@@ -331,6 +337,30 @@ public class User {
         );
     }
 
+    public void setSkin(Skin skin) {
+        Skin active = this.getSkin();
+
+        if (active != null) {
+            Integer id = active.getId();
+
+            SkinDao skinDao = new SkinDao();
+
+            HashMap<String, Object> keys = Maps.newHashMap();
+
+            keys.put("active", false);
+
+            skinDao.update(
+                    keys,
+                    "id",
+                    id
+            );
+
+            skin.setActive(false);
+        }
+
+        this.skins.add(skin);
+    }
+
     public <T> T getJSONConnection() {
         try (Jedis jedis = this.getRedis().getJedisPool().getResource()) {
             String connectedServer = jedis.hget("users", "id" + this.id);
@@ -394,6 +424,14 @@ public class User {
         );
 
         return twitter;
+    }
+
+    public Skin getSkin() {
+        return this.skins
+                .stream()
+                .filter(skin -> skin.isActive())
+                .findFirst()
+                .orElse(null);
     }
 
     public Boolean isOnline() {
