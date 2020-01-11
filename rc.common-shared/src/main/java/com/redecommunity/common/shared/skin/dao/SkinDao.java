@@ -24,7 +24,7 @@ public class SkinDao extends Table {
 
     @Override
     public String getTableName() {
-        return "server_users_skins";
+        return "server_user_skin";
     }
 
     @Override
