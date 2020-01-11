@@ -137,6 +137,8 @@ public class SkinDao extends Table {
                 where
         );
 
+        System.out.println(query);
+
         try (
                 Connection connection = this.getConnection();
                 PreparedStatement preparedStatement = connection.prepareStatement(query);
