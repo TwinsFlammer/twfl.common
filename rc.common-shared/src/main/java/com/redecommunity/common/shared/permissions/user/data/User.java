@@ -358,13 +358,12 @@ public class User {
             skin.setActive(false);
         }
 
-        this.skins.add(skin);
-
-
-        skinDao.insert(
+        Skin skin1 = skinDao.insert(
                 this,
                 skin
         );
+
+        this.skins.add(skin1);
     }
 
     public <T> T getJSONConnection() {
