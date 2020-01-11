@@ -1,5 +1,6 @@
 package com.redecommunity.common.shared.skin.dao;
 
+import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 import com.redecommunity.common.shared.databases.mysql.dao.Table;
 import com.redecommunity.common.shared.permissions.user.data.User;
@@ -35,9 +36,9 @@ public class SkinDao extends Table {
                                 "(" +
                                 "`id` INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT," +
                                 "`user_id` INTEGER NOT NULL," +
-                                "`texture` VARCHAR(7) NOT NULL," +
-                                "`signature` VARCHAR(255) NOT NULL," +
-                                "`value` VARCHAR(255) NOT NULL," +
+                                "`texture` VARCHAR(8) NOT NULL," +
+                                "`signature` TEXT NOT NULL," +
+                                "`value` TEXT NOT NULL," +
                                 "`last_use` LONG NOT NULL," +
                                 "`active` BOOLEAN NOT NULL," +
                                 "`owner` VARCHAR(16) NOT NULL" +
@@ -84,6 +85,20 @@ public class SkinDao extends Table {
                 PreparedStatement preparedStatement = connection.prepareStatement(query);
         ) {
             preparedStatement.execute();
+
+            HashMap<String, Object> keys = Maps.newHashMap();
+
+            keys.put("user_id", user.getId());
+            keys.put("user_id", skin.getTexture());
+            keys.put("user_id", skin.getSignature());
+            keys.put("user_id", skin.getValue());
+            keys.put("user_id", skin.getLastUse());
+            keys.put("user_id", skin.isActive());
+            keys.put("user_id", skin.getOwner());
+
+            Skin skin1 = this.findOne(keys);
+
+            return (S) skin1;
         } catch (SQLException exception) {
             exception.printStackTrace();
         }
