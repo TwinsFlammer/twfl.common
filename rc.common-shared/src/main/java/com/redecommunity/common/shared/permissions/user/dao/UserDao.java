@@ -27,7 +27,7 @@ public class UserDao extends Table {
 
     @Override
     public String getTableName() {
-        return "server_users";
+        return "server_user";
     }
 
     @Override
