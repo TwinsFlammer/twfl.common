@@ -340,10 +340,10 @@ public class User {
     public void setSkin(Skin skin) {
         Skin active = this.getSkin();
 
+        SkinDao skinDao = new SkinDao();
+
         if (active != null) {
             Integer id = active.getId();
-
-            SkinDao skinDao = new SkinDao();
 
             HashMap<String, Object> keys = Maps.newHashMap();
 
@@ -359,6 +359,12 @@ public class User {
         }
 
         this.skins.add(skin);
+
+
+        skinDao.insert(
+                this,
+                skin
+        );
     }
 
     public <T> T getJSONConnection() {
