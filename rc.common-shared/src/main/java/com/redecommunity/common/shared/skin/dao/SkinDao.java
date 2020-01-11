@@ -129,15 +129,13 @@ public class SkinDao extends Table {
     }
 
     public <K, V, T> T findOne(HashMap<K, V> keys) {
-        String where = this.generateWhere(keys).replaceAll(", ", "AND ");
+        String where = this.generateWhere(keys).replaceAll(", ", " AND ");
 
         String query = String.format(
                 "SELECT * FROM %s WHERE %s;",
                 this.getTableName(),
                 where
         );
-
-        System.out.println(query);
 
         try (
                 Connection connection = this.getConnection();
