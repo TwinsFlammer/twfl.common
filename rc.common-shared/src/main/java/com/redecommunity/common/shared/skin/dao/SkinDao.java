@@ -89,12 +89,12 @@ public class SkinDao extends Table {
             HashMap<String, Object> keys = Maps.newHashMap();
 
             keys.put("user_id", user.getId());
-            keys.put("user_id", skin.getTexture());
-            keys.put("user_id", skin.getSignature());
-            keys.put("user_id", skin.getValue());
-            keys.put("user_id", skin.getLastUse());
-            keys.put("user_id", skin.isActive());
-            keys.put("user_id", skin.getOwner());
+            keys.put("texture", skin.getTexture());
+            keys.put("signature", skin.getSignature());
+            keys.put("value", skin.getValue());
+            keys.put("last_use", skin.getLastUse());
+            keys.put("active", skin.isActive());
+            keys.put("owner", skin.getOwner());
 
             Skin skin1 = this.findOne(keys);
 
