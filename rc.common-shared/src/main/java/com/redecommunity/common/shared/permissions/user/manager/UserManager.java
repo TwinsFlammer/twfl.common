@@ -11,6 +11,8 @@ import com.redecommunity.common.shared.permissions.user.report.dao.UserReportDao
 import com.redecommunity.common.shared.preference.Preference;
 import com.redecommunity.common.shared.preference.dao.PreferenceDao;
 import com.redecommunity.common.shared.report.data.ReportReason;
+import com.redecommunity.common.shared.skin.dao.SkinDao;
+import com.redecommunity.common.shared.skin.data.Skin;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -97,6 +99,12 @@ public class UserManager {
             Set<ReportReason> reports = userReportDao.findAll("user_id", user.getId());
 
             user.getReports().addAll(reports);
+
+            SkinDao skinDao = new SkinDao();
+
+            Set<Skin> skins = skinDao.findAll("user_id", user.getId());
+
+            user.getSkins().addAll(skins);
 
             UserManager.users.add(user);
         }
