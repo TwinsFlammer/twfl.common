@@ -81,7 +81,7 @@ public class User {
     @Getter
     private final List<Skin> skins;
     
-    private Boolean logged;
+    private Boolean logged, changingSkin;
 
     public String getPrefix() {
         return this.getHighestGroup().getColor() + this.getHighestGroup().getPrefix();
@@ -439,6 +439,10 @@ public class User {
                 .orElse(null);
     }
 
+    public Boolean hasDiscordAssociated() {
+        return this.discordId != 0;
+    }
+
     public Boolean isOnline() {
         try (Jedis jedis = this.getRedis().getJedisPool().getResource()) {
             return jedis.hexists("users", "id" + this.id);
@@ -496,6 +500,10 @@ public class User {
 
     public Boolean isTwitterAssociated() {
         return this.twitterAccessToken != null && this.twitterTokenSecret != null;
+    }
+
+    public Boolean isChangingSkin() {
+        return this.changingSkin;
     }
 
     public void togglePreference(Preference preference, Boolean value) {
