@@ -137,6 +137,7 @@ public class UserManager {
                 null,
                 null,
                 null,
+                false,
                 false
         );
     }
@@ -184,6 +185,7 @@ public class UserManager {
                 Lists.newArrayList(),
                 Lists.newArrayList(),
                 Lists.newArrayList(),
+                false,
                 false
         );
     }
