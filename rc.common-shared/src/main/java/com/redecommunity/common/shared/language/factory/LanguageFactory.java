@@ -100,10 +100,12 @@ public class LanguageFactory<L extends Language> {
                 }
             }
 
-            return (String) object;
+            return Helper.colorize(object == null ? "" : (String) object);
         }
 
-        return (String) this.languages.get(language).get(key);
+        String text = (String) this.languages.get(language).get(key);
+
+        return Helper.colorize(text == null ? "" : text);
     }
 
     public Object get(L language, String key) {
