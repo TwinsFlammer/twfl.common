@@ -36,6 +36,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by @SrGutyerrez
@@ -437,6 +438,18 @@ public class User {
                 .filter(skin -> skin.isActive())
                 .findFirst()
                 .orElse(null);
+    }
+
+    public Long getTheTimeToTheNextSkinChange() {
+        Skin skin = this.getSkin();
+
+        return (skin.getLastUse() + TimeUnit.MINUTES.toMillis(15)) - System.currentTimeMillis();
+    }
+
+    public Boolean canChangeSkin() {
+        Skin skin = this.getSkin();
+
+        return skin == null || System.currentTimeMillis() >= (skin.getLastUse() + TimeUnit.MINUTES.toMillis(15));
     }
 
     public Boolean hasDiscordAssociated() {
