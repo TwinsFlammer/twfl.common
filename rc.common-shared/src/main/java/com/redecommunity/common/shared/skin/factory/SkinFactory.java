@@ -36,7 +36,7 @@ public class SkinFactory {
                     value,
                     System.currentTimeMillis(),
                     true,
-                    username
+                    username.toLowerCase()
             );
         } catch (MalformedURLException exception) {
             return null;
