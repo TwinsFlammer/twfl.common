@@ -443,7 +443,7 @@ public class User {
     public Long getTheTimeToTheNextSkinChange() {
         Skin skin = this.getSkin();
 
-        return (skin.getLastUse() + TimeUnit.MINUTES.toMillis(15)) - System.currentTimeMillis();
+        return skin == null ? 0 : (skin.getLastUse() + TimeUnit.MINUTES.toMillis(15)) - System.currentTimeMillis();
     }
 
     public Boolean canChangeSkin() {
