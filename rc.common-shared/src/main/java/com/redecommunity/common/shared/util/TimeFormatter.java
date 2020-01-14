@@ -32,6 +32,8 @@ public class TimeFormatter {
                     .append(" ");
         }
         if (seconds > -1) {
+            System.out.println(seconds);
+
             sb.append(seconds)
                     .append("s");
         }
