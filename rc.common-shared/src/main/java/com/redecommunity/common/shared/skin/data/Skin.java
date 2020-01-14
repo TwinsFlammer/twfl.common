@@ -10,7 +10,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class Skin {
     @Getter
-    private final Integer id;
+    private final Integer id, userId;
     @Getter
     private final String texture = "textures", signature, value;
     @Getter
@@ -32,10 +32,11 @@ public class Skin {
     public Skin clone(String owner) {
         return new Skin(
                 this.id,
+                this.userId,
                 this.signature,
                 this.value,
-                this.lastUse,
-                this.active,
+                System.currentTimeMillis(),
+                true,
                 owner
         );
     }
