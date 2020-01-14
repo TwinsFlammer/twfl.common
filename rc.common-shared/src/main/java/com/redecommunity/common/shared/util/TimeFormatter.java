@@ -9,10 +9,10 @@ public class TimeFormatter {
     public static String format(long time) {
         if (time == 0) return "nunca";
 
-        long day = TimeUnit.MILLISECONDS.toDays(time);
-        long hours = TimeUnit.MILLISECONDS.toHours(time) - (day * 24);
-        long minutes = TimeUnit.MILLISECONDS.toMinutes(time) - (hours * 60);
-        long seconds = TimeUnit.MILLISECONDS.toSeconds(time) - (minutes * 60);
+        Long day = TimeUnit.MILLISECONDS.toDays(time);
+        Long hours = TimeUnit.MILLISECONDS.toHours(time) - (day * 24);
+        Long minutes = TimeUnit.MILLISECONDS.toMinutes(time) - (hours * 60);
+        Long seconds = TimeUnit.MILLISECONDS.toSeconds(time) - (minutes * 60);
 
         StringBuilder sb = new StringBuilder();
 
@@ -32,9 +32,9 @@ public class TimeFormatter {
                     .append(" ");
         }
         if (seconds > -1) {
-            System.out.println(seconds);
+            System.out.println(seconds == 0 ? seconds.doubleValue() : seconds);
 
-            sb.append(seconds)
+            sb.append(seconds == 0 ? seconds.doubleValue() : seconds)
                     .append("s");
         }
 
