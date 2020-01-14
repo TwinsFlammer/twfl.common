@@ -39,6 +39,8 @@ public class TimeFormatter {
                     .append(" ");
         }
         if (milliseconds > 0) {
+            System.out.println(milliseconds);
+
             Character character = String.valueOf(milliseconds).charAt(1);
 
             sb.append("0.")
