@@ -39,10 +39,11 @@ public class TimeFormatter {
                     .append(" ");
         }
         if (milliseconds > 0) {
-            NumberFormat numberFormat = NumberFormat.getNumberInstance();
+            Character character = String.valueOf(milliseconds).charAt(1);
 
             sb.append(milliseconds)
-                    .append(String.format("%.2f", milliseconds))
+                    .append("0.")
+                    .append(character)
                     .append("s");
         }
 
