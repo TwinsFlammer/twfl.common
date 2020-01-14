@@ -41,8 +41,7 @@ public class TimeFormatter {
         if (milliseconds > 0) {
             Character character = String.valueOf(milliseconds).charAt(1);
 
-            sb.append(milliseconds)
-                    .append("0.")
+            sb.append("0.")
                     .append(character)
                     .append("s");
         }
