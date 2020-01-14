@@ -14,7 +14,7 @@ public class TimeFormatter {
         long hours = TimeUnit.MILLISECONDS.toHours(time) - (day * 24);
         long minutes = TimeUnit.MILLISECONDS.toMinutes(time) - (hours * 60);
         long seconds = TimeUnit.MILLISECONDS.toSeconds(time) - (minutes * 60);
-        long milliseconds = TimeUnit.MILLISECONDS.toMillis(time) - (seconds * 1000) / 1000;
+        long milliseconds = TimeUnit.MILLISECONDS.toMicros(time) - (seconds * 1000);
 
         StringBuilder sb = new StringBuilder();
 
