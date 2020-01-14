@@ -1,5 +1,6 @@
 package com.redecommunity.common.shared.util;
 
+import java.text.NumberFormat;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -38,8 +39,10 @@ public class TimeFormatter {
                     .append(" ");
         }
         if (milliseconds > 0) {
+            NumberFormat numberFormat = NumberFormat.getNumberInstance();
+
             sb.append(milliseconds)
-                    .append(String.format("%.1d", milliseconds))
+                    .append(String.format("%.2d", milliseconds))
                     .append("s");
         }
 
