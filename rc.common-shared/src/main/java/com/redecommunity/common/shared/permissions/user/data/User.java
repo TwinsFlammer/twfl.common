@@ -449,6 +449,8 @@ public class User {
     public Boolean canChangeSkin() {
         Skin skin = this.getSkin();
 
+        System.out.println(this.getTheTimeToTheNextSkinChange());
+
         return skin == null || this.getTheTimeToTheNextSkinChange() <= 0;
     }
 
