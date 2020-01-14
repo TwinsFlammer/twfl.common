@@ -76,7 +76,7 @@ public class SkinDao extends Table {
                 skin.getSignature(),
                 skin.getValue(),
                 skin.getLastUse(),
-                skin.isActive(),
+                true,
                 skin.getOwner()
         );
 
@@ -93,7 +93,7 @@ public class SkinDao extends Table {
             keys.put("signature", skin.getSignature());
             keys.put("value", skin.getValue());
             keys.put("last_use", skin.getLastUse());
-            keys.put("active", skin.isActive());
+            keys.put("active", true);
             keys.put("owner", skin.getOwner());
 
             Skin skin1 = this.findOne(keys);
