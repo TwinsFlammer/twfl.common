@@ -42,7 +42,7 @@ public class TimeFormatter {
             NumberFormat numberFormat = NumberFormat.getNumberInstance();
 
             sb.append(milliseconds)
-                    .append(String.format("%.2d", milliseconds))
+                    .append(String.format("%.2f", milliseconds))
                     .append("s");
         }
 
