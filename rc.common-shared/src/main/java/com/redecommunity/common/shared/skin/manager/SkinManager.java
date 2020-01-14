@@ -46,6 +46,7 @@ public class SkinManager {
     public static Skin toSkin(ResultSet resultSet) throws SQLException {
         return new Skin(
                 resultSet.getInt("id"),
+                resultSet.getInt("user_id"),
                 resultSet.getString("signature"),
                 resultSet.getString("value"),
                 resultSet.getLong("last_use"),
