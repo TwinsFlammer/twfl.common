@@ -435,7 +435,7 @@ public class User {
     public Skin getSkin() {
         return this.skins
                 .stream()
-                .filter(skin -> skin.isActive())
+                .filter(Skin::isActive)
                 .findFirst()
                 .orElse(null);
     }
@@ -449,7 +449,7 @@ public class User {
     public Boolean canChangeSkin() {
         Skin skin = this.getSkin();
 
-        return skin == null || System.currentTimeMillis() >= (skin.getLastUse() + TimeUnit.MINUTES.toMillis(15));
+        return skin == null || this.getTheTimeToTheNextSkinChange() <= 0;
     }
 
     public Boolean hasDiscordAssociated() {
