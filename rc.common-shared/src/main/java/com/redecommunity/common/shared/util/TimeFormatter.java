@@ -33,8 +33,7 @@ public class TimeFormatter {
         }
         if (seconds > -1) {
             sb.append(seconds)
-                    .append("s")
-                    .append(" ");
+                    .append("s");
         }
 
         String diff = sb.toString();
