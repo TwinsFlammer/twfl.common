@@ -19,8 +19,11 @@ public class Skin {
     @Setter
     private Boolean active;
 
-    @Getter
     private final String owner;
+
+    public String getOwner() {
+        return this.owner.toLowerCase();
+    }
 
     public Boolean isActive() {
         return this.active;
