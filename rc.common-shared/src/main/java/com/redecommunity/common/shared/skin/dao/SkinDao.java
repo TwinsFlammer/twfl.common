@@ -49,6 +49,8 @@ public class SkinDao extends Table {
     }
 
     public <U extends User, S extends Skin> S insert(U user, S skin) {
+        Long lastUse = System.currentTimeMillis();
+
         String query = String.format(
                 "INSERT INTO %s " +
                         "(" +
@@ -75,7 +77,7 @@ public class SkinDao extends Table {
                 skin.getTexture(),
                 skin.getSignature(),
                 skin.getValue(),
-                skin.getLastUse(),
+                lastUse,
                 true,
                 skin.getOwner()
         );
@@ -92,7 +94,7 @@ public class SkinDao extends Table {
             keys.put("texture", skin.getTexture());
             keys.put("signature", skin.getSignature());
             keys.put("value", skin.getValue());
-            keys.put("last_use", skin.getLastUse());
+            keys.put("last_use", lastUse);
             keys.put("active", true);
             keys.put("owner", skin.getOwner());
 
