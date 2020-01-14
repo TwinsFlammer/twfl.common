@@ -1,7 +1,5 @@
 package com.redecommunity.common.shared.skin.factory;
 
-import com.redecommunity.common.shared.permissions.user.data.User;
-import com.redecommunity.common.shared.permissions.user.manager.UserManager;
 import com.redecommunity.common.shared.skin.data.Skin;
 import com.redecommunity.common.shared.util.URLParser;
 import org.json.simple.JSONArray;
@@ -32,11 +30,9 @@ public class SkinFactory {
             String value = properties.get("value").toString();
             String signature = properties.get("signature").toString();
 
-            User user = UserManager.getUser(username);
-
             return new Skin(
                     0,
-                    user.getId(),
+                    null,
                     signature,
                     value,
                     System.currentTimeMillis(),
