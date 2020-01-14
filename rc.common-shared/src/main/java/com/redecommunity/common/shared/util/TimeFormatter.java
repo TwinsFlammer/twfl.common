@@ -1,6 +1,5 @@
 package com.redecommunity.common.shared.util;
 
-import java.text.NumberFormat;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -14,7 +13,6 @@ public class TimeFormatter {
         long hours = TimeUnit.MILLISECONDS.toHours(time) - (day * 24);
         long minutes = TimeUnit.MILLISECONDS.toMinutes(time) - (hours * 60);
         long seconds = TimeUnit.MILLISECONDS.toSeconds(time) - (minutes * 60);
-        long milliseconds = TimeUnit.MILLISECONDS.toMicros(time) - (seconds * 1000);
 
         StringBuilder sb = new StringBuilder();
 
@@ -37,15 +35,6 @@ public class TimeFormatter {
             sb.append(seconds)
                     .append("s")
                     .append(" ");
-        }
-        if (milliseconds > 0) {
-            System.out.println(milliseconds);
-
-            Character character = String.valueOf(milliseconds).charAt(1);
-
-            sb.append("0.")
-                    .append(character)
-                    .append("s");
         }
 
         String diff = sb.toString();
