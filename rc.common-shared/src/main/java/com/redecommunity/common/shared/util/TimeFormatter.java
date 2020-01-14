@@ -33,7 +33,7 @@ public class TimeFormatter {
                     .append("m")
                     .append(" ");
         }
-        if (seconds > 0) {
+        if (seconds > -1) {
             sb.append(seconds)
                     .append("s")
                     .append(" ");
