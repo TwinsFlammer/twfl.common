@@ -13,8 +13,10 @@ public class Skin {
     private final Integer id, userId;
     @Getter
     private final String texture = "textures", signature, value;
+
     @Getter
-    private final Long lastUse;
+    @Setter
+    private Long lastUse;
 
     @Setter
     private Boolean active;
