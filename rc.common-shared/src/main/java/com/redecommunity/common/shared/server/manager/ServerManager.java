@@ -47,7 +47,7 @@ public class ServerManager {
         return ServerManager.servers
                 .stream()
                 .filter(Objects::nonNull)
-                .filter(server -> id.equals(server.getId()))
+                .filter(server -> server.getId().equals(id))
                 .findFirst()
                 .orElse(null);
     }
@@ -56,7 +56,17 @@ public class ServerManager {
         return ServerManager.servers
                 .stream()
                 .filter(Objects::nonNull)
-                .filter(server -> name.equals(server.getName()))
+                .filter(server -> server.getName().equals(name))
+                .findFirst()
+                .orElse(null);
+    }
+
+    public static Server getServer(String address, Integer port) {
+        return ServerManager.servers
+                .stream()
+                .filter(Objects::nonNull)
+                .filter(server -> server.getAddress().equalsIgnoreCase(address))
+                .filter(server -> server.getPort().equals(port))
                 .findFirst()
                 .orElse(null);
     }
