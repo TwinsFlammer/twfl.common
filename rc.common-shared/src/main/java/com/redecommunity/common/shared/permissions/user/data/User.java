@@ -1,6 +1,5 @@
 package com.redecommunity.common.shared.permissions.user.data;
 
-import com.google.common.collect.Maps;
 import com.redecommunity.common.shared.Common;
 import com.redecommunity.common.shared.databases.redis.data.Redis;
 import com.redecommunity.common.shared.friend.storage.FriendStorage;
@@ -33,7 +32,6 @@ import twitter4j.TwitterFactory;
 import twitter4j.auth.AccessToken;
 
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
@@ -81,7 +79,7 @@ public class User {
     private final List<ReportReason> reports;
     @Getter
     private final List<Skin> skins;
-    
+
     private Boolean logged, changingSkin;
 
     public String getPrefix() {
@@ -343,21 +341,9 @@ public class User {
 
         SkinDao skinDao = new SkinDao();
 
-        if (active != null) {
-            Integer id = active.getId();
-
-            HashMap<String, Object> keys = Maps.newHashMap();
-
-            keys.put("active", false);
-
-            skinDao.update(
-                    keys,
-                    "id",
-                    id
-            );
-
-            skin.setActive(false);
-        }
+        this.skins.stream()
+                .filter(Skin::isActive)
+                .forEach(Skin::deactivate);
 
         Skin skin1 = skinDao.insert(
                 this,
@@ -520,7 +506,8 @@ public class User {
     }
 
     public void togglePreference(Preference preference, Boolean value) {
-        if (value) this.preferences.add(preference); else this.preferences.remove(preference);
+        if (value) this.preferences.add(preference);
+        else this.preferences.remove(preference);
 
         JSONObject jsonObject = new JSONObject();
 
