@@ -248,8 +248,10 @@ public enum Preference {
 
     @Getter
     private final String columnName, displayName;
+    @Getter
     private final Integer id, data, slot, statusSlot, page;
     private final Boolean show;
+    @Getter
     private final String[] description;
 
     public static <T> Set<T> toPreference(ResultSet resultSet) throws SQLException {
@@ -262,6 +264,10 @@ public enum Preference {
     }
 
     public String getColor(User user) {
-        return user.isEnabled(this) ? "a" : "4";
+        return user.isEnabled(this) ? "a" : "c";
+    }
+
+    public Boolean canShow() {
+        return this.show;
     }
 }
