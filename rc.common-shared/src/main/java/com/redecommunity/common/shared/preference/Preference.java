@@ -164,7 +164,7 @@ public enum Preference {
             371,
             0,
             14,
-            24,
+            23,
             2,
             true,
             new String[]{
@@ -177,7 +177,7 @@ public enum Preference {
             46,
             0,
             16,
-            26,
+            25,
             1,
             true,
             new String[]{
@@ -192,7 +192,7 @@ public enum Preference {
             38,
             0,
             15,
-            25,
+            24,
             1,
             true,
             new String[]{
