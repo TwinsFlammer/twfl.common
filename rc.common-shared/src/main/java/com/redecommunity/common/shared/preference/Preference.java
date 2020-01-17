@@ -151,7 +151,7 @@ public enum Preference {
             368,
             0,
             15,
-            25,
+            24,
             2,
             true,
             new String[]{
