@@ -121,18 +121,42 @@ public abstract class Helper {
         return stringBuilder.toString();
     }
 
-    public static String hash(String sampleText) {
+    public static String hash(String sampleText, String algorithm) {
         try {
-            MessageDigest messageDigest = MessageDigest.getInstance("MD5");
+            MessageDigest messageDigest = MessageDigest.getInstance(algorithm);
 
             messageDigest.update(sampleText.getBytes());
 
             byte[] bytes = messageDigest.digest();
 
-            return DatatypeConverter.printHexBinary(bytes);
+            return DatatypeConverter.printHexBinary(bytes).toLowerCase();
         } catch (NoSuchAlgorithmException exception) {
             exception.printStackTrace();
         }
         return null;
+    }
+
+    public static String hash(String sampleText) {
+        return Helper.hash(sampleText, "MD5");
+    }
+
+    public static Boolean compare(String password, String hashedPassword) {
+        if (!hashedPassword.contains("$")) return Helper.hash(password).equals(hashedPassword);
+
+        String[] shaInfo = hashedPassword.split("\\$");
+
+        String salt = shaInfo[2].split("@")[1];
+
+        String hash = shaInfo[2].split("@")[0];
+
+        String password1 = Helper.hash(password, "sha-256") + salt;
+
+        String password2 = Helper.hash(password1, "sha-256");
+
+        System.out.println(hash);
+
+        System.out.println(password2);
+
+        return hash.equals(password2);
     }
 }
