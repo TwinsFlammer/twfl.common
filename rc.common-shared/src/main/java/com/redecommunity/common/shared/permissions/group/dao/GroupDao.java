@@ -23,7 +23,7 @@ public class GroupDao extends Table {
 
     @Override
     public String getTableName() {
-        return "server_groups";
+        return "server_group";
     }
 
     @Override
