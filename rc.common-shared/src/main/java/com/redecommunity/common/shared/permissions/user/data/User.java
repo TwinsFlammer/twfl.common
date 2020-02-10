@@ -20,6 +20,7 @@ import com.redecommunity.common.shared.skin.data.Skin;
 import com.redecommunity.common.shared.twitter.manager.TwitterManager;
 import com.redecommunity.common.shared.util.Constants;
 import com.redecommunity.common.shared.util.Helper;
+import com.redecommunity.common.shared.util.title.channel.CustomTitleChannel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -351,6 +352,21 @@ public class User {
         );
 
         this.skins.add(skin1);
+    }
+
+    public void sendTitle(String title, String subtitle, Integer fadeIn, Integer fadeOut, Integer stay) {
+        JSONObject jsonObject = new JSONObject();
+
+        jsonObject.put("user_id", this.id);
+        jsonObject.put("title", title);
+        jsonObject.put("subtitle", subtitle);
+        jsonObject.put("fade_in", fadeIn);
+        jsonObject.put("fade_out", fadeOut);
+        jsonObject.put("stay", stay);
+
+        CustomTitleChannel customTitleChannel = new CustomTitleChannel();
+
+        customTitleChannel.sendMessage(jsonObject.toString());
     }
 
     public <T> T getJSONConnection() {
