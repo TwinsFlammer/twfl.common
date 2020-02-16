@@ -1,7 +1,7 @@
-package com.redecommunity.common.shared.updater.data;
+package com.redefocus.common.shared.updater.data;
 
-import com.redecommunity.common.shared.branches.Branch;
-import com.redecommunity.common.shared.util.Printer;
+import com.redefocus.common.shared.branches.Branch;
+import com.redefocus.common.shared.util.Printer;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
