@@ -1,9 +1,9 @@
-package com.redecommunity.common.shared.permissions.user.group.data;
+package com.redefocus.common.shared.permissions.user.group.data;
 
-import com.redecommunity.common.shared.permissions.group.data.Group;
-import com.redecommunity.common.shared.permissions.group.manager.GroupManager;
-import com.redecommunity.common.shared.server.data.Server;
-import com.redecommunity.common.shared.server.manager.ServerManager;
+import com.redefocus.common.shared.permissions.group.data.Group;
+import com.redefocus.common.shared.permissions.group.manager.GroupManager;
+import com.redefocus.common.shared.server.data.Server;
+import com.redefocus.common.shared.server.manager.ServerManager;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
