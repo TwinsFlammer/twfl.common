@@ -1,7 +1,7 @@
-package com.redecommunity.common.bungee;
+package com.redefocus.common.bungee;
 
-import com.redecommunity.common.shared.Common;
-import com.redecommunity.common.shared.updater.data.Updater;
+import com.redefocus.common.shared.Common;
+import com.redefocus.common.shared.updater.data.Updater;
 import net.md_5.bungee.api.plugin.Plugin;
 
 import java.io.IOException;
