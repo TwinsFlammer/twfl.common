@@ -1,4 +1,4 @@
-package com.redecommunity.common.shared.server.util;
+package com.redefocus.common.shared.server.util;
 
 import java.net.InetSocketAddress;
 
