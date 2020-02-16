@@ -1,7 +1,7 @@
-package com.redecommunity.common.shared.permissions.group.data;
+package com.redefocus.common.shared.permissions.group.data;
 
-import com.redecommunity.common.shared.permissions.permission.data.Permission;
-import com.redecommunity.common.shared.util.Helper;
+import com.redefocus.common.shared.permissions.permission.data.Permission;
+import com.redefocus.common.shared.util.Helper;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
