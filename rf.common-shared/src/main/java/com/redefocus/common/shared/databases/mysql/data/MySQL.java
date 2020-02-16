@@ -1,4 +1,4 @@
-package com.redecommunity.common.shared.databases.mysql.data;
+package com.redefocus.common.shared.databases.mysql.data;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
