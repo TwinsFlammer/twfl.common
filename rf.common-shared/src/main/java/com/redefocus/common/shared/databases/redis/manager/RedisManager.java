@@ -1,9 +1,9 @@
-package com.redecommunity.common.shared.databases.redis.manager;
+package com.redefocus.common.shared.databases.redis.manager;
 
 import com.google.common.collect.Maps;
-import com.redecommunity.common.shared.Common;
-import com.redecommunity.common.shared.databases.configuration.DatabaseConfiguration;
-import com.redecommunity.common.shared.databases.redis.data.Redis;
+import com.redefocus.common.shared.Common;
+import com.redefocus.common.shared.databases.configuration.DatabaseConfiguration;
+import com.redefocus.common.shared.databases.redis.data.Redis;
 import org.json.simple.JSONObject;
 import redis.clients.jedis.exceptions.JedisConnectionException;
 
