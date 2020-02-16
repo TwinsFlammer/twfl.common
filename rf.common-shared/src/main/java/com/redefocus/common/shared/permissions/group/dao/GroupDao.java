@@ -1,9 +1,9 @@
-package com.redecommunity.common.shared.permissions.group.dao;
+package com.redefocus.common.shared.permissions.group.dao;
 
 import com.google.common.collect.Sets;
-import com.redecommunity.common.shared.databases.mysql.dao.Table;
-import com.redecommunity.common.shared.permissions.group.data.Group;
-import com.redecommunity.common.shared.permissions.group.manager.GroupManager;
+import com.redefocus.common.shared.databases.mysql.dao.Table;
+import com.redefocus.common.shared.permissions.group.data.Group;
+import com.redefocus.common.shared.permissions.group.manager.GroupManager;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
