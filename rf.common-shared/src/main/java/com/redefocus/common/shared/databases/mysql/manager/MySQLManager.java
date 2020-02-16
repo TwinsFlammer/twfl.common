@@ -1,9 +1,9 @@
-package com.redecommunity.common.shared.databases.mysql.manager;
+package com.redefocus.common.shared.databases.mysql.manager;
 
 import com.google.common.collect.Maps;
-import com.redecommunity.common.shared.Common;
-import com.redecommunity.common.shared.databases.configuration.DatabaseConfiguration;
-import com.redecommunity.common.shared.databases.mysql.data.MySQL;
+import com.redefocus.common.shared.Common;
+import com.redefocus.common.shared.databases.configuration.DatabaseConfiguration;
+import com.redefocus.common.shared.databases.mysql.data.MySQL;
 import org.json.simple.JSONObject;
 
 import java.sql.SQLException;
