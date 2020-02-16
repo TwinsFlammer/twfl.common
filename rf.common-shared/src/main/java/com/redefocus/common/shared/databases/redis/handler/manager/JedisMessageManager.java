@@ -1,9 +1,9 @@
-package com.redecommunity.common.shared.databases.redis.handler.manager;
+package com.redefocus.common.shared.databases.redis.handler.manager;
 
 import com.google.common.collect.Lists;
-import com.redecommunity.common.shared.databases.redis.handler.JedisMessageListener;
-import com.redecommunity.common.shared.databases.redis.handler.annonation.ChannelName;
-import com.redecommunity.common.shared.databases.redis.handler.event.JedisMessageEvent;
+import com.redefocus.common.shared.databases.redis.handler.JedisMessageListener;
+import com.redefocus.common.shared.databases.redis.handler.annonation.ChannelName;
+import com.redefocus.common.shared.databases.redis.handler.event.JedisMessageEvent;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
