@@ -1,4 +1,4 @@
-package com.redecommunity.common.shared.databases.mongo.data;
+package com.redefocus.common.shared.databases.mongo.data;
 
 import com.mongodb.*;
 import com.mongodb.client.MongoDatabase;
