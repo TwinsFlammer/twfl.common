@@ -1,4 +1,4 @@
-package com.redecommunity.common.shared.util;
+package com.redefocus.common.shared.util;
 
 /**
  * Created by @SrGutyerrez
