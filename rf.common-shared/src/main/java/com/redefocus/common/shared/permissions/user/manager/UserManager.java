@@ -1,18 +1,18 @@
-package com.redecommunity.common.shared.permissions.user.manager;
+package com.redefocus.common.shared.permissions.user.manager;
 
 import com.google.common.collect.Lists;
-import com.redecommunity.common.shared.friend.storage.FriendStorage;
-import com.redecommunity.common.shared.ignored.storage.IgnoredStorage;
-import com.redecommunity.common.shared.permissions.group.data.Group;
-import com.redecommunity.common.shared.permissions.group.manager.GroupManager;
-import com.redecommunity.common.shared.permissions.user.dao.UserDao;
-import com.redecommunity.common.shared.permissions.user.data.User;
-import com.redecommunity.common.shared.permissions.user.report.dao.UserReportDao;
-import com.redecommunity.common.shared.preference.Preference;
-import com.redecommunity.common.shared.preference.dao.PreferenceDao;
-import com.redecommunity.common.shared.report.data.ReportReason;
-import com.redecommunity.common.shared.skin.dao.SkinDao;
-import com.redecommunity.common.shared.skin.data.Skin;
+import com.redefocus.common.shared.friend.storage.FriendStorage;
+import com.redefocus.common.shared.ignored.storage.IgnoredStorage;
+import com.redefocus.common.shared.permissions.group.data.Group;
+import com.redefocus.common.shared.permissions.group.manager.GroupManager;
+import com.redefocus.common.shared.permissions.user.dao.UserDao;
+import com.redefocus.common.shared.permissions.user.data.User;
+import com.redefocus.common.shared.permissions.user.report.dao.UserReportDao;
+import com.redefocus.common.shared.preference.Preference;
+import com.redefocus.common.shared.preference.dao.PreferenceDao;
+import com.redefocus.common.shared.report.data.ReportReason;
+import com.redefocus.common.shared.skin.dao.SkinDao;
+import com.redefocus.common.shared.skin.data.Skin;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
