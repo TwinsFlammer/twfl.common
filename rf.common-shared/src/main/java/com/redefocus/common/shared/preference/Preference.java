@@ -1,7 +1,7 @@
-package com.redecommunity.common.shared.preference;
+package com.redefocus.common.shared.preference;
 
 import com.google.common.collect.Sets;
-import com.redecommunity.common.shared.permissions.user.data.User;
+import com.redefocus.common.shared.permissions.user.data.User;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
