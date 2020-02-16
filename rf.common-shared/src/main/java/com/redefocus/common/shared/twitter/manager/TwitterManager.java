@@ -1,8 +1,8 @@
-package com.redecommunity.common.shared.twitter.manager;
+package com.redefocus.common.shared.twitter.manager;
 
 import com.google.common.collect.Maps;
-import com.redecommunity.common.shared.permissions.user.data.User;
-import com.redecommunity.common.shared.twitter.storage.TwitterStorage;
+import com.redefocus.common.shared.permissions.user.data.User;
+import com.redefocus.common.shared.twitter.storage.TwitterStorage;
 import lombok.Getter;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
