@@ -1,6 +1,6 @@
-package com.redecommunity.common.shared.databases.redis.handler;
+package com.redefocus.common.shared.databases.redis.handler;
 
-import com.redecommunity.common.shared.Common;
+import com.redefocus.common.shared.Common;
 import redis.clients.jedis.JedisPubSub;
 
 import java.util.logging.Level;
