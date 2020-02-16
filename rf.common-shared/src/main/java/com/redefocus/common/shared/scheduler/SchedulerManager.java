@@ -1,4 +1,4 @@
-package com.redecommunity.common.shared.scheduler;
+package com.redefocus.common.shared.scheduler;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
