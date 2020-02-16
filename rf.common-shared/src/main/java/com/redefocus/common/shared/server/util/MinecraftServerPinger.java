@@ -1,4 +1,4 @@
-package com.redecommunity.common.shared.server.util;
+package com.redefocus.common.shared.server.util;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
