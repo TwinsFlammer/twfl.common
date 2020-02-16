@@ -1,4 +1,4 @@
-package com.redecommunity.common.shared.databases.redis.data;
+package com.redefocus.common.shared.databases.redis.data;
 
 import lombok.RequiredArgsConstructor;
 import redis.clients.jedis.Jedis;
