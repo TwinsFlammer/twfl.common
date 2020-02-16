@@ -1,10 +1,10 @@
-package com.redecommunity.common.shared.databases.redis.channel.manager;
+package com.redefocus.common.shared.databases.redis.channel.manager;
 
 import com.google.common.collect.Lists;
-import com.redecommunity.common.shared.Common;
-import com.redecommunity.common.shared.databases.redis.channel.data.Channel;
-import com.redecommunity.common.shared.databases.redis.handler.JedisChannelMessageHandler;
-import com.redecommunity.common.shared.util.ClassGetter;
+import com.redefocus.common.shared.Common;
+import com.redefocus.common.shared.databases.redis.channel.data.Channel;
+import com.redefocus.common.shared.databases.redis.handler.JedisChannelMessageHandler;
+import com.redefocus.common.shared.util.ClassGetter;
 
 import java.util.Collections;
 import java.util.List;
