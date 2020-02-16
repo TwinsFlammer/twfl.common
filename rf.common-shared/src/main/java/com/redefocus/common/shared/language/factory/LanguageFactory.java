@@ -1,9 +1,9 @@
-package com.redecommunity.common.shared.language.factory;
+package com.redefocus.common.shared.language.factory;
 
 import com.google.common.collect.Maps;
-import com.redecommunity.common.shared.Common;
-import com.redecommunity.common.shared.language.enums.Language;
-import com.redecommunity.common.shared.util.Helper;
+import com.redefocus.common.shared.Common;
+import com.redefocus.common.shared.language.enums.Language;
+import com.redefocus.common.shared.util.Helper;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
