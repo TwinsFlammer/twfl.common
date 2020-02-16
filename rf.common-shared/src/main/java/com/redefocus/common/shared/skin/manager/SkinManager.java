@@ -1,10 +1,10 @@
-package com.redecommunity.common.shared.skin.manager;
+package com.redefocus.common.shared.skin.manager;
 
 import com.google.common.collect.Maps;
-import com.redecommunity.common.shared.permissions.user.data.User;
-import com.redecommunity.common.shared.permissions.user.manager.UserManager;
-import com.redecommunity.common.shared.skin.dao.SkinDao;
-import com.redecommunity.common.shared.skin.data.Skin;
+import com.redefocus.common.shared.permissions.user.data.User;
+import com.redefocus.common.shared.permissions.user.manager.UserManager;
+import com.redefocus.common.shared.skin.dao.SkinDao;
+import com.redefocus.common.shared.skin.data.Skin;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
