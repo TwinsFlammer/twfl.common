@@ -1,4 +1,4 @@
-package com.redecommunity.common.shared.updater.manager;
+package com.redefocus.common.shared.updater.manager;
 
 /**
  * Created by @SrGutyerrez
