@@ -1,8 +1,8 @@
-package com.redecommunity.common.shared.report.manager;
+package com.redefocus.common.shared.report.manager;
 
 import com.google.common.collect.Lists;
-import com.redecommunity.common.shared.report.dao.ReportReasonDao;
-import com.redecommunity.common.shared.report.data.ReportReason;
+import com.redefocus.common.shared.report.dao.ReportReasonDao;
+import com.redefocus.common.shared.report.data.ReportReason;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
