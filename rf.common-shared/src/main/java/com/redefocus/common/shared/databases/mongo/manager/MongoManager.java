@@ -1,9 +1,9 @@
-package com.redecommunity.common.shared.databases.mongo.manager;
+package com.redefocus.common.shared.databases.mongo.manager;
 
 import com.google.common.collect.Maps;
 import com.mongodb.MongoException;
-import com.redecommunity.common.shared.databases.configuration.DatabaseConfiguration;
-import com.redecommunity.common.shared.databases.mongo.data.Mongo;
+import com.redefocus.common.shared.databases.configuration.DatabaseConfiguration;
+import com.redefocus.common.shared.databases.mongo.data.Mongo;
 import org.json.simple.JSONObject;
 
 import java.util.HashMap;
