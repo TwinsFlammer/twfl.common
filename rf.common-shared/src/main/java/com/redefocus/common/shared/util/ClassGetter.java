@@ -1,4 +1,4 @@
-package com.redecommunity.common.shared.util;
+package com.redefocus.common.shared.util;
 
 import java.io.IOException;
 import java.net.URL;
