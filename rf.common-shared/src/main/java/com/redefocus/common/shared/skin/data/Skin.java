@@ -1,7 +1,7 @@
-package com.redecommunity.common.shared.skin.data;
+package com.redefocus.common.shared.skin.data;
 
 import com.google.common.collect.Maps;
-import com.redecommunity.common.shared.skin.dao.SkinDao;
+import com.redefocus.common.shared.skin.dao.SkinDao;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
