@@ -1,12 +1,12 @@
-package com.redecommunity.common.shared.report.listener;
+package com.redefocus.common.shared.report.listener;
 
-import com.redecommunity.common.shared.databases.redis.handler.JedisMessageListener;
-import com.redecommunity.common.shared.databases.redis.handler.annonation.ChannelName;
-import com.redecommunity.common.shared.databases.redis.handler.event.JedisMessageEvent;
-import com.redecommunity.common.shared.permissions.user.data.User;
-import com.redecommunity.common.shared.permissions.user.manager.UserManager;
-import com.redecommunity.common.shared.report.data.ReportReason;
-import com.redecommunity.common.shared.report.manager.ReportReasonManager;
+import com.redefocus.common.shared.databases.redis.handler.JedisMessageListener;
+import com.redefocus.common.shared.databases.redis.handler.annonation.ChannelName;
+import com.redefocus.common.shared.databases.redis.handler.event.JedisMessageEvent;
+import com.redefocus.common.shared.permissions.user.data.User;
+import com.redefocus.common.shared.permissions.user.manager.UserManager;
+import com.redefocus.common.shared.report.data.ReportReason;
+import com.redefocus.common.shared.report.manager.ReportReasonManager;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 
