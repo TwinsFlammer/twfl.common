@@ -1,7 +1,7 @@
-package com.redecommunity.common.shared.databases.mongo.dao;
+package com.redefocus.common.shared.databases.mongo.dao;
 
-import com.redecommunity.common.shared.Common;
-import com.redecommunity.common.shared.databases.mongo.data.Mongo;
+import com.redefocus.common.shared.Common;
+import com.redefocus.common.shared.databases.mongo.data.Mongo;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.bson.Document;
