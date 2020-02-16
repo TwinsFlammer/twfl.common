@@ -1,8 +1,8 @@
-package com.redecommunity.common.shared.server.runnable;
+package com.redefocus.common.shared.server.runnable;
 
-import com.redecommunity.common.shared.server.dao.ServerDao;
-import com.redecommunity.common.shared.server.data.Server;
-import com.redecommunity.common.shared.server.manager.ServerManager;
+import com.redefocus.common.shared.server.dao.ServerDao;
+import com.redefocus.common.shared.server.data.Server;
+import com.redefocus.common.shared.server.manager.ServerManager;
 
 import java.util.Set;
 
