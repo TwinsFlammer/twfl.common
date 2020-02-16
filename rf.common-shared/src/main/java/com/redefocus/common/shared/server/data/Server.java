@@ -1,10 +1,10 @@
-package com.redecommunity.common.shared.server.data;
+package com.redefocus.common.shared.server.data;
 
 import com.google.common.collect.Maps;
-import com.redecommunity.common.shared.server.dao.ServerDao;
-import com.redecommunity.common.shared.server.enums.ServerType;
-import com.redecommunity.common.shared.server.util.ServerStatus;
-import com.redecommunity.common.shared.util.Helper;
+import com.redefocus.common.shared.server.dao.ServerDao;
+import com.redefocus.common.shared.server.enums.ServerType;
+import com.redefocus.common.shared.server.util.ServerStatus;
+import com.redefocus.common.shared.util.Helper;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
