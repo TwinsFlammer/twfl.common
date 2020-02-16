@@ -1,10 +1,10 @@
-package com.redecommunity.common.shared.server.manager;
+package com.redefocus.common.shared.server.manager;
 
 import com.google.common.collect.Lists;
-import com.redecommunity.common.shared.Common;
-import com.redecommunity.common.shared.server.dao.ServerDao;
-import com.redecommunity.common.shared.server.data.Server;
-import com.redecommunity.common.shared.server.runnable.ServerRefreshRunnable;
+import com.redefocus.common.shared.Common;
+import com.redefocus.common.shared.server.dao.ServerDao;
+import com.redefocus.common.shared.server.data.Server;
+import com.redefocus.common.shared.server.runnable.ServerRefreshRunnable;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
