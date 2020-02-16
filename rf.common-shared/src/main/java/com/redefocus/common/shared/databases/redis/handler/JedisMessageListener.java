@@ -1,4 +1,4 @@
-package com.redecommunity.common.shared.databases.redis.handler;
+package com.redefocus.common.shared.databases.redis.handler;
 
 /**
  * Created by @SrGutyerrez
