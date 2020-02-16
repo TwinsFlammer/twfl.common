@@ -1,10 +1,10 @@
-package com.redecommunity.common.shared.permissions.group.manager;
+package com.redefocus.common.shared.permissions.group.manager;
 
 import com.google.common.collect.Lists;
-import com.redecommunity.common.shared.permissions.group.data.Group;
-import com.redecommunity.common.shared.permissions.permission.dao.PermissionDao;
-import com.redecommunity.common.shared.permissions.permission.data.Permission;
-import com.redecommunity.common.shared.permissions.group.dao.GroupDao;
+import com.redefocus.common.shared.permissions.group.data.Group;
+import com.redefocus.common.shared.permissions.permission.dao.PermissionDao;
+import com.redefocus.common.shared.permissions.permission.data.Permission;
+import com.redefocus.common.shared.permissions.group.dao.GroupDao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
