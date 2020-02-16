@@ -1,4 +1,4 @@
-package com.redecommunity.common.shared.databases.mysql.dao;
+package com.redefocus.common.shared.databases.mysql.dao;
 
 import java.sql.SQLException;
 import java.util.HashMap;
