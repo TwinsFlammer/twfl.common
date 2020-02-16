@@ -1,4 +1,4 @@
-package com.redecommunity.common.shared.server.enums;
+package com.redefocus.common.shared.server.enums;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
