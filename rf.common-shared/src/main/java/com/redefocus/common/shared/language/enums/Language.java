@@ -1,6 +1,6 @@
-package com.redecommunity.common.shared.language.enums;
+package com.redefocus.common.shared.language.enums;
 
-import com.redecommunity.common.shared.Common;
+import com.redefocus.common.shared.Common;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
