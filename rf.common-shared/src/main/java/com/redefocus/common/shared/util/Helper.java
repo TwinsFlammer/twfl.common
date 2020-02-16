@@ -1,4 +1,4 @@
-package com.redecommunity.common.shared.util;
+package com.redefocus.common.shared.util;
 
 import com.google.common.collect.Lists;
 import org.json.simple.JSONArray;
