@@ -1,4 +1,4 @@
-package com.redecommunity.common.shared.permissions.permission.data;
+package com.redefocus.common.shared.permissions.permission.data;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
