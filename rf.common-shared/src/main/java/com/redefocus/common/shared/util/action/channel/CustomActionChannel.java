@@ -1,9 +1,9 @@
-package com.redecommunity.common.shared.util.action.channel;
+package com.redefocus.common.shared.util.action.channel;
 
-import com.redecommunity.common.shared.databases.redis.channel.data.Channel;
-import com.redecommunity.common.shared.databases.redis.data.Redis;
-import com.redecommunity.common.shared.databases.redis.manager.RedisManager;
-import com.redecommunity.common.shared.util.Constants;
+import com.redefocus.common.shared.databases.redis.channel.data.Channel;
+import com.redefocus.common.shared.databases.redis.data.Redis;
+import com.redefocus.common.shared.databases.redis.manager.RedisManager;
+import com.redefocus.common.shared.util.Constants;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.exceptions.JedisDataException;
 
