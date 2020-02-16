@@ -1,7 +1,7 @@
 package com.redecommunity.common.spigot;
 
-import com.redecommunity.common.shared.Common;
-import com.redecommunity.common.shared.updater.data.Updater;
+import com.redefocus.common.shared.Common;
+import com.redefocus.common.shared.updater.data.Updater;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.IOException;
