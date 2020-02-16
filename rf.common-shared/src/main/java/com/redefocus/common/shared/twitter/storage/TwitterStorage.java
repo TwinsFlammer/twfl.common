@@ -1,7 +1,7 @@
-package com.redecommunity.common.shared.twitter.storage;
+package com.redefocus.common.shared.twitter.storage;
 
-import com.redecommunity.common.shared.databases.mysql.dao.Table;
-import com.redecommunity.common.shared.permissions.user.data.User;
+import com.redefocus.common.shared.databases.mysql.dao.Table;
+import com.redefocus.common.shared.permissions.user.data.User;
 import org.json.simple.JSONObject;
 
 import java.sql.Connection;
