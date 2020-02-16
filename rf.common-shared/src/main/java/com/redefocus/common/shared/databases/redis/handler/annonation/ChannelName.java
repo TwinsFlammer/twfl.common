@@ -1,4 +1,4 @@
-package com.redecommunity.common.shared.databases.redis.handler.annonation;
+package com.redefocus.common.shared.databases.redis.handler.annonation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
