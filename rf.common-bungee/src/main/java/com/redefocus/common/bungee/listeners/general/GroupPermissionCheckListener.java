@@ -1,8 +1,8 @@
-package com.redecommunity.common.bungee.listeners.general;
+package com.redefocus.common.bungee.listeners.general;
 
-import com.redecommunity.common.shared.permissions.group.data.Group;
-import com.redecommunity.common.shared.permissions.user.data.User;
-import com.redecommunity.common.shared.permissions.user.manager.UserManager;
+import com.redefocus.common.shared.permissions.group.data.Group;
+import com.redefocus.common.shared.permissions.user.data.User;
+import com.redefocus.common.shared.permissions.user.manager.UserManager;
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
