@@ -1,4 +1,4 @@
-package com.redecommunity.common.shared.util;
+package com.redefocus.common.shared.util;
 
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
