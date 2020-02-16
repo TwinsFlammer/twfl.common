@@ -1,13 +1,13 @@
-package com.redecommunity.common.shared.manager;
+package com.redefocus.common.shared.manager;
 
-import com.redecommunity.common.shared.Common;
-import com.redecommunity.common.shared.databases.mysql.dao.Table;
-import com.redecommunity.common.shared.report.manager.ReportReasonManager;
-import com.redecommunity.common.shared.server.manager.ServerManager;
-import com.redecommunity.common.shared.twitter.manager.TwitterManager;
-import com.redecommunity.common.shared.util.ClassGetter;
-import com.redecommunity.common.shared.permissions.group.manager.GroupManager;
-import com.redecommunity.common.shared.permissions.user.manager.UserManager;
+import com.redefocus.common.shared.Common;
+import com.redefocus.common.shared.databases.mysql.dao.Table;
+import com.redefocus.common.shared.report.manager.ReportReasonManager;
+import com.redefocus.common.shared.server.manager.ServerManager;
+import com.redefocus.common.shared.twitter.manager.TwitterManager;
+import com.redefocus.common.shared.util.ClassGetter;
+import com.redefocus.common.shared.permissions.group.manager.GroupManager;
+import com.redefocus.common.shared.permissions.user.manager.UserManager;
 
 import java.util.Collection;
 import java.util.Collections;
