@@ -1,4 +1,4 @@
-package com.redecommunity.common.shared.util.sound.enums;
+package com.redefocus.common.shared.util.sound.enums;
 
 /**
  * Created by @SrGutyerrez
