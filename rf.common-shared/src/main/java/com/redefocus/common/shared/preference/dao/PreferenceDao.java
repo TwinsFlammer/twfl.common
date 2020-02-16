@@ -1,8 +1,8 @@
-package com.redecommunity.common.shared.preference.dao;
+package com.redefocus.common.shared.preference.dao;
 
-import com.redecommunity.common.shared.databases.mysql.dao.Table;
-import com.redecommunity.common.shared.permissions.user.data.User;
-import com.redecommunity.common.shared.preference.Preference;
+import com.redefocus.common.shared.databases.mysql.dao.Table;
+import com.redefocus.common.shared.permissions.user.data.User;
+import com.redefocus.common.shared.preference.Preference;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
