@@ -1,11 +1,11 @@
-package com.redecommunity.common.shared.skin.dao;
+package com.redefocus.common.shared.skin.dao;
 
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
-import com.redecommunity.common.shared.databases.mysql.dao.Table;
-import com.redecommunity.common.shared.permissions.user.data.User;
-import com.redecommunity.common.shared.skin.data.Skin;
-import com.redecommunity.common.shared.skin.manager.SkinManager;
+import com.redefocus.common.shared.databases.mysql.dao.Table;
+import com.redefocus.common.shared.permissions.user.data.User;
+import com.redefocus.common.shared.skin.data.Skin;
+import com.redefocus.common.shared.skin.manager.SkinManager;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
