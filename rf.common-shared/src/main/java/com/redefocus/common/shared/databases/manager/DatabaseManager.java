@@ -1,11 +1,11 @@
-package com.redecommunity.common.shared.databases.manager;
+package com.redefocus.common.shared.databases.manager;
 
-import com.redecommunity.common.shared.Common;
-import com.redecommunity.common.shared.databases.configuration.DatabaseConfiguration;
-import com.redecommunity.common.shared.databases.mongo.manager.MongoManager;
-import com.redecommunity.common.shared.databases.redis.manager.RedisManager;
-import com.redecommunity.common.shared.databases.runnable.DatabaseRefreshRunnable;
-import com.redecommunity.common.shared.databases.mysql.manager.MySQLManager;
+import com.redefocus.common.shared.Common;
+import com.redefocus.common.shared.databases.configuration.DatabaseConfiguration;
+import com.redefocus.common.shared.databases.mongo.manager.MongoManager;
+import com.redefocus.common.shared.databases.redis.manager.RedisManager;
+import com.redefocus.common.shared.databases.runnable.DatabaseRefreshRunnable;
+import com.redefocus.common.shared.databases.mysql.manager.MySQLManager;
 
 import java.util.concurrent.TimeUnit;
 
