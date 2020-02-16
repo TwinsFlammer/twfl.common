@@ -1,16 +1,16 @@
-package com.redecommunity.common.shared;
+package com.redefocus.common.shared;
 
 import com.google.common.base.Charsets;
 import com.google.common.io.ByteSource;
 import com.google.common.io.Files;
-import com.redecommunity.common.shared.branches.Branch;
-import com.redecommunity.common.shared.databases.manager.DatabaseManager;
-import com.redecommunity.common.shared.databases.redis.channel.manager.ChannelManager;
-import com.redecommunity.common.shared.databases.redis.handler.manager.JedisMessageManager;
-import com.redecommunity.common.shared.language.factory.LanguageFactory;
-import com.redecommunity.common.shared.manager.GlobalManager;
-import com.redecommunity.common.shared.scheduler.SchedulerManager;
-import com.redecommunity.common.shared.util.Printer;
+import com.redefocus.common.shared.branches.Branch;
+import com.redefocus.common.shared.databases.manager.DatabaseManager;
+import com.redefocus.common.shared.databases.redis.channel.manager.ChannelManager;
+import com.redefocus.common.shared.databases.redis.handler.manager.JedisMessageManager;
+import com.redefocus.common.shared.language.factory.LanguageFactory;
+import com.redefocus.common.shared.manager.GlobalManager;
+import com.redefocus.common.shared.scheduler.SchedulerManager;
+import com.redefocus.common.shared.util.Printer;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 
@@ -29,7 +29,7 @@ import java.util.logging.Level;
 public class Common {
     private static Common instance;
 
-    public static final String SERVER_HOME = "/home/redecommunity";
+    public static final String SERVER_HOME = "/root/redefocus";
 
     /**
      * All project static manager
