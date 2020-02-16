@@ -1,6 +1,6 @@
-package com.redecommunity.common.shared.databases.runnable;
+package com.redefocus.common.shared.databases.runnable;
 
-import com.redecommunity.common.shared.Common;
+import com.redefocus.common.shared.Common;
 
 /**
  * Created by @SrGutyerrez
