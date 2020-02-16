@@ -1,4 +1,4 @@
-package com.redecommunity.common.shared.permissions.group;
+package com.redefocus.common.shared.permissions.group;
 
 /**
  * Created by @SrGutyerrez
