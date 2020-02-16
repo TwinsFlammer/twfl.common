@@ -1,8 +1,8 @@
-package com.redecommunity.common.shared.databases.configuration;
+package com.redefocus.common.shared.databases.configuration;
 
 import com.google.common.io.ByteSource;
 import com.google.common.io.Files;
-import com.redecommunity.common.shared.Common;
+import com.redefocus.common.shared.Common;
 import org.apache.commons.io.Charsets;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
