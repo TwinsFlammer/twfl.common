@@ -1,7 +1,7 @@
-package com.redecommunity.common.shared.skin.factory;
+package com.redefocus.common.shared.skin.factory;
 
-import com.redecommunity.common.shared.skin.data.Skin;
-import com.redecommunity.common.shared.util.URLParser;
+import com.redefocus.common.shared.skin.data.Skin;
+import com.redefocus.common.shared.util.URLParser;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
