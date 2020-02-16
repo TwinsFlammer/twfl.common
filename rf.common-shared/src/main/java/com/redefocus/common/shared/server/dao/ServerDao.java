@@ -1,9 +1,9 @@
-package com.redecommunity.common.shared.server.dao;
+package com.redefocus.common.shared.server.dao;
 
 import com.google.common.collect.Sets;
-import com.redecommunity.common.shared.server.manager.ServerManager;
-import com.redecommunity.common.shared.databases.mysql.dao.Table;
-import com.redecommunity.common.shared.server.data.Server;
+import com.redefocus.common.shared.server.manager.ServerManager;
+import com.redefocus.common.shared.databases.mysql.dao.Table;
+import com.redefocus.common.shared.server.data.Server;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
