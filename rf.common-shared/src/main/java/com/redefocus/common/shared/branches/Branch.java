@@ -1,6 +1,6 @@
-package com.redecommunity.common.shared.branches;
+package com.redefocus.common.shared.branches;
 
-import com.redecommunity.common.shared.Common;
+import com.redefocus.common.shared.Common;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
