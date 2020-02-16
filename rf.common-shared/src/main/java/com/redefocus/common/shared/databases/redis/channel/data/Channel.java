@@ -1,6 +1,6 @@
-package com.redecommunity.common.shared.databases.redis.channel.data;
+package com.redefocus.common.shared.databases.redis.channel.data;
 
-import com.redecommunity.common.shared.Common;
+import com.redefocus.common.shared.Common;
 import redis.clients.jedis.JedisPool;
 
 /**
