@@ -1,5 +1,0 @@
-name: Common
-main: com.redecommunity.common.spigot.CommonSpigot
-version: 1.0-SNAPSHOT
-author: Gutyerrez
-load: STARTUP
