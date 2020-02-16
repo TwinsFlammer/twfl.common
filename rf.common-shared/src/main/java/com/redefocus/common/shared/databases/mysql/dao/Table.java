@@ -1,7 +1,7 @@
-package com.redecommunity.common.shared.databases.mysql.dao;
+package com.redefocus.common.shared.databases.mysql.dao;
 
-import com.redecommunity.common.shared.Common;
-import com.redecommunity.common.shared.databases.mysql.data.MySQL;
+import com.redefocus.common.shared.Common;
+import com.redefocus.common.shared.databases.mysql.data.MySQL;
 
 import java.sql.Connection;
 import java.sql.SQLException;
