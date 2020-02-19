@@ -32,6 +32,24 @@ public class Server {
 
     private Integer[] normalStatus;
 
+    public String getDescription() {
+        if (this.description.contains("\\n")) {
+            String[] descriptions = this.description.split("\\\\n");
+
+            StringBuilder stringBuilder = new StringBuilder();
+
+            for (int i = 0; i < descriptions.length; i++) {
+                String description = descriptions[i];
+
+                stringBuilder.append(description)
+                        .append(i+1 >= descriptions.length ? "" : "\n");
+            }
+
+            return stringBuilder.toString();
+        }
+        return this.description;
+    }
+
     /**
      * All status number legend
      *
