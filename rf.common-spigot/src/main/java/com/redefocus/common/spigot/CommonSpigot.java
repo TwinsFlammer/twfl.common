@@ -1,4 +1,4 @@
-package com.redecommunity.common.spigot;
+package com.redefocus.common.spigot;
 
 import com.redefocus.common.shared.Common;
 import com.redefocus.common.shared.updater.data.Updater;
