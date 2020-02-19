@@ -2,6 +2,7 @@ package com.redefocus.common.shared.preference;
 
 import com.google.common.collect.Sets;
 import com.redefocus.common.shared.permissions.user.data.User;
+import com.redefocus.common.shared.server.enums.ServerType;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
@@ -25,7 +26,8 @@ public enum Preference {
             true,
             new String[]{
                     "§7Ver outros jogadores nos lobbies."
-            }
+            },
+            ServerType.LOBBY
     ),
     LOBBY_PROTECTION(
             "lobby_protection",
@@ -39,7 +41,8 @@ public enum Preference {
             new String[]{
                     "§7Requisitar o comando /lobby",
                     "§72 vezes quando estiver em jogo.",
-            }
+            },
+            null
     ),
     BLOOD_EFFECT(
             "blood_effect",
@@ -53,7 +56,8 @@ public enum Preference {
             new String[]{
                     "§7Ver partículas de sangue",
                     "§7ao atacar um jogador em PVP."
-            }
+            },
+            ServerType.FACTIONS
     ),
     MENTION_NOTIFICATIONS(
             "mention_notifications",
@@ -68,7 +72,8 @@ public enum Preference {
                     "§7Receber notificações sonoras sempre",
                     "§7que um jogador te mencionar no chat",
                     "§7dos lobbies."
-            }
+            },
+            ServerType.LOBBY
     ),
     ACTION_BAR_ABILITIES(
             "action_bar_abilities",
@@ -83,7 +88,8 @@ public enum Preference {
                     "§7Ver o nível das habilidades",
                     "§7dos outros jogadores em cima",
                     "§7de sua hotbar."
-            }
+            },
+            ServerType.FACTIONS
     ),
     CHAT_LOCAL(
             "chat_local",
@@ -98,7 +104,8 @@ public enum Preference {
                     "§7Receber as mensagens",
                     "§7enviadas no chat local",
                     "§7por outros jogadores."
-            }
+            },
+            ServerType.FACTIONS
     ),
     CHAT_GLOBAL(
             "chat_global",
@@ -113,7 +120,8 @@ public enum Preference {
                     "§7Receber as mensagens",
                     "§7enviadas no chat global",
                     "§7por outros jogadores."
-            }
+            },
+            ServerType.FACTIONS
     ),
     CHAT_STAFF(
             "chat_staff",
@@ -128,7 +136,8 @@ public enum Preference {
                     "§7Receber as mensagens",
                     "§7enviadas no chat da equipe",
                     "§7por outros jogadores."
-            }
+            },
+            null
     ),
     PERSONAL_MARKET(
             "personal_market",
@@ -143,7 +152,8 @@ public enum Preference {
                     "§7Receber uma notificação quando",
                     "§7um jogador colocar um item a",
                     "§7venda em seu mercado pessoal."
-            }
+            },
+            ServerType.FACTIONS
     ),
     TELEPORT_REQUEST(
             "teleport_request",
@@ -156,7 +166,8 @@ public enum Preference {
             true,
             new String[]{
                     "§7Receber pedidos de teleporte."
-            }
+            },
+            ServerType.FACTIONS
     ),
     MONEY_RECEIVE(
             "money_receive",
@@ -169,7 +180,8 @@ public enum Preference {
             true,
             new String[]{
                     "§7Receber coins de outros jogadores."
-            }
+            },
+            ServerType.FACTIONS
     ),
     UNDER_ATTACK_MESSAGE(
             "under_attack_message",
@@ -184,7 +196,8 @@ public enum Preference {
                     "§7Receber alerta acima de sua",
                     "§7hotbar, indicando que sua",
                     "§7base está sob ataque."
-            }
+            },
+            ServerType.FACTIONS
     ),
     MONEY_RECEIVED_MESSAGE(
             "money_received_message",
@@ -199,7 +212,8 @@ public enum Preference {
                     "§7Receber notificação no",
                     "§7chat sempre que receber",
                     "§7coins."
-            }
+            },
+            ServerType.FACTIONS
     ),
     COMBAT_MESSAGE(
             "combat_message",
@@ -213,7 +227,8 @@ public enum Preference {
             new String[]{
                     "§7Ver o tempo restante para sair",
                     "§7de combate acima da hotbar."
-            }
+            },
+            ServerType.FACTIONS
     ),
     JOIN_MESSAGE(
             "join_message",
@@ -230,7 +245,8 @@ public enum Preference {
                     "§7seu saguão.",
                     "§7Apenas jogadores VIP como você",
                     "§7podem desligar este recurso."
-            }
+            },
+            ServerType.LOBBY
     ),
     PRIVATE_MESSAGE(
             "private_message",
@@ -243,7 +259,8 @@ public enum Preference {
             true,
             new String[]{
                     "§7Receber mensagens privadas."
-            }
+            },
+            null
     );
 
     @Getter
@@ -253,6 +270,8 @@ public enum Preference {
     private final Boolean show;
     @Getter
     private final String[] description;
+    @Getter
+    private final ServerType serverType;
 
     public static <T> Set<T> toPreference(ResultSet resultSet) throws SQLException {
         Set<T> preferences = Sets.newConcurrentHashSet();
