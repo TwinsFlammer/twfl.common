@@ -16,7 +16,7 @@ public class SkinFactory {
         try {
             String uuid = SkinFactory.getUUID(username);
 
-            if (uuid == null) return null;
+            if (uuid == null || uuid.equalsIgnoreCase("null")) return null;
 
             URL url = new URL("https://api.minetools.eu/profile/" + uuid);
 
