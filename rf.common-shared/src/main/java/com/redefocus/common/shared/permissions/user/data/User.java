@@ -521,6 +521,10 @@ public class User {
         return this.changingSkin;
     }
 
+    public Boolean isRegistered() {
+        return this.password != null;
+    }
+
     public void togglePreference(Preference preference, Boolean value) {
         if (value) this.preferences.add(preference);
         else this.preferences.remove(preference);
