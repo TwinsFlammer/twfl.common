@@ -15,17 +15,21 @@ import java.util.HashMap;
 public class MySQLManager {
     private HashMap<String, MySQL> databases = Maps.newHashMap();
 
+    private DatabaseConfiguration databaseConfiguration;
+
     public MySQLManager(DatabaseConfiguration databaseConfiguration) {
-        JSONObject mysql = databaseConfiguration.getMySQL();
+        this.databaseConfiguration = databaseConfiguration;
+
+        this.createConnection("general", "general_" + Common.getBranch().getName());
+    }
+
+    public MySQL createConnection(String name, String database) {
+        JSONObject mysql = this.databaseConfiguration.getMySQL();
 
         String host = (String) mysql.get("host");
         String user = (String) mysql.get("user");
         String password = (String) mysql.get("password");
 
-        this.createConnection("general", host, user, password, "general_" + Common.getBranch().getName());
-    }
-
-    public MySQL createConnection(String name, String host, String user, String password, String database) {
         return this.databases.put(name, new MySQL(host, user, password, database));
     }
 
@@ -44,6 +48,16 @@ public class MySQLManager {
     }
 
     public MySQL getDatabase(String name) {
-        return this.databases.get(name);
+        return this.databases.getOrDefault(
+                name,
+                this.createConnection(name, name)
+        );
+    }
+
+    public MySQL getDatabase(String name, String database) {
+        return this.databases.getOrDefault(
+                name,
+                this.createConnection(name, database)
+        );
     }
 }
