@@ -29,7 +29,7 @@ import java.util.logging.Level;
 public class Common {
     private static Common instance;
 
-    public static final String SERVER_HOME = "/home/redefocus";
+    public static final String SERVER_HOME = "/home/redecommunity";
 
     /**
      * All project static manager
