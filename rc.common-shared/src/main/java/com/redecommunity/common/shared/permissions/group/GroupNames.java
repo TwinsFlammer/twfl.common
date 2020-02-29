@@ -8,5 +8,6 @@ public class GroupNames {
             MANAGER = "director",
             ADMINISTRATOR = "administrator",
             MODERATOR = "moderator",
-            HELPER = "helper";
+            HELPER = "helper",
+            DEFAULT = "default";
 }
