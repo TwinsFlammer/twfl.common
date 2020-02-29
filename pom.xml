@@ -4,9 +4,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <modules>
-        <module>rf.common-bungee</module>
-        <module>rf.common-spigot</module>
-        <module>rf.common-shared</module>
+        <module>rc.common-bungee</module>
+        <module>rc.common-spigot</module>
+        <module>rc.common-shared</module>
     </modules>
 
     <parent>
