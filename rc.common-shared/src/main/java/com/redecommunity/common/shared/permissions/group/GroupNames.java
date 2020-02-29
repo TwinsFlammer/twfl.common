@@ -5,7 +5,7 @@ package com.redecommunity.common.shared.permissions.group;
  */
 public class GroupNames {
     public static final String MASTER = "master",
-            MANAGER = "manager",
+            MANAGER = "director",
             ADMINISTRATOR = "administrator",
             MODERATOR = "moderator",
             HELPER = "helper";
