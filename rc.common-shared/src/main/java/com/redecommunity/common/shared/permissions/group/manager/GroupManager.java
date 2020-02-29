@@ -1,6 +1,7 @@
 package com.redecommunity.common.shared.permissions.group.manager;
 
 import com.google.common.collect.Lists;
+import com.redecommunity.common.shared.permissions.group.GroupNames;
 import com.redecommunity.common.shared.permissions.group.data.Group;
 import com.redecommunity.common.shared.permissions.permission.dao.PermissionDao;
 import com.redecommunity.common.shared.permissions.permission.data.Permission;
@@ -26,6 +27,22 @@ public class GroupManager {
         GroupManager.groups.addAll(groups1);
 
         Set<Permission> permissions = permissionDao.findAll();
+
+        if (permissions.isEmpty()) {
+            Group MASTER = GroupManager.generateGroup(1, GroupNames.MASTER, "[Mestre] ", "", "6", 100, 1, -1L, 0),
+                    DIRECTOR = GroupManager.generateGroup(1, GroupNames.MASTER, "[Diretor] ", "", "6", 100, 1, -1L, 0),
+                    ADMINISTRATOR = GroupManager.generateGroup(1, GroupNames.MASTER, "[Admin] ", "", "6", 100, 1, -1L, 0),
+                    MODERATOR = GroupManager.generateGroup(1, GroupNames.MASTER, "[Moderador] ", "", "6", 100, 1, -1L, 0),
+                    HELPER = GroupManager.generateGroup(1, GroupNames.MASTER, "[Ajudante] ", "", "6", 100, 1, -1L, 0);
+
+            groupDao.insert(
+                    MASTER,
+                    DIRECTOR,
+                    ADMINISTRATOR,
+                    MODERATOR,
+                    HELPER
+            );
+        }
 
         permissions.forEach(permission -> {
             Integer groupId = permission.getGroupId();
@@ -77,6 +94,21 @@ public class GroupManager {
                 resultSet.getInt("tab_list_order"),
                 resultSet.getLong("discord_group_id"),
                 resultSet.getInt("server_id"),
+                Lists.newArrayList()
+        );
+    }
+
+    private static Group generateGroup(Integer id, String name, String prefix, String suffix, String color, Integer priority, Integer tabListOrder, Long discordGroupId, Integer serverId) {
+        return new Group(
+                id,
+                name,
+                prefix,
+                suffix,
+                color,
+                priority,
+                tabListOrder,
+                discordGroupId,
+                serverId,
                 Lists.newArrayList()
         );
     }
