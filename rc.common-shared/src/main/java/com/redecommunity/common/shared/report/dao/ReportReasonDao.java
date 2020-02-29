@@ -22,7 +22,7 @@ public class ReportReasonDao extends Table {
 
     @Override
     public String getTableName() {
-        return "server_report_reasons";
+        return "server_report_reason";
     }
 
     @Override
