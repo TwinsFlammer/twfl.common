@@ -30,10 +30,10 @@ public class GroupManager {
 
         if (permissions.isEmpty()) {
             Group MASTER = GroupManager.generateGroup(1, GroupNames.MASTER, "[Mestre] ", "", "6", 100, 1, -1L, 0),
-                    DIRECTOR = GroupManager.generateGroup(1, GroupNames.MASTER, "[Diretor] ", "", "6", 100, 1, -1L, 0),
-                    ADMINISTRATOR = GroupManager.generateGroup(1, GroupNames.MASTER, "[Admin] ", "", "6", 100, 1, -1L, 0),
-                    MODERATOR = GroupManager.generateGroup(1, GroupNames.MASTER, "[Moderador] ", "", "6", 100, 1, -1L, 0),
-                    HELPER = GroupManager.generateGroup(1, GroupNames.MASTER, "[Ajudante] ", "", "6", 100, 1, -1L, 0);
+                    DIRECTOR = GroupManager.generateGroup(2, GroupNames.MASTER, "[Diretor] ", "", "6", 100, 1, -1L, 0),
+                    ADMINISTRATOR = GroupManager.generateGroup(3, GroupNames.MASTER, "[Admin] ", "", "6", 100, 1, -1L, 0),
+                    MODERATOR = GroupManager.generateGroup(4, GroupNames.MASTER, "[Moderador] ", "", "6", 100, 1, -1L, 0),
+                    HELPER = GroupManager.generateGroup(5, GroupNames.MASTER, "[Ajudante] ", "", "6", 100, 1, -1L, 0);
 
             groupDao.insert(
                     MASTER,
