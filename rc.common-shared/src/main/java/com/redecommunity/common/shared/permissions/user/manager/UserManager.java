@@ -25,6 +25,17 @@ import java.util.stream.Collectors;
 public class UserManager {
     private static final List<User> users = Lists.newArrayList();
 
+    public UserManager() {
+        UserDao userDao = new UserDao();
+
+        User user = UserManager.generateUser(
+                "CONSOLE",
+                UUID.randomUUID()
+        );
+
+        userDao.insert(user);
+    }
+
     public static List<User> getUsers() {
         return UserManager.users;
     }
