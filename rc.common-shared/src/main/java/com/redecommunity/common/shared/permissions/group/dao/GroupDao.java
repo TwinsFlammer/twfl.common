@@ -9,6 +9,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -45,6 +47,56 @@ public class GroupDao extends Table {
                         this.getTableName()
                 )
         );
+    }
+
+    public <T extends Group> void insert(T... groups) {
+        Arrays.asList(groups).forEach(group -> {
+            String query = String.format(
+                    "INSERT INTO %s " +
+                            "(" +
+                            "`id`," +
+                            "`name`," +
+                            "`prefix`," +
+                            "`suffix`," +
+                            "`color`," +
+                            "`priority`," +
+                            "`tab_list_order`," +
+                            "`discord_group_id`," +
+                            "`server_id`" +
+                            ")" +
+                            " VALUES " +
+                            "(" +
+                            "%d," +
+                            "'%s'," +
+                            "'%s'," +
+                            "'%s'," +
+                            "'%s'," +
+                            "%d," +
+                            "%d," +
+                            "%d," +
+                            "%d" +
+                            ");",
+                    this.getTableName(),
+                    group.getId(),
+                    group.getName(),
+                    group.getPrefix(),
+                    group.getSuffix(),
+                    group.getColor(),
+                    group.getPriority(),
+                    group.getTabListListOrder(),
+                    group.getDiscordGroupId(),
+                    group.getServerId()
+            );
+
+            try (
+                    Connection connection = this.getConnection();
+                    PreparedStatement preparedStatement = connection.prepareStatement(query);
+            ) {
+                preparedStatement.execute();
+            } catch (SQLException exception) {
+                exception.printStackTrace();
+            }
+        });
     }
 
     @Override
