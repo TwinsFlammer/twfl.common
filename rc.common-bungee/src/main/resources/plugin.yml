@@ -1,5 +1,5 @@
 name: Common
-main: com.redecommunity.common.spigot.CommonSpigot
+main: com.redecommunity.common.bungee.CommonBungee
 version: 1.0-SNAPSHOT
 author: Gutyerrez
 load: STARTUP

@@ -9,9 +9,9 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>common-spigot</artifactId>
+    <artifactId>common-bungee</artifactId>
 
-    <name>Common-Spigot</name>
+    <name>Common-Bungee</name>
 
     <properties>
         <project.build.targetSource>UTF-8</project.build.targetSource>
@@ -20,13 +20,12 @@
     </properties>
 
     <dependencies>
-        <!-- spigot -->
+        <!-- bungeecord -->
         <dependency>
-            <groupId>org.spigotmc</groupId>
-            <artifactId>spigot</artifactId>
-            <version>1.8.8-R0.1-SNAPSHOT</version>
+            <groupId>net.md-5</groupId>
+            <artifactId>bungeecord-proxy</artifactId>
+            <version>1.15-SNAPSHOT</version>
         </dependency>
-        <!-- common -->
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>common-shared</artifactId>

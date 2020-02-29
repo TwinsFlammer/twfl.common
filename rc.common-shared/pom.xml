@@ -9,28 +9,28 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>common-spigot</artifactId>
+    <artifactId>common-shared</artifactId>
 
-    <name>Common-Spigot</name>
+    <name>Common-Shared</name>
 
     <properties>
-        <project.build.targetSource>UTF-8</project.build.targetSource>
-        <maven.compiler.source>1.8</maven.compiler.source>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.source>1.8</maven.compiler.source>
     </properties>
 
     <dependencies>
-        <!-- spigot -->
+        <!-- https://mvnrepository.com/artifact/commons-codec/commons-codec -->
         <dependency>
-            <groupId>org.spigotmc</groupId>
-            <artifactId>spigot</artifactId>
-            <version>1.8.8-R0.1-SNAPSHOT</version>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+            <version>1.9</version>
         </dependency>
-        <!-- common -->
+        <!-- https://mvnrepository.com/artifact/org.yaml/snakeyaml -->
         <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>common-shared</artifactId>
-            <version>${project.version}</version>
+            <groupId>org.yaml</groupId>
+            <artifactId>snakeyaml</artifactId>
+            <version>1.13</version>
         </dependency>
     </dependencies>
 
@@ -114,7 +114,7 @@
                 <version>3.0.1</version>
             </plugin>
         </plugins>
-        <finalName>${project.name}</finalName>
+        <finalName>Common</finalName>
         <sourceDirectory>src/main/java</sourceDirectory>
         <resources>
             <resource>
