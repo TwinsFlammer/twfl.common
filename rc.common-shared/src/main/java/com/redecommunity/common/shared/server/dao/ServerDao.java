@@ -24,7 +24,7 @@ public class ServerDao extends Table {
 
     @Override
     public String getTableName() {
-        return "server_servers";
+        return "server_server";
     }
 
     @Override
