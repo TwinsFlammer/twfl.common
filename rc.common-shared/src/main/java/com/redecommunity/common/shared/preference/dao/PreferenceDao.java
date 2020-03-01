@@ -22,7 +22,7 @@ public class PreferenceDao extends Table {
 
     @Override
     public String getTableName() {
-        return "server_user_preferences";
+        return "server_user_preference";
     }
 
     @Override
