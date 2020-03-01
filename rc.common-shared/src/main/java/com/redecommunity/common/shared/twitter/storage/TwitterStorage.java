@@ -20,7 +20,7 @@ public class TwitterStorage extends Table {
 
     @Override
     public String getTableName() {
-        return "server_twitter_request_tokens";
+        return "server_twitter_request_token";
     }
 
     @Override
