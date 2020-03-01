@@ -28,7 +28,7 @@ public class GroupManager {
 
         Set<Permission> permissions = permissionDao.findAll();
 
-        if (permissions.isEmpty()) {
+        if (groups1.isEmpty()) {
             Group MASTER = GroupManager.generateGroup(1, GroupNames.MASTER, "[Mestre] ", "", "6", 100, 1, -1L, 0),
                     DIRECTOR = GroupManager.generateGroup(2, GroupNames.MANAGER, "[Diretor] ", "", "3", 95, 2, -1L, 0),
                     ADMINISTRATOR = GroupManager.generateGroup(3, GroupNames.ADMINISTRATOR, "[Admin] ", "", "c", 90, 3, -1L, 0),
