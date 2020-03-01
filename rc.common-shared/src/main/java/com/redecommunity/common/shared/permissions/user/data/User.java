@@ -69,7 +69,7 @@ public class User {
     @Getter
     private String twitterAccessToken, twitterTokenSecret;
     @Getter
-    private Collection<UserGroup> groups;
+    private final List<UserGroup> groups;
     @Getter
     private final List<Preference> preferences;
     @Getter
