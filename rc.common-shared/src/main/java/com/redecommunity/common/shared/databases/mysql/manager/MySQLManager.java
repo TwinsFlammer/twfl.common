@@ -21,6 +21,8 @@ public class MySQLManager {
         this.databaseConfiguration = databaseConfiguration;
 
         this.createConnection("general", "general_" + Common.getBranch().getName());
+
+        this.refresh();
     }
 
     public MySQL createConnection(String name, String database) {
