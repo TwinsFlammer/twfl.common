@@ -30,17 +30,18 @@ public class MySQLManager {
         String user = (String) mysql.get("user");
         String password = (String) mysql.get("password");
 
-        return this.databases.put(name, new MySQL(host, user, password, database));
+        MySQL mySQL = new MySQL(host, user, password, database);
+
+        mySQL.start();
+
+        this.databases.put(name, mySQL);
+
+        return mySQL;
     }
 
     public void refresh() {
-        this.databases.values().forEach(mySQL -> {
-            try {
-                mySQL.refresh();
-            } catch (SQLException exception) {
-                exception.printStackTrace();
-            }
-        });
+        this.databases.values()
+                .forEach(MySQL::refresh);
     }
 
     public HashMap<String, MySQL> getDatabases() {
