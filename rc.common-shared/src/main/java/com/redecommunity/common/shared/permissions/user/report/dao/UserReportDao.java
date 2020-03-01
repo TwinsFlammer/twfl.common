@@ -23,7 +23,7 @@ public class UserReportDao extends Table {
 
     @Override
     public String getTableName() {
-        return "server_report_users";
+        return "server_report_user";
     }
 
     @Override
