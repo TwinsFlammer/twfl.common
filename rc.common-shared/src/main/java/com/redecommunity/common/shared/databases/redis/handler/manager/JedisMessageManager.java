@@ -1,9 +1,11 @@
 package com.redecommunity.common.shared.databases.redis.handler.manager;
 
 import com.google.common.collect.Lists;
+import com.redecommunity.common.shared.Common;
 import com.redecommunity.common.shared.databases.redis.handler.JedisMessageListener;
 import com.redecommunity.common.shared.databases.redis.handler.annonation.ChannelName;
 import com.redecommunity.common.shared.databases.redis.handler.event.JedisMessageEvent;
+import com.redecommunity.common.shared.util.ClassGetter;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -16,6 +18,20 @@ import java.util.stream.Collectors;
  */
 public class JedisMessageManager {
     private List<JedisMessageListener> listeners = Lists.newArrayList();
+
+    public JedisMessageManager() {
+        ClassGetter.getClassesForPackage(Common.class).forEach(clazz -> {
+            if (JedisMessageListener.class.isAssignableFrom(clazz) && !clazz.equals(JedisMessageListener.class)) {
+                try {
+                    JedisMessageListener jedisMessageListener = (JedisMessageListener) clazz.newInstance();
+
+                    this.registerListener(jedisMessageListener);
+                } catch (InstantiationException | IllegalAccessException exception) {
+                    exception.printStackTrace();
+                }
+            }
+        });
+    }
 
     public Boolean registerListener(JedisMessageListener listener) {
         return this.listeners.add(listener);
