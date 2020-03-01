@@ -21,8 +21,6 @@ public class MySQLManager {
         this.databaseConfiguration = databaseConfiguration;
 
         this.createConnection("general", "general_" + Common.getBranch().getName());
-
-        this.refresh();
     }
 
     public MySQL createConnection(String name, String database) {
@@ -50,16 +48,8 @@ public class MySQLManager {
     }
 
     public MySQL getDatabase(String name) {
-        return this.databases.getOrDefault(
-                name,
-                this.createConnection(name, name)
-        );
-    }
-
-    public MySQL getDatabase(String name, String database) {
-        return this.databases.getOrDefault(
-                name,
-                this.createConnection(name, database)
+        return this.databases.get(
+                name
         );
     }
 }
