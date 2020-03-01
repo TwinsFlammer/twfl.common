@@ -21,7 +21,7 @@ public class FriendStorage extends Table {
 
     @Override
     public String getTableName() {
-        return "server_user_friends";
+        return "server_user_friend";
     }
 
     @Override
