@@ -14,4 +14,5 @@ public class Constants {
     public static final String SOUND_CHANNEL = "sound_channel";
     public static final String CUSTOM_TITLE_CHANNEL = "custom_title_channel";
     public static final String CUSTOM_ACTION_CHANNEL = "custom_action_channel";
+    public static final String USER_GROUP_CHANNEL = "user_group_channel";
 }
