@@ -15,7 +15,7 @@ public class MySQL {
 
     private HikariDataSource hikariDataSource;
 
-    public void start() throws SQLException {
+    public void start() {
         HikariConfig hikariConfig = new HikariConfig();
 
         hikariConfig.setJdbcUrl(
@@ -43,7 +43,7 @@ public class MySQL {
         this.hikariDataSource = new HikariDataSource(hikariConfig);
     }
 
-    public void refresh() throws SQLException {
+    public void refresh() {
         if (this.isClosed()) this.start();
     }
 
