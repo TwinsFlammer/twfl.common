@@ -40,6 +40,11 @@ public class UserManager {
         return UserManager.users;
     }
 
+    public static void unloadUser(Integer userId) {
+        UserManager.users.removeIf(user -> user != null && userId.equals(user.getId()));
+    }
+
+    @Deprecated
     public static void removeUser(Integer userId) {
         UserManager.users.removeIf(user -> user != null && userId.equals(user.getId()));
     }
