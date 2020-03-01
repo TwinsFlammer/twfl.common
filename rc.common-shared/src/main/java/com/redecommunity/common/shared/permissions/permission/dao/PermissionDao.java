@@ -22,7 +22,7 @@ public class PermissionDao extends Table {
 
     @Override
     public String getTableName() {
-        return "server_permissions";
+        return "server_permission";
     }
 
     @Override
