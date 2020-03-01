@@ -35,7 +35,10 @@ public abstract class Table implements ITable {
     }
 
     private MySQL getMySQL() {
-        return Common.getInstance().getDatabaseManager().getMySQLManager().getDatabase(this.getDatabaseName());
+        return Common.getInstance()
+                .getDatabaseManager()
+                .getMySQLManager()
+                .getDatabase(this.getDatabaseName());
     }
 
     public <K, V> String generateWhere(HashMap<K, V> keys) {
