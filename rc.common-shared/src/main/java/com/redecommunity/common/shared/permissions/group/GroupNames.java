@@ -9,5 +9,6 @@ public class GroupNames {
             ADMINISTRATOR = "administrator",
             MODERATOR = "moderator",
             HELPER = "helper",
+            ELITE = "elite",
             DEFAULT = "default";
 }
