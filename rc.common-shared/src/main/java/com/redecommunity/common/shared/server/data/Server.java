@@ -164,7 +164,7 @@ public class Server {
     }
 
     public Boolean isAccessible() {
-        return this.status == 0 || this.status == 1 || this.status == 2;
+        return this.status == 1 || this.status == 2;
     }
 
     public Boolean inMaintenance() {
@@ -177,5 +177,9 @@ public class Server {
 
     public Boolean inDevelopment() {
         return this.status == 5;
+    }
+
+    public Boolean inBetaVip() {
+        return this.status == 2;
     }
 }
