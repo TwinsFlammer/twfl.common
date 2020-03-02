@@ -2,6 +2,7 @@ package com.redecommunity.common.shared.permissions.user.data;
 
 import com.redecommunity.common.shared.friend.storage.FriendStorage;
 import com.redecommunity.common.shared.ignored.storage.IgnoredStorage;
+import com.redecommunity.common.shared.permissions.group.GroupNames;
 import com.redecommunity.common.shared.permissions.group.data.Group;
 import com.redecommunity.common.shared.permissions.group.manager.GroupManager;
 import com.redecommunity.common.shared.preference.Preference;
@@ -523,6 +524,10 @@ public class User {
 
     public Boolean isRegistered() {
         return this.password != null;
+    }
+
+    public Boolean isVIP() {
+        return this.hasGroup(GroupNames.ELITE);
     }
 
     public void togglePreference(Preference preference, Boolean value) {
