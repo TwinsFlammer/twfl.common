@@ -33,7 +33,6 @@ import twitter4j.Twitter;
 import twitter4j.TwitterFactory;
 import twitter4j.auth.AccessToken;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
@@ -82,7 +81,7 @@ public class User {
     @Getter
     private final List<Skin> skins;
 
-    private Boolean logged, changingSkin;
+    private Boolean logged, changingSkin, waitingTabListRefresh;
 
     public String getPrefix() {
         return this.getHighestGroup().getColor() + this.getHighestGroup().getPrefix();
@@ -528,6 +527,10 @@ public class User {
 
     public Boolean isVIP() {
         return this.hasGroup(GroupNames.ELITE);
+    }
+
+    public Boolean isWaitingTabListRefresh() {
+        return this.waitingTabListRefresh;
     }
 
     public void togglePreference(Preference preference, Boolean value) {
