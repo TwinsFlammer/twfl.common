@@ -3,7 +3,10 @@ package com.redecommunity.common.shared.permissions.user.manager;
 import com.google.common.collect.Lists;
 import com.redecommunity.common.shared.friend.storage.FriendStorage;
 import com.redecommunity.common.shared.ignored.storage.IgnoredStorage;
+import com.redecommunity.common.shared.permissions.group.GroupNames;
 import com.redecommunity.common.shared.permissions.user.dao.UserDao;
+import com.redecommunity.common.shared.permissions.user.group.dao.UserGroupDao;
+import com.redecommunity.common.shared.permissions.user.group.data.UserGroup;
 import com.redecommunity.common.shared.report.data.ReportReason;
 import com.redecommunity.common.shared.permissions.group.data.Group;
 import com.redecommunity.common.shared.permissions.group.manager.GroupManager;
@@ -28,12 +31,31 @@ public class UserManager {
     public UserManager() {
         UserDao userDao = new UserDao();
 
-        User user = UserManager.generateUser(
-                "CONSOLE",
-                UUID.randomUUID()
-        );
+        User user = UserManager.getUser("console");
 
-        userDao.insert(user);
+        if (user == null) {
+            user = UserManager.generateUser(
+                    "CONSOLE",
+                    UUID.fromString("00000000-0000-0000-0000-000000000000")
+            );
+
+            userDao.insert(user);
+
+            Group group = GroupManager.getGroup(GroupNames.MASTER);
+
+            UserGroup userGroup = new UserGroup(
+                    group,
+                    null,
+                    -1L
+            );
+
+            UserGroupDao userGroupDao = new UserGroupDao();
+
+            userGroupDao.insert(
+                    user,
+                    userGroup
+            );
+        }
     }
 
     public static List<User> getUsers() {
@@ -154,6 +176,7 @@ public class UserManager {
                 null,
                 null,
                 false,
+                false,
                 false
         );
     }
@@ -201,6 +224,7 @@ public class UserManager {
                 Lists.newArrayList(),
                 Lists.newArrayList(),
                 Lists.newArrayList(),
+                false,
                 false,
                 false
         );
