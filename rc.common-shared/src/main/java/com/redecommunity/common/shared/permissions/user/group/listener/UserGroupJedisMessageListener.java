@@ -56,5 +56,7 @@ public class UserGroupJedisMessageListener implements JedisMessageListener {
 
             if (userGroup != null) user.getGroups().remove(userGroup);
         }
+
+        user.setWaitingTabListRefresh(true);
     }
 }
