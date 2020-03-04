@@ -34,6 +34,7 @@ public class GroupManager {
                     ADMINISTRATOR = GroupManager.generateGroup(3, GroupNames.ADMINISTRATOR, "[Admin] ", "", "c", 90, 3, -1L, 0),
                     MODERATOR = GroupManager.generateGroup(4, GroupNames.MODERATOR, "[Moderador] ", "", "2", 85, 4, -1L, 0),
                     HELPER = GroupManager.generateGroup(5, GroupNames.HELPER, "[Ajudante] ", "", "a", 80, 5, -1L, 0),
+                    ELITE = GroupManager.generateGroup(6, GroupNames.ELITE, "[Elite] ", "", "3", 75, 6, -1L, 0),
                     DEFAULT = GroupManager.generateGroup(15, GroupNames.DEFAULT, "", "", "7", 0, 15, -1L, 0);
 
             groupDao.insert(
@@ -42,6 +43,7 @@ public class GroupManager {
                     ADMINISTRATOR,
                     MODERATOR,
                     HELPER,
+                    ELITE,
                     DEFAULT
             );
         }
