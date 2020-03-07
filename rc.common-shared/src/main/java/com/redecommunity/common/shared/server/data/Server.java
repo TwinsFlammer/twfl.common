@@ -80,14 +80,14 @@ public class Server {
     public String getStatusString() {
         switch (this.status) {
             case -1: return "[RESTRITO]";
-            case 0: return null;
+            case 0: return this.online ? "§eClique para entrar!" : "§cOffline";
             case 1: return "§eBeta aberta!";
             case 2: return "§eBeta VIP";
             case 3: return "§cEm manutenção";
             case 4: return "§cReiniciando";
             case 5: return "§cEm desenvolvimento";
-            default: return this.online ? "§eClique para entrar!" : "§cOffline";
         }
+        return null;
     }
 
     public Boolean isSimilar(Server server) {
@@ -164,7 +164,7 @@ public class Server {
     }
 
     public Boolean isAccessible() {
-        return this.status == 1 || this.status == 2;
+        return this.status == 0 || this.status == 1 || this.status == 2;
     }
 
     public Boolean inMaintenance() {
