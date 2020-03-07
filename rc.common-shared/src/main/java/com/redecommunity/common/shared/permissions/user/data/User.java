@@ -81,7 +81,7 @@ public class User {
     @Getter
     private final List<Skin> skins;
 
-    private Boolean logged, changingSkin, waitingTabListRefresh;
+    private Boolean changingSkin, waitingTabListRefresh;
 
     public String getPrefix() {
         return this.getHighestGroup().getColor() + this.getHighestGroup().getPrefix();
@@ -199,6 +199,18 @@ public class User {
     public void setOffline() {
         try (Jedis jedis = this.getRedis().getJedisPool().getResource()) {
             jedis.hdel("users", "id" + this.id);
+        } catch (JedisDataException exception) {
+            exception.printStackTrace();
+        }
+    }
+
+    public void setLogged(Boolean logged) {
+        try (Jedis jedis = this.getRedis().getJedisPool().getResource()) {
+            if (logged) {
+                jedis.hset("logged_users", "id" + this.id, String.valueOf(true));
+            } else {
+                jedis.hdel("logged_users", "id" + this.id);
+            }
         } catch (JedisDataException exception) {
             exception.printStackTrace();
         }
@@ -485,7 +497,13 @@ public class User {
     }
 
     public Boolean isLogged() {
-        return this.logged;
+        try (Jedis jedis = this.getRedis().getJedisPool().getResource()) {
+            return jedis.hexists("logged_users", "id" + this.id);
+        } catch (JedisDataException exception) {
+            exception.printStackTrace();
+        }
+
+        return false;
     }
 
     public Boolean isIgnoring(Integer userId) {
