@@ -9,11 +9,21 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @Getter
 public enum ServerType {
-    LOGIN("login-"),
-    LOBBY("lobby-"),
-    FACTIONS("factions-");
+    LOGIN(
+            "login-",
+            "Login"
+    ),
+    LOBBY(
+            "lobby-",
+            "Saguão"
+    ),
+    FACTIONS(
+            "factions-",
+            "Factions"
+    );
 
     private final String prefix;
+    private final String categoryName;
 
     public Boolean isValid(String name) {
         return name.startsWith(this.prefix);
