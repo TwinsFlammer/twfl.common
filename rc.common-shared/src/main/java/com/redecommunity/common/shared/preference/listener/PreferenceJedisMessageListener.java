@@ -32,7 +32,8 @@ public class PreferenceJedisMessageListener implements JedisMessageListener {
 
         user.togglePreference(
                 preference,
-                action
+                action,
+                false
         );
     }
 }
