@@ -552,8 +552,14 @@ public class User {
     }
 
     public void togglePreference(Preference preference, Boolean value) {
+        this.togglePreference(preference, value, true);
+    }
+
+    public void togglePreference(Preference preference, Boolean value, Boolean sendRedisMessage) {
         if (value) this.preferences.add(preference);
         else this.preferences.remove(preference);
+
+        if (!preference.isGlobal() || !sendRedisMessage) return;
 
         JSONObject jsonObject = new JSONObject();
 
