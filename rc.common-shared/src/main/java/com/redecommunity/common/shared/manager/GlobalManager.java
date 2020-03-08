@@ -1,5 +1,6 @@
 package com.redecommunity.common.shared.manager;
 
+import com.redecommunity.common.shared.cooldown.manager.CooldownManager;
 import com.redecommunity.common.shared.databases.mysql.dao.Table;
 import com.redecommunity.common.shared.report.manager.ReportReasonManager;
 import com.redecommunity.common.shared.server.manager.ServerManager;
@@ -25,6 +26,8 @@ public class GlobalManager {
         new TableManager();
         // CONSTRUCT ALL DATA MANAGER
         new DataManager();
+
+        new CooldownManager();
     }
 }
 
