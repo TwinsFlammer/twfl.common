@@ -21,6 +21,9 @@ import com.redecommunity.common.shared.permissions.user.report.dao.UserReportDao
 import com.redecommunity.common.shared.skin.dao.SkinDao;
 import com.redecommunity.common.shared.skin.data.Skin;
 import com.redecommunity.common.shared.util.Constants;
+import com.redecommunity.common.shared.util.action.channel.CustomActionChannel;
+import com.redecommunity.common.shared.util.sound.channel.SoundChannel;
+import com.redecommunity.common.shared.util.sound.enums.Sound;
 import com.redecommunity.common.shared.util.title.channel.CustomTitleChannel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -379,6 +382,38 @@ public class User {
         CustomTitleChannel customTitleChannel = new CustomTitleChannel();
 
         customTitleChannel.sendMessage(jsonObject.toString());
+    }
+
+    public void sendAction(String message) {
+        this.sendAction(
+                message,
+                false
+        );
+    }
+
+    public void sendAction(String message, Boolean stay) {
+        JSONObject jsonObject = new JSONObject();
+
+        jsonObject.put("user_id", this.id);
+        jsonObject.put("message", message);
+        jsonObject.put("stay", stay);
+
+        CustomActionChannel customActionChannel = new CustomActionChannel();
+
+        customActionChannel.sendMessage(jsonObject.toString());
+    }
+
+    public void playSound(Sound sound, Float volume1, Float volume2) {
+        JSONObject jsonObject = new JSONObject();
+
+        jsonObject.put("user_id", this.id);
+        jsonObject.put("sound", sound);
+        jsonObject.put("volume_1", volume1);
+        jsonObject.put("volume_2", volume2);
+
+        SoundChannel soundChannel = new SoundChannel();
+
+        soundChannel.sendMessage(jsonObject.toString());
     }
 
     public <T> T getJSONConnection() {
