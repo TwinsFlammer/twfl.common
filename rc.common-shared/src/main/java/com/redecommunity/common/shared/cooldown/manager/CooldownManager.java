@@ -10,7 +10,11 @@ import java.util.List;
  * Created by @SrGutyerrez
  */
 public class CooldownManager {
-    private static List<Cooldown> COOLDOWNS = Lists.newArrayList();
+    private static List<Cooldown> cooldowns = Lists.newArrayList();
+
+    public static List<Cooldown> getCooldowns() {
+        return CooldownManager.cooldowns;
+    }
 
     public static <T> void startCooldown(User user, Long duration, T clazz) {
         Cooldown cooldown = new Cooldown(
@@ -19,11 +23,11 @@ public class CooldownManager {
                 clazz
         );
 
-        CooldownManager.COOLDOWNS.add(cooldown);
+        CooldownManager.cooldowns.add(cooldown);
     }
 
     public static <T> Boolean inCooldown(User user, T clazz) {
-        return CooldownManager.COOLDOWNS
+        return CooldownManager.cooldowns
                 .stream()
                 .anyMatch(cooldown -> {
                     if (cooldown.getUserId().equals(user.getId()) && cooldown.getClazz().equals(clazz))
