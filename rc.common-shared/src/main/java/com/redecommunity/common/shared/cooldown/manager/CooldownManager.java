@@ -16,24 +16,44 @@ public class CooldownManager {
         return CooldownManager.cooldowns;
     }
 
-    public static <T> void startCooldown(User user, Long duration, T clazz) {
+    public static <T> void startCooldown(User user, Long duration, T object) {
         Cooldown cooldown = new Cooldown(
                 user.getId(),
                 System.currentTimeMillis() + duration,
-                clazz
+                object
         );
 
         CooldownManager.cooldowns.add(cooldown);
     }
 
-    public static <T> Boolean inCooldown(User user, T clazz) {
+    public static <T> Boolean inCooldown(User user, T object) {
         return CooldownManager.cooldowns
                 .stream()
                 .anyMatch(cooldown -> {
-                    if (cooldown.getUserId().equals(user.getId()) && cooldown.getClazz().equals(clazz))
+                    if (cooldown.getUserId().equals(user.getId()) && cooldown.getClazz().equals(object))
                         return cooldown.inCooldown();
 
                     return false;
                 });
+    }
+
+    public static <T> Long getRemainingTime(User user, T object) {
+        return CooldownManager.cooldowns
+                .stream()
+                .filter(cooldown -> {
+                    if (cooldown.getUserId().equals(user.getId()) && cooldown.getClazz().equals(object))
+                        return cooldown.inCooldown();
+
+                    return false;
+                })
+                .findFirst()
+                .map(cooldown -> cooldown.getEndTime() - System.currentTimeMillis())
+                .orElseGet(System::currentTimeMillis);
+    }
+
+    private static void removeExpired() {
+        CooldownManager.cooldowns.removeIf(cooldown ->
+                !cooldown.inCooldown()
+        );
     }
 }
