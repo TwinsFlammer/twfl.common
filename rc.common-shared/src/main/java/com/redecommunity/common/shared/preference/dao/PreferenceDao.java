@@ -64,28 +64,28 @@ public class PreferenceDao extends Table {
         );
     }
 
-    public <T extends User, K, V> void insert(T object, HashMap<K, V> keys) {
+    public <T extends User, K extends Preference, V> void insert(T object) {
         StringBuilder keys1 = new StringBuilder();
         StringBuilder values1 = new StringBuilder();
 
-        int kIndex = 0;
+        Preference[] preferences = Preference.values();
 
-        for (K key : keys.keySet()) {
+        for (int i = 0; i < preferences.length; i++) {
+            Preference preference = preferences[i];
+
             keys1.append("`")
-                    .append(key)
+                    .append(preference.getColumnName())
                     .append("`")
-                    .append(kIndex + 1 == keys.keySet().size() ? "" : ",");
-
-            kIndex++;
+                    .append(i + 1 >= preferences.length ? "" : ",");
         }
 
-        int vIndex = 0;
+        for (int i = 0; i < preferences.length; i++) {
+            Preference preference = preferences[i];
 
-        for (V value : keys.values()) {
-            values1.append(value)
-                    .append(vIndex + 1 == keys.values().size() ? "" : ",");
+            Boolean enabled = object.isDisabled(preference);
 
-            vIndex++;
+            values1.append(enabled)
+                    .append(i + 1 >= preferences.length ? "" : ",");
         }
 
         String query = String.format(
@@ -115,9 +115,32 @@ public class PreferenceDao extends Table {
         }
     }
 
+    public <K, V, U extends User> void update(HashMap<K, V> keys, U user) {
+        String where = this.generateWhere(keys);
+
+        String query = String.format(
+                "UPDATE %s SET %s WHERE `user_id`=%d;",
+                this.getTableName(),
+                where,
+                user.getId()
+        );
+
+        try (
+                Connection connection = this.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(query);
+        ) {
+            Integer affectedRows = preparedStatement.executeUpdate();
+
+            if (affectedRows <= 0)
+                this.insert(user);
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+    }
+
     public <K, V extends Integer, T> Set<T> findAll(K key, V value) {
         String query = String.format(
-                "SELECT * FROM %s WHERE `%s`=%d",
+                "SELECT * FROM %s WHERE `%s`=%d;",
                 this.getTableName(),
                 key,
                 value
