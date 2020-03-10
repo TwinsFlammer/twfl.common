@@ -296,8 +296,13 @@ public enum Preference {
     public static <T> Set<T> toPreference(ResultSet resultSet) throws SQLException {
         Set<T> preferences = Sets.newConcurrentHashSet();
 
-        for (Preference preference : Preference.values())
-            if (resultSet.getBoolean(preference.getColumnName())) preferences.add((T) preference);
+        for (Preference preference : Preference.values()) {
+            Boolean add = resultSet.getBoolean(preference.getColumnName());
+
+            if (!add) {
+                preferences.add((T) preference);
+            }
+        }
 
         return preferences;
     }
