@@ -387,15 +387,17 @@ public class User {
     public void sendAction(String message) {
         this.sendAction(
                 message,
+                null,
                 false
         );
     }
 
-    public void sendAction(String message, Boolean stay) {
+    public void sendAction(String message, Integer ticks, Boolean stay) {
         JSONObject jsonObject = new JSONObject();
 
         jsonObject.put("user_id", this.id);
         jsonObject.put("message", message);
+        jsonObject.put("ticks", ticks);
         jsonObject.put("stay", stay);
 
         CustomActionChannel customActionChannel = new CustomActionChannel();
