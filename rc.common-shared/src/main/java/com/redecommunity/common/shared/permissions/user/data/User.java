@@ -596,23 +596,22 @@ public class User {
     }
 
     public void togglePreference(Preference preference, Boolean value, Boolean sendRedisMessage) {
-        if (value) this.preferences.add(preference);
-        else this.preferences.remove(preference);
-
         PreferenceDao preferenceDao = new PreferenceDao();
 
         HashMap<String, Object> keys = Maps.newHashMap();
 
         keys.put(
                 preference.getColumnName(),
-                this.isEnabled(preference)
+                this.preferences.contains(preference)
         );
 
         preferenceDao.update(
                 keys,
-                "user_id",
-                this.id
+                this
         );
+
+        if (value) this.preferences.add(preference);
+        else this.preferences.remove(preference);
 
         if (!preference.isGlobal() || !sendRedisMessage) return;
 
