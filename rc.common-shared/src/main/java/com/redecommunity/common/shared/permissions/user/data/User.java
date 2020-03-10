@@ -1,11 +1,13 @@
 package com.redecommunity.common.shared.permissions.user.data;
 
+import com.google.common.collect.Maps;
 import com.redecommunity.common.shared.friend.storage.FriendStorage;
 import com.redecommunity.common.shared.ignored.storage.IgnoredStorage;
 import com.redecommunity.common.shared.permissions.group.GroupNames;
 import com.redecommunity.common.shared.permissions.group.data.Group;
 import com.redecommunity.common.shared.permissions.group.manager.GroupManager;
 import com.redecommunity.common.shared.preference.Preference;
+import com.redecommunity.common.shared.preference.dao.PreferenceDao;
 import com.redecommunity.common.shared.report.data.ReportReason;
 import com.redecommunity.common.shared.report.manager.ReportReasonManager;
 import com.redecommunity.common.shared.server.data.Server;
@@ -36,6 +38,7 @@ import twitter4j.Twitter;
 import twitter4j.TwitterFactory;
 import twitter4j.auth.AccessToken;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
@@ -595,6 +598,21 @@ public class User {
     public void togglePreference(Preference preference, Boolean value, Boolean sendRedisMessage) {
         if (value) this.preferences.add(preference);
         else this.preferences.remove(preference);
+
+        PreferenceDao preferenceDao = new PreferenceDao();
+
+        HashMap<String, Object> keys = Maps.newHashMap();
+
+        keys.put(
+                preference.getColumnName(),
+                this.isEnabled(preference)
+        );
+
+        preferenceDao.update(
+                keys,
+                "user_id",
+                this.id
+        );
 
         if (!preference.isGlobal() || !sendRedisMessage) return;
 
