@@ -9,15 +9,20 @@ import java.util.concurrent.TimeUnit;
  * Created by @SrGutyerrez
  */
 public class TimeFormatter {
-    public static void main(String[] args) {
-        Long time = 62500L;
-
-        String formatted = TimeFormatter.format(time);
-
-        System.out.println(formatted);
+    public static String formatExtended(Long time) {
+        return TimeFormatter.format(time, true);
     }
 
+    public static String formatMinimized(Long time) {
+        return TimeFormatter.format(time, false);
+    }
+
+    @Deprecated
     public static String format(Long time) {
+        return TimeFormatter.formatMinimized(time);
+    }
+
+    public static String format(Long time, Boolean extended) {
         if (time == 0) return "nunca";
 
         Long days = TimeUnit.MILLISECONDS.toDays(time);
@@ -29,15 +34,15 @@ public class TimeFormatter {
         StringBuilder stringBuilder = new StringBuilder();
 
         if (days > 0) stringBuilder.append(days)
-                .append("d")
+                .append(extended ? "dias" : "d")
                 .append(" ");
 
         if (hours > 0) stringBuilder.append(hours)
-                .append("h")
+                .append(extended ? "horas" : "h")
                 .append(" ");
 
         if (minutes > 0) stringBuilder.append(minutes)
-                .append("m")
+                .append(extended ? "minutos" : "m")
                 .append(" ");
 
         if (days == 0 && hours == 0 && minutes == 0 && seconds == 0 && millis < 1000) {
@@ -46,10 +51,12 @@ public class TimeFormatter {
             NumberFormat numberFormat = new DecimalFormat("#.#");
             String value = numberFormat.format(TimeFormatter.roundDouble(halfSeconds));
 
-            stringBuilder.append(value)
-                    .append("s");
-        } if (seconds > 0) stringBuilder.append(seconds)
-                .append("s");
+            if (!value.equalsIgnoreCase("0")) stringBuilder.append(value)
+                    .append(extended ? "segundos" : "s");
+        }
+
+        if (seconds > 0) stringBuilder.append(seconds)
+                .append(extended ? "segundos" : "s");
 
         String formatted = stringBuilder.toString();
 
