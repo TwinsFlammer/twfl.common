@@ -40,8 +40,9 @@ public class ServerDao extends Table {
                                 "`slots` INTEGER NOT NULL," +
                                 "`address` VARCHAR(255) NOT NULL," +
                                 "`port` INTEGER NOT NULL," +
-                                "`status` INTEGER NOT NULL" +
-                                ")",
+                                "`status` INTEGER NOT NULL," +
+                                "`old_status` INTEGER NOT NULL" +
+                                ");",
                         this.getTableName()
                 )
         );
