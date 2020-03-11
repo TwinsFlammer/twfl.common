@@ -115,6 +115,7 @@ public class Server {
     }
 
     public void setStatus(Integer status) {
+        this.oldStatus = this.status;
         this.status = status;
 
         ServerDao serverDao = new ServerDao();
@@ -122,6 +123,7 @@ public class Server {
         HashMap<String, Integer> keys = Maps.newHashMap();
 
         keys.put("status", this.status);
+        keys.put("old_status", this.oldStatus);
 
         serverDao.update(
                 keys,
