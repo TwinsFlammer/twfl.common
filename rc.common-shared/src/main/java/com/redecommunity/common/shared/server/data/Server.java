@@ -112,6 +112,7 @@ public class Server {
         this.address = server.getAddress();
         this.description = server.getDescription();
         this.displayName = server.getDisplayName();
+        this.oldStatus = server.getOldStatus();
     }
 
     public void setStatus(Integer status) {
