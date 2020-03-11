@@ -18,19 +18,23 @@ import java.util.Objects;
  * Created by @SrGutyerrez
  */
 @AllArgsConstructor
-@Getter
 public class Server {
+    @Getter
     private final Integer id;
+    @Getter
     private Integer slots, port, status;
+    @Getter
     private String name, displayName, description, address;
 
+    @Getter
     @Setter
     private Integer playerCount;
 
     @Setter
     private Boolean online;
 
-    private Integer[] normalStatus;
+    @Getter
+    private Integer oldStatus;
 
     public String getDescription() {
         if (this.description.contains("\\n")) {
