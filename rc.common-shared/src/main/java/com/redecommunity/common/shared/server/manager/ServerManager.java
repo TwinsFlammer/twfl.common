@@ -110,7 +110,7 @@ public class ServerManager {
                 resultSet.getString("address"),
                 0,
                 false,
-                new Integer[] { 0, 1, 2 }
+                resultSet.getInt("old_status")
         );
     }
 }
