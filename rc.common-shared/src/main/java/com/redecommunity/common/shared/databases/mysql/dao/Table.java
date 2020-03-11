@@ -41,7 +41,12 @@ public abstract class Table implements ITable {
                 .getDatabase(this.getDatabaseName());
     }
 
+    @Deprecated
     public <K, V> String generateWhere(HashMap<K, V> keys) {
+        return this.generateParameters(keys);
+    }
+
+    public <K, V> String generateParameters(HashMap<K, V> keys) {
         StringBuilder stringBuilder = new StringBuilder();
 
         Set<Map.Entry<K, V>> entry = keys.entrySet();
