@@ -235,7 +235,7 @@ public class User {
         JSONObject jsonObject = new JSONObject();
 
         jsonObject.put("user_id", this.id);
-        jsonObject.put("ignored_id", userId);
+        jsonObject.put("friend_id", userId);
         jsonObject.put("action", true);
 
         this.getRedis().sendMessage(
@@ -263,7 +263,7 @@ public class User {
         JSONObject jsonObject = new JSONObject();
 
         jsonObject.put("user_id", this.id);
-        jsonObject.put("ignored_id", userId);
+        jsonObject.put("friend_id", userId);
         jsonObject.put("action", false);
 
         this.getRedis().sendMessage(
