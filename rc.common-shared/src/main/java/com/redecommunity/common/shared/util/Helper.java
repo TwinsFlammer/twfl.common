@@ -153,10 +153,10 @@ public abstract class Helper {
 
         String password2 = Helper.hash(password1, "sha-256");
 
-        System.out.println(hash);
-
-        System.out.println(password2);
-
         return hash.equals(password2);
+    }
+
+    public static String capitalize(String text) {
+        return String.valueOf(text.charAt(0)).toUpperCase() + text.substring(1);
     }
 }
