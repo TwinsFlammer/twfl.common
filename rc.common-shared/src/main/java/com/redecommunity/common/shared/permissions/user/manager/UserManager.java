@@ -26,7 +26,7 @@ import java.util.stream.Collectors;
  * Created by @SrGutyerrez
  */
 public class UserManager {
-    private static final List<User> users = Lists.newArrayList();
+    private static List<User> users = Lists.newArrayList();
 
     public UserManager() {
         UserDao userDao = new UserDao();
@@ -68,7 +68,7 @@ public class UserManager {
 
     @Deprecated
     public static void removeUser(Integer userId) {
-        UserManager.users.removeIf(user -> user != null && userId.equals(user.getId()));
+        UserManager.unloadUser(userId);
     }
 
     public static List<User> getOnlineUsers() {
@@ -82,33 +82,27 @@ public class UserManager {
         return UserManager.users.
                 stream()
                 .filter(Objects::nonNull)
-                .filter(user -> id.equals(user.getId()))
+                .filter(user -> user.getId().equals(id))
                 .findFirst()
-                .orElse(
-                        UserManager.findOne("id", id)
-                );
+                .orElseGet(() -> UserManager.findOne("id", id));
     }
 
     public static User getUser(String name) {
         return UserManager.users
                 .stream()
                 .filter(Objects::nonNull)
-                .filter(user -> name.equalsIgnoreCase(user.getName()))
+                .filter(user -> user.getName().equalsIgnoreCase(name))
                 .findFirst()
-                .orElse(
-                        UserManager.findOne("name", name.toLowerCase())
-                );
+                .orElseGet(() -> UserManager.findOne("name", name.toLowerCase()));
     }
 
     public static User getUser(UUID uniqueId) {
         return UserManager.users
                 .stream()
                 .filter(Objects::nonNull)
-                .filter(user -> uniqueId.equals(user.getUniqueId()))
+                .filter(user -> user.getUniqueId().equals(uniqueId))
                 .findFirst()
-                .orElse(
-                        UserManager.findOne("unique_id", uniqueId)
-                );
+                .orElseGet(() -> UserManager.findOne("unique_id", uniqueId));
     }
 
     private static <K, V> User findOne(K key, V value) {
