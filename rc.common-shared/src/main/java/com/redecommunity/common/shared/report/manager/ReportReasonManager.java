@@ -1,12 +1,15 @@
 package com.redecommunity.common.shared.report.manager;
 
 import com.google.common.collect.Lists;
+import com.redecommunity.common.shared.Common;
 import com.redecommunity.common.shared.report.dao.ReportReasonDao;
 import com.redecommunity.common.shared.report.data.ReportReason;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by @SrGutyerrez
@@ -19,7 +22,16 @@ public class ReportReasonManager {
     public ReportReasonManager() {
         ReportReasonDao reportReasonDao = new ReportReasonDao();
 
-        ReportReasonManager.reportReasons.addAll(reportReasonDao.findAll());
+        Common.getInstance().getScheduler().scheduleWithFixedDelay(
+                () -> {
+                    Set<ReportReason> reports = reportReasonDao.findAll();
+
+                    ReportReasonManager.reportReasons = Lists.newArrayList(reports);
+                },
+                0,
+                1,
+                TimeUnit.MINUTES
+        );
     }
 
     public static List<ReportReason> getReportReasons() {
