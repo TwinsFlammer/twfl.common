@@ -11,98 +11,48 @@ import java.util.regex.Pattern;
  * Created by @SrGutyerrez
  */
 public class CUtil {
-    public static final Map<String, String> parseReplacements;
-    public static final Pattern parsePattern;
+    public static Map<String, String> parseReplacements;
+    public static Pattern parsePattern;
+    private static String titleizeLine;
+    private static int titleizeBalance = -1;
 
-    static {
-        parseReplacements = Maps.newHashMap();
-
-        parseReplacements.put("<empty>", "");
-        parseReplacements.put("<black>", "\u00A70");
-        parseReplacements.put("<navy>", "\u00A71");
-        parseReplacements.put("<green>", "\u00A72");
-        parseReplacements.put("<teal>", "\u00A73");
-        parseReplacements.put("<red>", "\u00A74");
-        parseReplacements.put("<purple>", "\u00A75");
-        parseReplacements.put("<gold>", "\u00A76");
-        parseReplacements.put("<orange>", "\u00A76");
-        parseReplacements.put("<silver>", "\u00A77");
-        parseReplacements.put("<gray>", "\u00A78");
-        parseReplacements.put("<grey>", "\u00A78");
-        parseReplacements.put("<blue>", "\u00A79");
-        parseReplacements.put("<lime>", "\u00A7a");
-        parseReplacements.put("<aqua>", "\u00A7b");
-        parseReplacements.put("<rose>", "\u00A7c");
-        parseReplacements.put("<pink>", "\u00A7d");
-        parseReplacements.put("<yellow>", "\u00A7e");
-        parseReplacements.put("<white>", "\u00A7f");
-        parseReplacements.put("<magic>", "\u00A7k");
-        parseReplacements.put("<bold>", "\u00A7l");
-        parseReplacements.put("<strong>", "\u00A7l");
-        parseReplacements.put("<strike>", "\u00A7m");
-        parseReplacements.put("<strikethrough>", "\u00A7m");
-        parseReplacements.put("<under>", "\u00A7n");
-        parseReplacements.put("<underline>", "\u00A7n");
-        parseReplacements.put("<italic>", "\u00A7o");
-        parseReplacements.put("<em>", "\u00A7o");
-        parseReplacements.put("<reset>", "\u00A7r");
-
-        // Color by semantic functionality
-        parseReplacements.put("<l>", "\u00A72");
-        parseReplacements.put("<logo>", "\u00A72");
-        parseReplacements.put("<a>", "\u00A76");
-        parseReplacements.put("<art>", "\u00A76");
-        parseReplacements.put("<n>", "\u00A77");
-        parseReplacements.put("<notice>", "\u00A77");
-        parseReplacements.put("<i>", "\u00A7e");
-        parseReplacements.put("<info>", "\u00A7e");
-        parseReplacements.put("<g>", "\u00A7a");
-        parseReplacements.put("<good>", "\u00A7a");
-        parseReplacements.put("<b>", "\u00A7c");
-        parseReplacements.put("<bad>", "\u00A7c");
-
-        parseReplacements.put("<k>", "\u00A7b");
-        parseReplacements.put("<key>", "\u00A7b");
-
-        parseReplacements.put("<v>", "\u00A7d");
-        parseReplacements.put("<value>", "\u00A7d");
-        parseReplacements.put("<h>", "\u00A7d");
-        parseReplacements.put("<highlight>", "\u00A7d");
-
-        parseReplacements.put("<c>", "\u00A7b");
-        parseReplacements.put("<command>", "\u00A7b");
-        parseReplacements.put("<p>", "\u00A73");
-        parseReplacements.put("<parameter>", "\u00A73");
-        parseReplacements.put("&&", "&");
-        parseReplacements.put("§§", "§");
-
-        for (int i = 48; i <= 122; i++) {
-            char c = (char) i;
-            parseReplacements.put("§" + c, "\u00A7" + c);
-            parseReplacements.put("&" + c, "\u00A7" + c);
-            if (i == 57) i = 96;
+    public static String implode(Object[] list, String glue, String format) {
+        StringBuilder ret = new StringBuilder();
+        for (int i = 0; i < list.length; ++i) {
+            Object item = list[i];
+            String str = (item == null) ? "NULL" : item.toString();
+            if (i != 0) {
+                ret.append(glue);
+            }
+            if (format != null) {
+                ret.append(String.format(format, str));
+            } else {
+                ret.append(str);
+            }
         }
+        return ret.toString();
+    }
 
-        StringBuilder patternStringBuilder = new StringBuilder();
-        for (String find : parseReplacements.keySet()) {
-            patternStringBuilder.append('(');
-            patternStringBuilder.append(Pattern.quote(find));
-            patternStringBuilder.append(")|");
-        }
-        String patternString = patternStringBuilder.toString();
-        patternString = patternString.substring(0, patternString.length() - 1); // Remove the last |
-        parsePattern = Pattern.compile(patternString);
+    public static String implode(Object[] list, String glue) {
+        return implode(list, glue, null);
+    }
+
+    public static String implode(Collection<?> coll, String glue, String format) {
+        return implode(coll.toArray(new Object[0]), glue, format);
+    }
+
+    public static String implode(Collection<?> coll, String glue) {
+        return implode(coll, glue, null);
     }
 
     public static String parse(String string) {
-        if (string == null) return null;
-        StringBuffer returns = new StringBuffer();
-        Matcher matcher = parsePattern.matcher(string);
+        StringBuffer ret = new StringBuffer();
+        Matcher matcher = CUtil.parsePattern.matcher(string);
         while (matcher.find()) {
-            matcher.appendReplacement(returns, parseReplacements.get(matcher.group(0)));
+            matcher.appendReplacement(ret, CUtil.parseReplacements.get(matcher.group(0)));
         }
-        matcher.appendTail(returns);
-        return returns.toString();
+        matcher.appendTail(ret);
+        return ret.toString();
     }
 
     public static String parse(String string, Object... args) {
@@ -110,84 +60,155 @@ public class CUtil {
     }
 
     public static ArrayList<String> parse(Collection<String> strings) {
-        ArrayList<String> returns = new ArrayList<>(strings.size());
+        ArrayList<String> ret = new ArrayList<String>(strings.size());
         for (String string : strings) {
-            returns.add(parse(string));
+            ret.add(parse(string));
         }
-        return returns;
-    }
-
-    public static String implode(final Object[] list, final String glue, final String format) {
-        StringBuilder stringBuilder = new StringBuilder();
-
-        for (int i = 0; i < list.length; i++) {
-            Object item = list[i];
-
-            String string = item == null ? "NULL" : item.toString();
-
-            if (i != 0) {
-                stringBuilder.append(glue);
-            }
-            if (format != null) {
-                stringBuilder.append(String.format(format, string));
-            } else {
-                stringBuilder.append(string);
-            }
-        }
-
-        return stringBuilder.toString();
-    }
-
-    public static String implode(final Object[] list, final String glue) {
-        return CUtil.implode(list, glue, null);
-    }
-
-    public static String implode(final Collection<?> coll, final String glue, String format) {
-        return CUtil.implode(coll.toArray(new Object[0]), glue, format);
-    }
-
-    public static String implode(final Collection<?> coll, final String glue) {
-        return CUtil.implode(coll, glue, null);
+        return ret;
     }
 
     public static <K, V> Map<K, V> map(K key1, V value1, Object... objects) {
-        Map<K, V> returns = Maps.newLinkedHashMap();
-
-        returns.put(key1, value1);
-
-        Iterator<Object> iterator = Arrays.asList(objects).iterator();
-        while (iterator.hasNext()) {
-            K key = (K) iterator.next();
-            V value = (V) iterator.next();
-            returns.put(key, value);
+        Map<K, V> ret = Maps.newLinkedHashMap();
+        ret.put(key1, value1);
+        Iterator<Object> iter = Arrays.asList(objects).iterator();
+        while (iter.hasNext()) {
+            K key2 = (K) iter.next();
+            V value2 = (V) iter.next();
+            ret.put(key2, value2);
         }
+        return ret;
+    }
 
-        return returns;
+//    public static String titleize(String str) {
+//        String center = ".[ " + parse("<l>") + str + parse("<a>") + " ].";
+//        int centerlen = ChatColor.stripColor(center).length();
+//        int pivot = CUtil.titleizeLine.length() / 2;
+//        int eatLeft = centerlen / 2 + 1;
+//        int eatRight = centerlen - eatLeft - 1;
+//        if (eatLeft < pivot) {
+//            return parse("<a>") + CUtil.titleizeLine.substring(0, pivot - eatLeft) + center + CUtil.titleizeLine.substring(pivot + eatRight);
+//        }
+//        return parse("<a>") + center;
+//    }
+
+    public static String repeat(String string, int times) {
+        StringBuilder ret = new StringBuilder(times);
+        for (int i = 0; i < times; ++i) {
+            ret.append(string);
+        }
+        return ret.toString();
     }
 
     public static <T> List<List<T>> rotateLeft(List<List<T>> rows) {
-        List<List<T>> returns = transpose(rows);
-        CUtil.flipVertically(returns);
-        return returns;
+        List<List<T>> ret = transpose(rows);
+        flipVertically(ret);
+        return ret;
+    }
+
+    public static <T> List<List<T>> rotateRight(List<List<T>> rows) {
+        List<List<T>> ret = transpose(rows);
+        flipHorizontally(ret);
+        return ret;
     }
 
     public static <T> List<List<T>> transpose(List<List<T>> rows) {
-        List<List<T>> returns = Lists.newArrayList();
-
-        final Integer size = rows.get(0).size();
-
-        for (int i = 0; i < size; i++) {
+        List<List<T>> ret = Lists.newArrayList();
+        for (int n = rows.get(0).size(), i = 0; i < n; ++i) {
             List<T> col = Lists.newArrayList();
-
             for (List<T> row : rows) {
                 col.add(row.get(i));
             }
+            ret.add(col);
         }
+        return ret;
+    }
 
-        return returns;
+    public static <T> void flipHorizontally(List<List<T>> rows) {
+        for (List<T> row : rows) {
+            Collections.reverse(row);
+        }
     }
 
     public static <T> void flipVertically(List<List<T>> rows) {
         Collections.reverse(rows);
+    }
+
+    @SafeVarargs
+    public static <T> List<T> list(T... items) {
+        return Lists.newArrayList(Arrays.asList(items));
+    }
+
+    static {
+        titleizeLine = repeat("_", 50);
+        (parseReplacements = Maps.newHashMap()).put("<empty>", "");
+        CUtil.parseReplacements.put("<black>", "§0");
+        CUtil.parseReplacements.put("<navy>", "§1");
+        CUtil.parseReplacements.put("<green>", "§2");
+        CUtil.parseReplacements.put("<teal>", "§3");
+        CUtil.parseReplacements.put("<red>", "§4");
+        CUtil.parseReplacements.put("<purple>", "§5");
+        CUtil.parseReplacements.put("<gold>", "§6");
+        CUtil.parseReplacements.put("<orange>", "§6");
+        CUtil.parseReplacements.put("<silver>", "§7");
+        CUtil.parseReplacements.put("<gray>", "§8");
+        CUtil.parseReplacements.put("<grey>", "§8");
+        CUtil.parseReplacements.put("<blue>", "§9");
+        CUtil.parseReplacements.put("<lime>", "§a");
+        CUtil.parseReplacements.put("<aqua>", "§b");
+        CUtil.parseReplacements.put("<rose>", "§c");
+        CUtil.parseReplacements.put("<pink>", "§d");
+        CUtil.parseReplacements.put("<yellow>", "§e");
+        CUtil.parseReplacements.put("<white>", "§f");
+        CUtil.parseReplacements.put("<magic>", "§k");
+        CUtil.parseReplacements.put("<bold>", "§l");
+        CUtil.parseReplacements.put("<strong>", "§l");
+        CUtil.parseReplacements.put("<strike>", "§m");
+        CUtil.parseReplacements.put("<strikethrough>", "§m");
+        CUtil.parseReplacements.put("<under>", "§n");
+        CUtil.parseReplacements.put("<underline>", "§n");
+        CUtil.parseReplacements.put("<italic>", "§o");
+        CUtil.parseReplacements.put("<em>", "§o");
+        CUtil.parseReplacements.put("<reset>", "§r");
+        CUtil.parseReplacements.put("<l>", "§2");
+        CUtil.parseReplacements.put("<logo>", "§2");
+        CUtil.parseReplacements.put("<a>", "§6");
+        CUtil.parseReplacements.put("<art>", "§6");
+        CUtil.parseReplacements.put("<n>", "§7");
+        CUtil.parseReplacements.put("<notice>", "§7");
+        CUtil.parseReplacements.put("<i>", "§e");
+        CUtil.parseReplacements.put("<info>", "§e");
+        CUtil.parseReplacements.put("<g>", "§a");
+        CUtil.parseReplacements.put("<good>", "§a");
+        CUtil.parseReplacements.put("<b>", "§c");
+        CUtil.parseReplacements.put("<bad>", "§c");
+        CUtil.parseReplacements.put("<k>", "§b");
+        CUtil.parseReplacements.put("<key>", "§b");
+        CUtil.parseReplacements.put("<v>", "§d");
+        CUtil.parseReplacements.put("<value>", "§d");
+        CUtil.parseReplacements.put("<h>", "§d");
+        CUtil.parseReplacements.put("<highlight>", "§d");
+        CUtil.parseReplacements.put("<c>", "§b");
+        CUtil.parseReplacements.put("<command>", "§b");
+        CUtil.parseReplacements.put("<p>", "§3");
+        CUtil.parseReplacements.put("<parameter>", "§3");
+        CUtil.parseReplacements.put("&&", "&");
+        CUtil.parseReplacements.put("§§", "§");
+        for (int i = 48; i <= 122; ++i) {
+            char c = (char) i;
+            CUtil.parseReplacements.put("§" + c, "§" + c);
+            CUtil.parseReplacements.put("&" + c, "§" + c);
+            if (i == 57) {
+                i = 96;
+            }
+        }
+        StringBuilder patternStringBuilder = new StringBuilder();
+        for (String find : CUtil.parseReplacements.keySet()) {
+            patternStringBuilder.append('(');
+            patternStringBuilder.append(Pattern.quote(find));
+            patternStringBuilder.append(")|");
+        }
+        String patternString = patternStringBuilder.toString();
+        patternString = patternString.substring(0, patternString.length() - 1);
+        parsePattern = Pattern.compile(patternString);
     }
 }
