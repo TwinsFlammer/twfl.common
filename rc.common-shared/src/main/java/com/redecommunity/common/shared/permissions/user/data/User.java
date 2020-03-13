@@ -143,6 +143,27 @@ public class User {
         return this.hasGroup(group);
     }
 
+    public Boolean hasGroup(Group group, Server server) {
+        return this.groups
+                .stream()
+                .anyMatch(
+                        userGroup -> userGroup.getGroup().equals(group)
+                                && userGroup.getServer().isSimilar(server)
+                );
+    }
+
+    public Boolean hasGroup(String groupName, Server server) {
+        Group group = GroupManager.getGroup(groupName);
+
+        return this.hasGroup(group, server);
+    }
+
+    public Boolean hasGroup(Integer groupId, Server server) {
+        Group group = GroupManager.getGroup(groupId);
+
+        return this.hasGroup(group, server);
+    }
+
     public Language getLanguage() {
         LanguageFactory languageFactory = new LanguageFactory();
 
