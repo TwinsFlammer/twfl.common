@@ -38,7 +38,7 @@ public class Common {
     private DatabaseManager databaseManager;
     private SchedulerManager schedulerManager;
 
-    private LanguageFactory<? extends Language> languageFactory;
+    private LanguageFactory languageFactory;
 
     private ClassLoader classLoader;
 
@@ -80,7 +80,7 @@ public class Common {
         return this.schedulerManager.getScheduledExecutorService();
     }
 
-    public LanguageFactory<? extends Language> getLanguageFactory() {
+    public LanguageFactory getLanguageFactory() {
         return this.languageFactory;
     }
 
