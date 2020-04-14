@@ -5,6 +5,7 @@ import com.google.common.io.ByteSource;
 import com.google.common.io.Files;
 import com.redecommunity.common.shared.branches.Branch;
 import com.redecommunity.common.shared.databases.redis.handler.manager.JedisMessageManager;
+import com.redecommunity.common.shared.language.enums.Language;
 import com.redecommunity.common.shared.manager.GlobalManager;
 import com.redecommunity.common.shared.scheduler.SchedulerManager;
 import com.redecommunity.common.shared.util.Printer;
@@ -29,7 +30,7 @@ import java.util.logging.Level;
 public class Common {
     private static Common instance;
 
-    public static final String SERVER_HOME = "/home/redefocus";
+    public static final String SERVER_HOME = "/home/redefocus", SERVER_URL = "redefocus.com";
 
     /**
      * All project static manager
@@ -37,7 +38,7 @@ public class Common {
     private DatabaseManager databaseManager;
     private SchedulerManager schedulerManager;
 
-    private LanguageFactory languageFactory;
+    private LanguageFactory<? extends Language> languageFactory;
 
     private ClassLoader classLoader;
 
@@ -54,7 +55,7 @@ public class Common {
         this.schedulerManager = new SchedulerManager();
         this.databaseManager = new DatabaseManager();
 
-        this.languageFactory = new LanguageFactory();
+        this.languageFactory = new LanguageFactory<>();
 
         new GlobalManager();
 
@@ -79,7 +80,7 @@ public class Common {
         return this.schedulerManager.getScheduledExecutorService();
     }
 
-    public LanguageFactory getLanguageFactory() {
+    public LanguageFactory<? extends Language> getLanguageFactory() {
         return this.languageFactory;
     }
 
