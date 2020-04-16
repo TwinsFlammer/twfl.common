@@ -243,7 +243,7 @@ public class User {
         }
     }
 
-    public void addFriend(Integer userId) {
+    public void addFriend(Integer userId, Boolean redisMessage) {
         this.friends.add(userId);
 
         FriendStorage friendStorage = new FriendStorage();
@@ -259,17 +259,27 @@ public class User {
         jsonObject.put("friend_id", userId);
         jsonObject.put("action", true);
 
-        this.getRedis().sendMessage(
+        if (redisMessage) this.getRedis().sendMessage(
                 Constants.FRIEND_CHANNEL,
                 jsonObject.toString()
         );
     }
 
-    public void addFriend(User user) {
-        this.addFriend(user.getId());
+    @Deprecated
+    public void addFriend(Integer userId) {
+        this.addFriend(userId, false);
     }
 
-    public void removeFriend(Integer userId) {
+    public void addFriend(User user, Boolean redisMessage) {
+        this.addFriend(user.getId(), redisMessage);
+    }
+
+    @Deprecated
+    public void addFriend(User user) {
+        this.addFriend(user, true);
+    }
+
+    public void removeFriend(Integer userId, Boolean redisMessage) {
         this.friends.remove(userId);
 
         FriendStorage friendStorage = new FriendStorage();
@@ -287,17 +297,27 @@ public class User {
         jsonObject.put("friend_id", userId);
         jsonObject.put("action", false);
 
-        this.getRedis().sendMessage(
+        if (redisMessage) this.getRedis().sendMessage(
                 Constants.FRIEND_CHANNEL,
                 jsonObject.toString()
         );
     }
 
-    public void removeFriend(User user) {
-        this.removeFriend(user.getId());
+    @Deprecated
+    public void removeFriend(Integer userId) {
+        this.removeFriend(userId, false);
     }
 
-    public void ignore(Integer userId) {
+    public void removeFriend(User user, Boolean redisMessage) {
+        this.removeFriend(user.getId(), redisMessage);
+    }
+
+    @Deprecated
+    public void removeFriend(User user) {
+        this.removeFriend(user.getId(), false);
+    }
+
+    public void ignore(Integer userId, Boolean redisMessage) {
         this.ignored.add(userId);
 
         IgnoredStorage ignoredStorage = new IgnoredStorage();
@@ -313,17 +333,27 @@ public class User {
         jsonObject.put("ignored_id", userId);
         jsonObject.put("action", true);
 
-        this.getRedis().sendMessage(
+        if (redisMessage) this.getRedis().sendMessage(
                 Constants.IGNORE_CHANNEL,
                 jsonObject.toString()
         );
     }
 
-    public void ignore(User user) {
-        this.ignore(user.getId());
+    @Deprecated
+    public void ignore(Integer userId) {
+        this.ignore(userId, false);
     }
 
-    public void unIgnore(Integer userId) {
+    public void ignore(User user, Boolean redisMessage) {
+        this.ignore(user.getId(), redisMessage);
+    }
+
+    @Deprecated
+    public void ignore(User user) {
+        this.ignore(user, true);
+    }
+
+    public void unIgnore(Integer userId, Boolean redisMessage) {
         this.ignored.remove(userId);
 
         IgnoredStorage ignoredStorage = new IgnoredStorage();
@@ -341,14 +371,24 @@ public class User {
         jsonObject.put("ignored_id", userId);
         jsonObject.put("action", false);
 
-        this.getRedis().sendMessage(
+        if (redisMessage) this.getRedis().sendMessage(
                 Constants.IGNORE_CHANNEL,
                 jsonObject.toString()
         );
     }
 
+    @Deprecated
+    public void unIgnore(Integer userId) {
+        this.unIgnore(userId, false);
+    }
+
+    public void unIgnore(User user, Boolean redisMessage) {
+        this.unIgnore(user.getId(), redisMessage);
+    }
+
+    @Deprecated
     public void unIgnore(User user) {
-        this.unIgnore(user.getId());
+        this.unIgnore(user, true);
     }
 
     public void addReport(ReportReason reportReason) {
@@ -377,8 +417,6 @@ public class User {
     }
 
     public void setSkin(Skin skin) {
-        Skin active = this.getSkin();
-
         SkinDao skinDao = new SkinDao();
 
         this.skins.stream()
