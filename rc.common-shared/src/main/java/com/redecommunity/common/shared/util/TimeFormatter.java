@@ -23,7 +23,7 @@ public class TimeFormatter {
     }
 
     public static String format(Long time, Boolean extended) {
-        if (time == 0) return "nunca";
+        if (time < 0) return "nunca";
 
         Long days = TimeUnit.MILLISECONDS.toDays(time);
         Long hours = TimeUnit.MILLISECONDS.toHours(time) - (days * 24);
