@@ -133,7 +133,7 @@ public class Server {
         );
     }
 
-    private ServerType getType() {
+    public ServerType getType() {
         return Arrays.stream(ServerType.values())
                 .filter(Objects::nonNull)
                 .filter(type -> type.isValid(this.name))
