@@ -105,7 +105,7 @@ public class LanguageFactory<L extends Language> {
 
         String text = (String) this.languages.get(language).get(key);
 
-        return Helper.colorize(text == null ? "" : text);
+        return Helper.colorize(text == null ? key : text);
     }
 
     public Object get(L language, String key) {
