@@ -51,16 +51,14 @@ public class TimeFormatter {
             NumberFormat numberFormat = new DecimalFormat("#.#");
             String value = numberFormat.format(TimeFormatter.roundDouble(halfSeconds));
 
-            if (!value.equalsIgnoreCase("0")) stringBuilder.append(value)
+            stringBuilder.append(value)
                     .append(extended ? "segundos" : "s");
         }
 
         if (seconds > 0) stringBuilder.append(seconds)
                 .append(extended ? "segundos" : "s");
 
-        String formatted = stringBuilder.toString();
-
-        return formatted.isEmpty() ? "agora" : formatted;
+        return stringBuilder.toString();
     }
 
     private static double roundDouble(double base) {
