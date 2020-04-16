@@ -103,7 +103,7 @@ public class User {
                 .min((userGroup1, userGroup2) -> userGroup2.getGroup().getPriority().compareTo(userGroup1.getGroup().getPriority()))
                 .map(UserGroup::getGroup)
                 .orElse(
-                        GroupManager.getGroup("default")
+                        GroupManager.getGroup(GroupNames.DEFAULT)
                 );
     }
 
