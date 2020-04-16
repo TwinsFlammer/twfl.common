@@ -5,10 +5,14 @@ package com.redecommunity.common.shared.permissions.group;
  */
 public class GroupNames {
     public static final String MASTER = "master",
-            MANAGER = "director",
+            DIRECTOR = "director",
+            COORDINATOR = "coordinator",
             ADMINISTRATOR = "administrator",
             MODERATOR = "moderator",
             HELPER = "helper",
             ELITE = "elite",
             DEFAULT = "default";
+
+    @Deprecated
+    public static String MANAGER = GroupNames.DIRECTOR;
 }
