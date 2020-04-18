@@ -10,9 +10,12 @@ public class GroupNames {
             ADMINISTRATOR = "administrator",
             MODERATOR = "moderator",
             HELPER = "helper",
-            ELITE = "elite",
+            NOBLE = "noble",
+            KNIGHT = "knight",
+            FARMER = "farmer",
             DEFAULT = "default";
 
     @Deprecated
-    public static String MANAGER = GroupNames.DIRECTOR;
+    public static String MANAGER = GroupNames.DIRECTOR,
+            ELITE = GroupNames.FARMER;
 }
