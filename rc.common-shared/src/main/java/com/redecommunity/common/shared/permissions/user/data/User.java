@@ -643,7 +643,7 @@ public class User {
     }
 
     public Boolean isVIP() {
-        return this.hasGroup(GroupNames.ELITE);
+        return this.hasGroup(GroupNames.FARMER) || this.hasGroup(GroupNames.KNIGHT) || this.hasGroup(GroupNames.NOBLE);
     }
 
     public Boolean isWaitingTabListRefresh() {
