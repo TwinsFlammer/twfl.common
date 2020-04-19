@@ -16,6 +16,8 @@ public class GroupNames {
             DEFAULT = "default";
 
     @Deprecated
-    public static String MANAGER = GroupNames.DIRECTOR,
-            ELITE = GroupNames.FARMER;
+    public static String MANAGER = GroupNames.DIRECTOR;
+
+    @Deprecated
+    public static String ELITE = GroupNames.FARMER;
 }
