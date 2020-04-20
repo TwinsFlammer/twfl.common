@@ -78,6 +78,19 @@ public class UserManager {
                 .collect(Collectors.toList());
     }
 
+
+    public static User getUser(Integer id, Boolean download) {
+        return download ? UserManager.findOne("id", id) : UserManager.getUser(id);
+    }
+
+    public static User getUser(String name, Boolean download) {
+        return download ? UserManager.findOne("name", name.toLowerCase()) : UserManager.getUser(name);
+    }
+
+    public static User getUser(UUID uniqueId, Boolean download) {
+        return download ? UserManager.findOne("unique_id", uniqueId) : UserManager.getUser(uniqueId);
+    }
+
     public static User getUser(Integer id) {
         return UserManager.users.
                 stream()
