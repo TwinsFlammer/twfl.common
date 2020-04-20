@@ -151,6 +151,8 @@ public class UserManager {
 
             user.getSkins().addAll(skins);
 
+            UserManager.users.removeIf(user1 -> user1.getId().equals(value) || user1.getName().equalsIgnoreCase((String) value) || user1.getUniqueId().equals(value));
+
             UserManager.users.add(user);
         }
 
