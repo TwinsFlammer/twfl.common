@@ -63,6 +63,8 @@ public class UserManager {
     }
 
     public static void unloadUser(Integer userId) {
+        System.out.println(userId);
+
         UserManager.users.removeIf(user -> user != null && userId.equals(user.getId()));
     }
 
