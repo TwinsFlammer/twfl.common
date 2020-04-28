@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.security.CodeSource;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Enumeration;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
@@ -18,6 +19,14 @@ public class ClassGetter {
      * @return ArrayList<Class<?>>
      */
     public static ArrayList<Class<?>> getClassesForPackage(Class clazz) {
+        return ClassGetter.getClassesForPackage(clazz);
+    }
+
+    /**
+     * @param clazz
+     * @return ArrayList<Class<?>>
+     */
+    public static ArrayList<Class<?>> getClassesForPackage(Class clazz, Class... blacklisted) {
         ArrayList<Class<?>> classes = new ArrayList<>();
         CodeSource src = clazz.getProtectionDomain().getCodeSource();
 
@@ -28,12 +37,17 @@ public class ClassGetter {
             resource.getPath();
             processJarfile(resource, packageName, classes);
         }
+
         ArrayList<String> names = new ArrayList<>();
         ArrayList<Class<?>> clazz1 = new ArrayList<>();
+
         for (Class<?> clazz2 : classes) {
+            if (Arrays.asList(blacklisted).contains(clazz)) continue;
+
             names.add(clazz2.getSimpleName());
             clazz1.add(clazz2);
         }
+
         classes.clear();
 
         names.sort(String.CASE_INSENSITIVE_ORDER);
@@ -71,12 +85,15 @@ public class ClassGetter {
         String resPath = resource.getPath().replace("%20", " ");
         String jarPath = resPath.replaceFirst("[.]jar[!].*", ".jar").replaceFirst("file:", "");
         JarFile jarFile;
+
         try {
             jarFile = new JarFile(jarPath);
         } catch (IOException e) {
             throw new RuntimeException("Unexpected IOException reading JAR File '" + jarPath + "'", e);
         }
+
         Enumeration<JarEntry> entries = jarFile.entries();
+
         while (entries.hasMoreElements()) {
             JarEntry entry = entries.nextElement();
             String entryName = entry.getName();
