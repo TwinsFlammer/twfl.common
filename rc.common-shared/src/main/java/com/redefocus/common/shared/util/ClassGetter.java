@@ -33,7 +33,11 @@ public class ClassGetter {
         ArrayList<Class<?>> clazz1 = new ArrayList<>();
 
         for (Class<?> clazz2 : classes) {
-            if (Arrays.asList(blacklisted).contains(clazz2)) {
+            System.out.println(">> " + clazz2.getSimpleName());
+
+            if (Arrays.stream(blacklisted)
+                    .anyMatch(clazz3 -> clazz3.getSimpleName().equals(clazz2.getSimpleName()))
+            ) {
                 System.out.println("blacklisted: " + clazz.getSimpleName());
                 continue;
             }
