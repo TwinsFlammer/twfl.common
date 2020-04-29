@@ -57,6 +57,8 @@ public class ClassGetter {
      * @return Class<?>
      */
     private static Class<?> loadClass(String className) {
+        System.out.println("--" + className);
+
         try {
             return Class.forName(className);
         } catch (ClassNotFoundException e) {
