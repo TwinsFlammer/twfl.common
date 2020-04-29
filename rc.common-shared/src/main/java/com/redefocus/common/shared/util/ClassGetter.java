@@ -90,7 +90,11 @@ public class ClassGetter {
 
             System.out.println(">> " + entryName);
 
-            if (Arrays.stream(blacklisted).anyMatch(clazz3 -> clazz3.getSimpleName().equals(entryName))) {
+            if (Arrays.stream(blacklisted).anyMatch(clazz3 -> {
+                System.out.println(">>> | | " + clazz3.getName() + "--|--" + clazz3.getCanonicalName());
+
+                return clazz3.getName().equals(entryName);
+            })) {
                 System.out.println("blacklisted: " + entryName);
                 continue;
             }
