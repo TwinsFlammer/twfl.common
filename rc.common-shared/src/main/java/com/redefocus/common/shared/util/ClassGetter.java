@@ -13,9 +13,13 @@ import java.util.jar.JarFile;
  * created by @SrGutyerrez
  **/
 public class ClassGetter {
+    private static final String[] BLACKLISTED_PACKAGES = {
+            "com.redefocus.factionscaribe.mcmmo"
+    };
+
     /**
      * @param clazz
-     * @return ArrayList<Class<?>>
+     * @return ArrayList<Class < ?>>
      */
     public static ArrayList<Class<?>> getClassesForPackage(Class clazz, Class... blacklisted) {
         ArrayList<Class<?>> classes = new ArrayList<>();
@@ -57,14 +61,7 @@ public class ClassGetter {
      * @return Class<?>
      */
     private static Class<?> loadClass(String className, Class... blacklisted) {
-        if (Arrays.stream(blacklisted).anyMatch(clazz3 -> {
-            System.out.println(">> " + className);
-            System.out.println(">>> " + clazz3.getName());
-
-            System.out.println("Equal " + clazz3.getName().equals(className));
-
-            return clazz3.getName().equals(className);
-        })) {
+        if (Arrays.stream(ClassGetter.BLACKLISTED_PACKAGES).anyMatch(className::startsWith)) {
             System.out.println("blacklisted: " + className);
             return null;
         }
