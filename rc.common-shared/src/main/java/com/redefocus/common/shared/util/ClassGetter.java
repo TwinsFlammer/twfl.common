@@ -61,10 +61,8 @@ public class ClassGetter {
      * @return Class<?>
      */
     private static Class<?> loadClass(String className, Class... blacklisted) {
-        if (Arrays.stream(ClassGetter.BLACKLISTED_PACKAGES).anyMatch(className::startsWith)) {
-            System.out.println("blacklisted: " + className);
+        if (Arrays.stream(ClassGetter.BLACKLISTED_PACKAGES).anyMatch(className::startsWith))
             return null;
-        }
 
         try {
             return Class.forName(className);
