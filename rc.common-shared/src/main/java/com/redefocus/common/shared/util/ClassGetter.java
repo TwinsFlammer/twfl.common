@@ -57,9 +57,8 @@ public class ClassGetter {
      * @return Class<?>
      */
     private static Class<?> loadClass(String className, Class... blacklisted) {
-        System.out.println(">> " + className);
-
         if (Arrays.stream(blacklisted).anyMatch(clazz3 -> {
+            System.out.println(">> " + className);
             System.out.println(">>> " + clazz3.getName());
 
             System.out.println("Equal " + clazz3.getName().equals(className));
