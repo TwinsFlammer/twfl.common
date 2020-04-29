@@ -95,9 +95,9 @@ public class ClassGetter {
                 className = entryName.replace('/', '.').replace('\\', '.').replace(".class", "");
             }
 
-            System.out.println(">> " + entryName);
-
             String finalClassName = className;
+
+            System.out.println(">> " + finalClassName);
 
             if (Arrays.stream(blacklisted).anyMatch(clazz3 -> {
                 System.out.println(">>> | | " + clazz3.getName() + "--|--" + clazz3.getCanonicalName());
