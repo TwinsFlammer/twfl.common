@@ -35,6 +35,8 @@ public class ClassGetter {
         for (Class<?> clazz2 : classes) {
             System.out.println(">> " + clazz2.getSimpleName());
 
+            System.out.println("package: " + clazz2.getPackage().getName());
+
             if (Arrays.stream(blacklisted)
                     .anyMatch(clazz3 -> clazz3.getSimpleName().equals(clazz2.getSimpleName()))
             ) {
