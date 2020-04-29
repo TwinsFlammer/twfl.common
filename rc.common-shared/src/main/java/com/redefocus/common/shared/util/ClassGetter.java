@@ -26,24 +26,13 @@ public class ClassGetter {
         if (src != null) {
             URL resource = src.getLocation();
             resource.getPath();
-            processJarfile(resource, packageName, classes);
+            processJarfile(resource, packageName, classes, blacklisted);
         }
 
         ArrayList<String> names = new ArrayList<>();
         ArrayList<Class<?>> clazz1 = new ArrayList<>();
 
         for (Class<?> clazz2 : classes) {
-            System.out.println(">> " + clazz2.getSimpleName());
-
-            System.out.println("package: " + clazz2.getPackage().getName());
-
-            if (Arrays.stream(blacklisted)
-                    .anyMatch(clazz3 -> clazz3.getSimpleName().equals(clazz2.getSimpleName()))
-            ) {
-                System.out.println("blacklisted: " + clazz.getSimpleName());
-                continue;
-            }
-
             names.add(clazz2.getSimpleName());
             clazz1.add(clazz2);
         }
@@ -80,7 +69,7 @@ public class ClassGetter {
      * @param pkgname
      * @param classes
      */
-    private static void processJarfile(URL resource, String pkgname, ArrayList<Class<?>> classes) {
+    private static void processJarfile(URL resource, String pkgname, ArrayList<Class<?>> classes, Class... blacklisted) {
         String relPath = pkgname.replace('.', '/');
         String resPath = resource.getPath().replace("%20", " ");
         String jarPath = resPath.replaceFirst("[.]jar[!].*", ".jar").replaceFirst("file:", "");
@@ -96,12 +85,23 @@ public class ClassGetter {
 
         while (entries.hasMoreElements()) {
             JarEntry entry = entries.nextElement();
+
             String entryName = entry.getName();
+
+            System.out.println(">> " + entryName);
+
+            if (Arrays.stream(blacklisted).anyMatch(clazz3 -> clazz3.getSimpleName().equals(entryName))) {
+                System.out.println("blacklisted: " + entryName);
+                continue;
+            }
+
             String className = null;
+
             if (entryName.endsWith(".class") && entryName.startsWith(relPath)
                     && entryName.length() > (relPath.length() + "/".length())) {
                 className = entryName.replace('/', '.').replace('\\', '.').replace(".class", "");
             }
+
             if (className != null) {
                 classes.add(loadClass(className));
             }
