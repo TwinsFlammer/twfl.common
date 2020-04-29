@@ -13,15 +13,6 @@ import java.util.jar.JarFile;
  * created by @SrGutyerrez
  **/
 public class ClassGetter {
-
-    /**
-     * @param clazz
-     * @return ArrayList<Class<?>>
-     */
-    public static ArrayList<Class<?>> getClassesForPackage(Class clazz) {
-        return ClassGetter.getClassesForPackage(clazz);
-    }
-
     /**
      * @param clazz
      * @return ArrayList<Class<?>>
