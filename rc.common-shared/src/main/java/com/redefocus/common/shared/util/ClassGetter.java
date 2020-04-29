@@ -26,7 +26,7 @@ public class ClassGetter {
         if (src != null) {
             URL resource = src.getLocation();
             resource.getPath();
-            processJarfile(resource, packageName, classes, blacklisted);
+            ClassGetter.processJarfile(resource, packageName, classes, blacklisted);
         }
 
         ArrayList<String> names = new ArrayList<>();
@@ -56,8 +56,19 @@ public class ClassGetter {
      * @param className
      * @return Class<?>
      */
-    private static Class<?> loadClass(String className) {
-        System.out.println("--" + className);
+    private static Class<?> loadClass(String className, Class... blacklisted) {
+        System.out.println(">> " + className);
+
+        if (Arrays.stream(blacklisted).anyMatch(clazz3 -> {
+            System.out.println(">>> " + clazz3.getName());
+
+            System.out.println("Equal " + clazz3.getName().equals(className));
+
+            return clazz3.getName().equals(className);
+        })) {
+            System.out.println("blacklisted: " + className);
+            return null;
+        }
 
         try {
             return Class.forName(className);
@@ -97,21 +108,11 @@ public class ClassGetter {
                 className = entryName.replace('/', '.').replace('\\', '.').replace(".class", "");
             }
 
-            String finalClassName = className;
-
-            System.out.println(">> " + finalClassName);
-
-            if (Arrays.stream(blacklisted).anyMatch(clazz3 -> {
-                System.out.println(">>> | | " + clazz3.getName() + "--|--" + clazz3.getCanonicalName());
-
-                return clazz3.getName().equals(finalClassName);
-            })) {
-                System.out.println("blacklisted: " + finalClassName);
-                continue;
-            }
-
             if (className != null) {
-                classes.add(loadClass(className));
+                Class<?> loadedClass = ClassGetter.loadClass(className, blacklisted);
+
+                if (loadedClass != null)
+                    classes.add(loadedClass);
             }
         }
     }
