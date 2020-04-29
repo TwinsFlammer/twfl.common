@@ -88,22 +88,24 @@ public class ClassGetter {
 
             String entryName = entry.getName();
 
-            System.out.println(">> " + entryName);
-
-            if (Arrays.stream(blacklisted).anyMatch(clazz3 -> {
-                System.out.println(">>> | | " + clazz3.getName() + "--|--" + clazz3.getCanonicalName());
-
-                return clazz3.getName().equals(entryName);
-            })) {
-                System.out.println("blacklisted: " + entryName);
-                continue;
-            }
-
             String className = null;
 
             if (entryName.endsWith(".class") && entryName.startsWith(relPath)
                     && entryName.length() > (relPath.length() + "/".length())) {
                 className = entryName.replace('/', '.').replace('\\', '.').replace(".class", "");
+            }
+
+            System.out.println(">> " + entryName);
+
+            String finalClassName = className;
+
+            if (Arrays.stream(blacklisted).anyMatch(clazz3 -> {
+                System.out.println(">>> | | " + clazz3.getName() + "--|--" + clazz3.getCanonicalName());
+
+                return clazz3.getName().equals(finalClassName);
+            })) {
+                System.out.println("blacklisted: " + finalClassName);
+                continue;
             }
 
             if (className != null) {
