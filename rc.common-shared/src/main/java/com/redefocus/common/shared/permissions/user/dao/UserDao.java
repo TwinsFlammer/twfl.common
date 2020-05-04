@@ -42,6 +42,7 @@ public class UserDao extends Table {
                                 "`unique_id` VARCHAR(255) NOT NULL," +
                                 "`email` VARCHAR(255)," +
                                 "`password` VARCHAR(255)," +
+                                "`cash` INTEGER NOT NULL," +
                                 "`discord_id` LONG," +
                                 "`two_factor_authentication_enabled` BOOLEAN," +
                                 "`two_factor_authentication_code` VARCHAR(255)," +
@@ -65,6 +66,7 @@ public class UserDao extends Table {
                         "`name`," +
                         "`display_name`," +
                         "`unique_id`," +
+                        "`cash`," +
                         "`created_at`," +
                         "`language_id`" +
                         ")" +
@@ -74,12 +76,14 @@ public class UserDao extends Table {
                         "'%s'," +
                         "'%s'," +
                         "%d," +
+                        "%d," +
                         "%d" +
                         ");",
                 this.getTableName(),
                 user.getName().toLowerCase(),
                 user.getDisplayName(),
                 user.getUniqueId(),
+                user.getCash(),
                 user.getCreatedAt(),
                 user.getLanguageId()
         );
