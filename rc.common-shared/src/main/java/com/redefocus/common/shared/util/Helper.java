@@ -19,17 +19,122 @@ import java.util.regex.Pattern;
  * Created by @SrGutyerrez
  */
 public abstract class Helper {
-    public static Boolean isInteger(String string) {
+
+    /**
+     * Check for integer
+     *
+     * @param o
+     * @return
+     */
+    public static Boolean isInteger(Object o) {
+        return o instanceof Integer;
+    }
+
+    /**
+     * Check for integer
+     *
+     * @param o
+     * @return
+     */
+    public static Boolean isLong(String o){
         try {
-            Integer.parseInt(string);
+            Long.parseLong(o);
+        } catch (Exception e) {}
+        return false;
+    }
+
+    /**
+     * Check for integer
+     *
+     * @param o
+     * @return
+     */
+    public static Boolean isDouble(String o) {
+        try {
+            double d = Double.parseDouble(o);
             return true;
-        } catch (Exception ignored) {
+        } catch (Exception e) {}
+        return false;
+    }
+
+    /**
+     * Check for byte
+     *
+     * @param input
+     * @return
+     */
+    public static Boolean isByte(String input) {
+        try {
+            Byte.parseByte(input);
+            return true;
+        } catch (Exception ex) {
             return false;
         }
     }
 
-    public static Boolean isString(Object object) {
-        return object instanceof String;
+    /**
+     * Check for short
+     *
+     * @param input
+     * @return
+     */
+    public static Boolean isShort(String input) {
+        try {
+            Short.parseShort(input);
+            return true;
+        } catch (Exception ex) {
+            return false;
+        }
+    }
+
+    /**
+     * Check for integer
+     *
+     * @param input
+     * @return
+     */
+    public static Boolean isInteger(String input) {
+        try {
+            Integer.parseInt(input);
+            return true;
+        } catch (Exception ex) {
+            return false;
+        }
+    }
+
+    /**
+     * Check for float
+     *
+     * @param input
+     * @return
+     */
+    public static Boolean isFloat(String input) {
+        try {
+            Float.parseFloat(input);
+            return true;
+        } catch (Exception ex) {
+            return false;
+        }
+    }
+
+    /**
+     * Check for string
+     *
+     * @param o
+     * @return
+     */
+    public static Boolean isString(Object o) {
+        return o instanceof String;
+    }
+
+    /**
+     * Check for Boolean
+     *
+     * @param o
+     * @return
+     */
+    public static Boolean isBoolean(Object o) {
+        return o instanceof Boolean;
     }
 
     public static Boolean isJSONArray(Object object) {
