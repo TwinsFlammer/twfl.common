@@ -57,6 +57,11 @@ public class User {
     private final UUID uniqueId;
     @Getter
     private String email, password;
+
+    @Getter
+    @Setter
+    private Integer cash;
+
     @Getter
     private Long discordId;
 
