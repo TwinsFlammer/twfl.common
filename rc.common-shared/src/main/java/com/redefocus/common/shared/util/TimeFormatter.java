@@ -23,7 +23,7 @@ public class TimeFormatter {
     }
 
     public static String format(Long time, Boolean extended) {
-        if (time < 0) return "nunca";
+        if (time < 0) return time + "s";
 
         Long days = TimeUnit.MILLISECONDS.toDays(time);
         Long hours = TimeUnit.MILLISECONDS.toHours(time) - (days * 24);
@@ -34,18 +34,15 @@ public class TimeFormatter {
         StringBuilder stringBuilder = new StringBuilder();
 
         if (days > 0) stringBuilder.append(days)
-                .append(" ")
-                .append(extended ? "dias" : "d")
+                .append(extended ? " dias" : "d")
                 .append(" ");
 
         if (hours > 0) stringBuilder.append(hours)
-                .append(" ")
-                .append(extended ? "horas" : "h")
+                .append(extended ? " horas" : "h")
                 .append(" ");
 
         if (minutes > 0) stringBuilder.append(minutes)
-                .append(" ")
-                .append(extended ? "minutos" : "m")
+                .append(extended ? " minutos" : "m")
                 .append(" ");
 
         if (days == 0 && hours == 0 && minutes == 0 && seconds == 0 && millis < 1000) {
@@ -55,13 +52,11 @@ public class TimeFormatter {
             String value = numberFormat.format(TimeFormatter.roundDouble(halfSeconds));
 
             stringBuilder.append(value)
-                    .append(" ")
-                    .append(extended ? "segundos" : "s");
+                    .append(extended ? " segundos" : "s");
         }
 
         if (seconds > 0) stringBuilder.append(seconds)
-                .append(" ")
-                .append(extended ? "segundos" : "s");
+                .append(extended ? " segundos" : "s");
 
         return stringBuilder.toString();
     }
