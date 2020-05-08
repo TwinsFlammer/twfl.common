@@ -34,14 +34,17 @@ public class TimeFormatter {
         StringBuilder stringBuilder = new StringBuilder();
 
         if (days > 0) stringBuilder.append(days)
+                .append(" ")
                 .append(extended ? "dias" : "d")
                 .append(" ");
 
         if (hours > 0) stringBuilder.append(hours)
+                .append(" ")
                 .append(extended ? "horas" : "h")
                 .append(" ");
 
         if (minutes > 0) stringBuilder.append(minutes)
+                .append(" ")
                 .append(extended ? "minutos" : "m")
                 .append(" ");
 
@@ -52,10 +55,12 @@ public class TimeFormatter {
             String value = numberFormat.format(TimeFormatter.roundDouble(halfSeconds));
 
             stringBuilder.append(value)
+                    .append(" ")
                     .append(extended ? "segundos" : "s");
         }
 
         if (seconds > 0) stringBuilder.append(seconds)
+                .append(" ")
                 .append(extended ? "segundos" : "s");
 
         return stringBuilder.toString();
