@@ -79,8 +79,11 @@ public class User {
     private Integer lastLobbyId, languageId;
     @Getter
     private String twitterAccessToken, twitterTokenSecret;
+
     @Getter
-    private final List<UserGroup> groups;
+    @Setter
+    private List<UserGroup> groups;
+
     @Getter
     private final List<Preference> preferences;
     @Getter
