@@ -57,15 +57,8 @@ public class ClassGetter {
      * @return Class<?>
      */
     private static Class<?> loadClass(String className, String... blacklisted) {
-        System.out.println(className);
-
-        System.out.println(Arrays.toString(blacklisted));
-
-        if (Arrays.stream(blacklisted).anyMatch(className::startsWith)) {
-            System.out.println("Inicia aqui");
-
+        if (Arrays.stream(blacklisted).anyMatch(className::startsWith))
             return null;
-        }
 
         try {
             return Class.forName(className);
