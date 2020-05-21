@@ -23,6 +23,8 @@ public class Updater {
     public void download() throws IOException {
         File remoteFile = new File(this.branch.getPath() + "/" + this.file.getName());
 
+        System.out.println(remoteFile);
+
         if (!this.file.exists() || !remoteFile.exists()) throw new FileNotFoundException("Não foi possível localizar o arquivo " + file.getName());
 
         Printer.INFO.coloredPrint("&eVerificando se há atualizações do arquivo " + this.file.getName());
