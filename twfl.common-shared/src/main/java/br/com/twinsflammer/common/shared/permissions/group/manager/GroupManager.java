@@ -30,11 +30,14 @@ public class GroupManager {
 
         if (groups1.isEmpty()) {
             Group MASTER = GroupManager.generateGroup(1, GroupNames.MASTER, "[Mestre] ", "", "6", 100, 1, -1L, 0),
-                    DIRECTOR = GroupManager.generateGroup(2, GroupNames.MANAGER, "[Diretor] ", "", "3", 95, 2, -1L, 0),
+                    DIRECTOR = GroupManager.generateGroup(2, GroupNames.DIRECTOR, "[Diretor] ", "", "3", 95, 2, -1L, 0),
                     ADMINISTRATOR = GroupManager.generateGroup(3, GroupNames.ADMINISTRATOR, "[Admin] ", "", "c", 90, 3, -1L, 0),
                     MODERATOR = GroupManager.generateGroup(4, GroupNames.MODERATOR, "[Moderador] ", "", "2", 85, 4, -1L, 0),
                     HELPER = GroupManager.generateGroup(5, GroupNames.HELPER, "[Ajudante] ", "", "a", 80, 5, -1L, 0),
-                    ELITE = GroupManager.generateGroup(6, GroupNames.ELITE, "[Elite] ", "", "3", 75, 6, -1L, 0),
+                    YOUTUBER = GroupManager.generateGroup(6, GroupNames.YOUTUBER, "[Youtuber] ", "", "b", 75, 6, -1L, 0),
+                    NOBLE = GroupManager.generateGroup(7, GroupNames.NOBLE, "[Nobre] ", "", "4", 75, 6, -1L, 0),
+                    KNIGHT = GroupManager.generateGroup(8, GroupNames.KNIGHT, "[Cavaleiro] ", "", "3", 75, 6, -1L, 0),
+                    FARMER = GroupManager.generateGroup(9, GroupNames.FARMER, "[Camponês] ", "", "9", 75, 6, -1L, 0),
                     DEFAULT = GroupManager.generateGroup(15, GroupNames.DEFAULT, "", "", "7", 0, 15, -1L, 0);
 
             groupDao.insert(
@@ -43,7 +46,10 @@ public class GroupManager {
                     ADMINISTRATOR,
                     MODERATOR,
                     HELPER,
-                    ELITE,
+                    YOUTUBER,
+                    NOBLE,
+                    KNIGHT,
+                    FARMER,
                     DEFAULT
             );
         }
