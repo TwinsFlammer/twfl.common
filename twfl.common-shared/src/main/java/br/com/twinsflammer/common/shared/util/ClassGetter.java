@@ -13,15 +13,11 @@ import java.util.jar.JarFile;
  * created by @SrGutyerrez
  **/
 public class ClassGetter {
-    private static final String[] BLACKLISTED_PACKAGES = {
-            "com.redefocus.factionscaribe.mcmmo"
-    };
-
     /**
      * @param clazz
      * @return ArrayList<Class < ?>>
      */
-    public static ArrayList<Class<?>> getClassesForPackage(Class clazz, Class... blacklisted) {
+    public static ArrayList<Class<?>> getClassesForPackage(Class clazz, String... blacklisted) {
         ArrayList<Class<?>> classes = new ArrayList<>();
         CodeSource src = clazz.getProtectionDomain().getCodeSource();
 
@@ -60,8 +56,8 @@ public class ClassGetter {
      * @param className
      * @return Class<?>
      */
-    private static Class<?> loadClass(String className, Class... blacklisted) {
-        if (Arrays.stream(ClassGetter.BLACKLISTED_PACKAGES).anyMatch(className::startsWith))
+    private static Class<?> loadClass(String className, String... blacklisted) {
+        if (Arrays.stream(blacklisted).anyMatch(className::startsWith))
             return null;
 
         try {
@@ -76,7 +72,7 @@ public class ClassGetter {
      * @param pkgname
      * @param classes
      */
-    private static void processJarfile(URL resource, String pkgname, ArrayList<Class<?>> classes, Class... blacklisted) {
+    private static void processJarfile(URL resource, String pkgname, ArrayList<Class<?>> classes, String... blacklisted) {
         String relPath = pkgname.replace('.', '/');
         String resPath = resource.getPath().replace("%20", " ");
         String jarPath = resPath.replaceFirst("[.]jar[!].*", ".jar").replaceFirst("file:", "");
