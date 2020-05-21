@@ -80,7 +80,7 @@ public class GroupDao extends Table {
                     group.getName(),
                     group.getPrefix(),
                     group.getSuffix(),
-                    group.getColor(),
+                    group.getColorChar(),
                     group.getPriority(),
                     group.getTabListListOrder(),
                     group.getDiscordGroupId(),
