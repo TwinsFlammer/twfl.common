@@ -9,6 +9,7 @@ public class GroupNames {
             ADMINISTRATOR = "administrator",
             MODERATOR = "moderator",
             HELPER = "helper",
+            YOUTUBER = "youtuber",
             NOBLE = "noble",
             KNIGHT = "knight",
             FARMER = "farmer",
