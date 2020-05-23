@@ -103,6 +103,8 @@ public class UserGroupDao extends Table {
                 value
         );
 
+        System.out.println(query);
+
         Set<T> groups = Sets.newConcurrentHashSet();
 
         try (
