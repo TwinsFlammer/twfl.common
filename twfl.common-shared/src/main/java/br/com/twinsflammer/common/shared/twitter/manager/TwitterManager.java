@@ -19,10 +19,10 @@ import java.util.Map;
  * Created by @SrGutyerrez
  */
 public class TwitterManager {
-    public static final String oAuthConsumerKey = "Fs9796KhpzGwFeCD1sD5WGlMR",
-            oAuthConsumerSecret = "5wjjIFqbRS3xxNtdqozbHUPyU6jbpGJxmiVznR0ahcZpDirk7O",
-            oAuthAccessToken = "793524431041822721-Yh4DobGQvEf2stjzkMSsAw43i4QCbyf",
-            oAuthAccessTokenSecret = "2S0TotmWm0EVDDfVBOVd6XTTB3RxXZSQophGYgz2wfTgi";
+    public static final String oAuthConsumerKey = "eita porra",
+            oAuthConsumerSecret = "eita porra",
+            oAuthAccessToken = "eita porra",
+            oAuthAccessTokenSecret = "eita porra";
 
     private static final HashMap<Integer, RequestToken> REQUEST_TOKEN_HASH_MAP = Maps.newHashMap();
 
